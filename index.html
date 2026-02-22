@@ -350,30 +350,326 @@
             display: block;
         }
         
-        /* ========== QUIZ BUTTONS ========== */
-        .quiz-btn {
+        /* ========== QUIZ GAME ========== */
+        .quiz-game {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .quiz-progress-bar {
+            background: var(--bg-light);
+            height: 60px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quiz-progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-green), var(--light-green));
+            width: 25%;
+            transition: width 0.6s ease;
+        }
+        
+        .quiz-progress-text {
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            color: var(--text-black);
+            font-size: 0.95rem;
+        }
+        
+        .quiz-screens-container {
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+        
+        .quiz-screen {
+            position: absolute;
+            width: 100%;
+            padding: 3rem 2.5rem;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .quiz-screen.active {
+            position: relative;
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+        }
+        
+        .quiz-screen.exiting-left {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        
+        .quiz-choice-btn {
             background: white;
             border: 2px solid var(--border-gray);
-            color: var(--text-black);
-            padding: 1.25rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 700;
+            padding: 1.25rem 1.5rem;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-black);
             width: 100%;
             text-align: left;
         }
         
-        .quiz-btn:hover {
-            background: var(--primary-green);
-            color: white;
+        .quiz-choice-btn:hover {
             border-color: var(--primary-green);
+            background: rgba(46, 84, 61, 0.05);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(46, 84, 61, 0.2);
+            box-shadow: 0 4px 12px rgba(46, 84, 61, 0.15);
+        }
+        
+        .quiz-emoji {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        
+        .quiz-choice-text {
+            flex: 1;
+        }
+        
+        .quiz-back-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            margin-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .quiz-back-btn:hover {
+            color: var(--primary-green);
+        }
+        
+        .quiz-result-section {
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-result-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+        
+        .quiz-result-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quiz-result-list li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        .quiz-result-list li::before {
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+        
+        .quiz-result-list.has li::before {
+            content: "✓";
+            color: var(--primary-green);
+        }
+        
+        .quiz-result-list.needs li::before {
+            content: "⚠️";
+        }
+        
+        .quiz-gap-highlight {
+            background: rgba(255, 187, 54, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            color: var(--text-black);
+        }
+        
+        .quiz-final-cta {
+            text-align: center;
+            margin-top: 2.5rem;
         }
 
+/* ADD THESE CSS STYLES TO YOUR STYLESHEET (REPLACE THE OLD QUIZ CSS) */
+
+/* ========== QUIZ GAME (GAMIFIED VERSION) ========== */
+
+/* Sticky Header */
+.quiz-sticky-header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, var(--primary-green), var(--navy));
+    padding: 1.5rem 2rem;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 3rem;
+}
+
+/* Question Card */
+.quiz-question-card {
+    background: white;
+    border-radius: 20px;
+    padding: 3.5rem 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--border-gray);
+    animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Floating Icon Animation */
+.floating-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Quiz Option Buttons */
+.quiz-option-btn {
+    background: white;
+    border: 2px solid var(--border-gray);
+    padding: 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-black);
+    width: 100%;
+    text-align: left;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.quiz-option-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(46, 84, 61, 0.15);
+    border-color: var(--primary-green);
+}
+
+.quiz-option-btn.selected {
+    background: rgba(168, 183, 154, 0.2);
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
+.quiz-option-btn .option-icon {
+    font-size: 1.8rem;
+    margin-right: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.quiz-option-btn .option-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.quiz-option-btn .option-subtitle {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-gray);
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Encouragement Popup Animation */
+#quiz-encouragement {
+    animation: encouragementPop 2s ease-out forwards;
+}
+
+@keyframes encouragementPop {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+    15% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+        opacity: 1;
+    }
+    30% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    85% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .quiz-sticky-header {
+        padding: 1rem 1.5rem;
+    }
+    
+    .quiz-question-card {
+        padding: 2.5rem 2rem;
+    }
+    
+    .quiz-option-btn {
+        padding: 1.25rem;
+    }
+    
+    #quiz-icon {
+        font-size: 3rem !important;
+    }
+    
+    #quiz-title {
+        font-size: 1.5rem !important;
+    }
+    
+    #quiz-description {
+        font-size: 1rem !important;
+    }
+}
         /* ========== MARKER HIGHLIGHT ========== */
         .marker-highlight {
             position: relative;
@@ -1107,35 +1403,139 @@
             </div>
         </section>
 
-        <!-- Interactive Quiz -->
+<!-- REPLACE THE EXISTING QUIZ SECTION (lines 1255-1307) WITH THIS -->
+
+        <!-- Interactive Quiz Game -->
         <section style="padding: 5rem 0; background: var(--bg-light);">
-            <div class="container" style="max-width: 900px; text-align: center;">
-                <h2 class="reveal" style="margin-bottom: 1.5rem;">How Are You Actually Using GenAI?</h2>
-                <p class="reveal delay-1" style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 3rem;">
-                    Pick the one that sounds most like you:
-                </p>
+            <div class="container" style="max-width: 100%;">
                 
-                <div class="quiz-options reveal delay-2" style="display: grid; gap: 1.5rem; max-width: 700px; margin: 0 auto;">
-                    <button class="quiz-btn" onclick="showQuizResult('search')">
-                        🔍 Like a Search Engine
-                    </button>
-                    
-                    <button class="quiz-btn" onclick="showQuizResult('workflows')">
-                        ⚙️ I Have Some Workflows
-                    </button>
-                    
-                    <button class="quiz-btn" onclick="showQuizResult('overwhelmed')">
-                        😵 I'm Overwhelmed
-                    </button>
-                    
-                    <button class="quiz-btn" onclick="showQuizResult('beginner')">
-                        🤷 What Even Is GenAI?
-                    </button>
+                <!-- Sticky Progress Header -->
+                <div id="quiz-header" class="quiz-sticky-header" style="display: none;">
+                    <div class="container" style="max-width: 1000px; margin: 0 auto;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.5rem; color: white; margin: 0;">
+                                🚀 Your AI Learning Path
+                            </h2>
+                            <div style="text-align: right;">
+                                <div style="font-size: 0.9rem; color: var(--gold); font-weight: 600;">
+                                    Question <span id="quiz-current-num">1</span> of <span id="quiz-total-num">4</span>
+                                </div>
+                                <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">
+                                    <span id="quiz-progress-percent">25</span>% complete
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 100%; background: rgba(255,255,255,0.2); border-radius: 20px; height: 8px; overflow: hidden;">
+                            <div id="quiz-progress-bar-fill" style="height: 100%; background: var(--gold); width: 25%; transition: width 0.8s ease; border-radius: 20px;"></div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div id="quiz-results" style="margin-top: 3rem; display: none;"></div>
+                <div style="max-width: 900px; margin: 0 auto;">
+                    
+                    <!-- Welcome Screen -->
+                    <div id="quiz-welcome" class="text-center">
+                        <div style="font-size: 5rem; margin-bottom: 2rem;" class="floating-icon">🎮</div>
+                        <h2 class="reveal" style="font-size: 3rem; margin-bottom: 1.5rem; font-weight: 800;">
+                            Discover Your AI Learning Path
+                        </h2>
+                        <p class="reveal delay-1" style="font-size: 1.2rem; color: var(--text-gray); max-width: 700px; margin: 0 auto 3rem;">
+                            Take 60 seconds to see where you are and unlock your personalized journey to AI mastery.
+                        </p>
+                        
+                        <div class="glass-card reveal delay-2" style="max-width: 600px; margin: 0 auto 3rem; padding: 2.5rem;">
+                            <h3 style="font-size: 1.3rem; margin-bottom: 2rem; color: var(--primary-green);">What to expect:</h3>
+                            <div style="display: grid; gap: 1.25rem; text-align: left;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span style="font-size: 2rem;">🎯</span>
+                                    <span style="font-size: 1rem;">4 quick questions</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span style="font-size: 2rem;">🎭</span>
+                                    <span style="font-size: 1rem;">Personalized to YOUR work</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span style="font-size: 2rem;">🚀</span>
+                                    <span style="font-size: 1rem;">Your unique skills gap analysis</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span style="font-size: 2rem;">💡</span>
+                                    <span style="font-size: 1rem;">Actionable next steps</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="startQuizGame()" class="btn-primary" style="font-size: 1.2rem; padding: 1.25rem 3rem; box-shadow: 0 8px 20px rgba(46, 84, 61, 0.25);">
+                            🚀 Begin Your Journey
+                        </button>
+                    </div>
+                    
+                    <!-- Question Screen -->
+                    <div id="quiz-question" style="display: none;">
+                        <div class="quiz-question-card">
+                            <div class="text-center" style="margin-bottom: 2.5rem;">
+                                <div id="quiz-icon" style="font-size: 4rem; margin-bottom: 1.5rem;" class="floating-icon">🔍</div>
+                                <div id="quiz-category" style="font-size: 0.85rem; color: var(--primary-green); font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">
+                                    Your AI Journey
+                                </div>
+                                <h3 id="quiz-title" style="font-size: 1.75rem; margin-bottom: 1rem; font-weight: 700; color: var(--text-black);">
+                                    Question Title
+                                </h3>
+                                <p id="quiz-description" style="font-size: 1.1rem; color: var(--text-gray); max-width: 650px; margin: 0 auto; line-height: 1.6;">
+                                    Question description goes here
+                                </p>
+                            </div>
+                            
+                            <div id="quiz-options-container" style="max-width: 650px; margin: 0 auto;">
+                                <!-- Options dynamically loaded -->
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; max-width: 650px; margin-left: auto; margin-right: auto;">
+                                <button id="quiz-back-btn" onclick="quizGoBack()" class="btn-secondary" style="opacity: 0.5; cursor: not-allowed;" disabled>
+                                    ← Back
+                                </button>
+                                <div style="text-align: center; font-size: 0.9rem; color: var(--text-gray);">
+                                    Question <span id="quiz-current">1</span> of <span id="quiz-total">4</span>
+                                </div>
+                                <button id="quiz-next-btn" onclick="quizGoNext()" class="btn-primary" style="opacity: 0.5; cursor: not-allowed;" disabled>
+                                    Next →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Completion Screen -->
+                    <div id="quiz-complete" style="display: none;" class="text-center">
+                        <div style="font-size: 5rem; margin-bottom: 2rem;" class="floating-icon">🏆</div>
+                        <h2 style="font-size: 3rem; margin-bottom: 1.5rem; font-weight: 800; color: var(--primary-green);">
+                            Journey Complete!
+                        </h2>
+                        <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 650px; margin: 0 auto 3rem;">
+                            You've unlocked your personalized AI learning path. Here's what you discovered:
+                        </p>
+                        
+                        <div id="quiz-results-content" class="glass-card" style="max-width: 600px; margin: 0 auto 3rem; padding: 2.5rem; text-align: left;">
+                            <!-- Results dynamically loaded -->
+                        </div>
+                        
+                        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                            <button onclick="navigateTo('book')" class="btn-primary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">
+                                Book Your First Session
+                            </button>
+                            <button onclick="restartQuizGame()" class="btn-secondary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">
+                                ← Start Over
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </section>
+        
+        <!-- Encouragement Popup -->
+        <div id="quiz-encouragement" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--primary-green); color: white; padding: 1.5rem 2.5rem; border-radius: 50px; font-weight: 700; font-size: 1.25rem; box-shadow: 0 8px 30px rgba(46, 84, 61, 0.4); z-index: 9999; display: none; pointer-events: none;">
+            Great choice! 🌟
+        </div>
 
         <!-- Uncomfortable Truth -->
         <section style="background: var(--primary-green); color: white; padding: 4rem 0;">
@@ -2079,51 +2479,479 @@
             }
         }
         
-        // Quiz functionality
-        function showQuizResult(type) {
-            const results = {
-                search: {
-                    title: "You're Not Alone—But You're Leaving Value on the Table",
-                    text: "Most people use GenAI like a search engine: ask a question, get an answer, move on. That's fine for quick lookups, but you're missing the real power. Imagine NotebookLM turning 50 pages into a 10-minute audio briefing. Or Gemini in Docs drafting your entire report from bullet points. That's the difference between using AI and mastering it.",
-                    cta: "See What You're Missing"
-                },
-                workflows: {
-                    title: "Good Start—But Are They Saving You 10+ Hours/Week?",
-                    text: "You're ahead of most people. But here's the test: Are your workflows saving you HOURS every week, or just minutes? Real GenAI mastery means systems that compound. NotebookLM for research. Gemini integrated into your actual workspace. Reusable templates that get smarter over time. If you're not there yet, there's another level waiting.",
-                    cta: "Level Up Your Workflows"
-                },
-                overwhelmed: {
-                    title: "That's the Problem With Tutorial Overload",
-                    text: "YouTube shows you 100 features but doesn't tell you which 5 actually matter for YOUR work. Articles assume you already know the basics. You're not overwhelmed by GenAI—you're overwhelmed by noise. What you need: someone to cut through the chaos and show you the 20% that gets 80% of results. For YOUR specific work. Not generic tips.",
-                    cta: "Cut Through the Noise"
-                },
-                beginner: {
-                    title: "Perfect Place to Start—No Judgment",
-                    text: "Most 'AI experts' started exactly where you are. GenAI isn't one tool—it's an entire category. The good news? You don't need to learn it all. Just the parts that actually help YOU. I specialize in Google's AI tools (Gemini, NotebookLM) because they integrate directly into Gmail, Docs, and Sheets—the apps you already use. But the principles? They work everywhere.",
-                    cta: "Start From Zero"
-                }
-            };
-            
-            const result = results[type];
-            const resultsDiv = document.getElementById('quiz-results');
-            
-            resultsDiv.innerHTML = `
-                <div class="glass-card" style="text-align: left; padding: 2.5rem; background: rgba(46, 84, 61, 0.05); border: 2px solid var(--primary-green);">
-                    <h3 style="color: var(--primary-green); font-size: 1.5rem; margin-bottom: 1rem;">
-                        ${result.title}
-                    </h3>
-                    <p style="color: var(--text-gray); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
-                        ${result.text}
-                    </p>
-                    <a onclick="navigateTo('book')" class="btn-primary" style="display: inline-block;">
-                        ${result.cta}
-                    </a>
+
+// QUIZ GAME - WITH PERSONALIZED ENCOURAGEMENT MESSAGES
+
+// Quiz Game State
+let quizGameState = {
+    currentStep: 0,
+    totalSteps: 4,
+    persona: null,
+    assessment: null,
+    skillPriority: null,
+    learningStyle: null,
+    answers: {}
+};
+
+// Personalized Encouragement Messages
+const encouragementMessages = {
+    // Step 1: Persona selection
+    persona: {
+        search: ["Great start! Let's transform how you use AI! 🚀", "Perfect! Search is just the beginning! ✨"],
+        workflows: ["Excellent! You're already ahead of most people! 💪", "Nice! Let's level up those workflows! ⚡"],
+        overwhelmed: ["I hear you! We'll cut through the noise together! 🎯", "You're in the right place! Clarity is coming! 💡"],
+        beginner: ["Perfect place to start! No judgment, just growth! 🌱", "Awesome! Everyone starts somewhere! 🚀"]
+    },
+    // Step 2: Assessment
+    assessment: ["That's so common—you're not alone! 💪", "I've heard that before! We can fix it! ✨", "Great insight into what you need! 🎯"],
+    // Step 3: Skill priority  
+    skillPriority: ["Smart choice! That'll make a huge difference! 💎", "Excellent prioritization! Let's make it happen! 🚀", "Perfect! That's exactly where to focus! ⭐"],
+    // Step 4: Learning style
+    learningStyle: ["That's how you learn best! Got it! 🎓", "Perfect! We'll tailor it to your style! ✨", "Great to know! This will be personalized! 🎯"]
+};
+
+// Generic fallback (just in case)
+const genericEncouragement = ["Great choice! 🌟", "Perfect! ⭐", "Excellent! 🎯"];
+
+// STEP 1: Persona Selection
+const step1Content = {
+    icon: "🔍",
+    category: "Step 1: Your Current State",
+    title: "How Are You Using GenAI?",
+    description: "Let's start by understanding where you are right now.",
+    type: "persona",
+    options: [
+        { value: "search", text: "🔍 Like a Search Engine", subtitle: "I ask questions and get answers" },
+        { value: "workflows", text: "⚙️ I Have Some Workflows", subtitle: "I've built a few basic systems" },
+        { value: "overwhelmed", text: "😵 I'm Overwhelmed", subtitle: "Too many tools, too much noise" },
+        { value: "beginner", text: "🤷 What Even Is GenAI?", subtitle: "Just getting started" }
+    ]
+};
+
+// STEP 2: Assessment (personalized by persona)
+const step2Content = {
+    search: {
+        icon: "🎯",
+        category: "Step 2: Your Biggest Challenge",
+        title: "What frustrates you most right now?",
+        description: "Since you use AI like a search engine, which issue resonates?",
+        options: [
+            "Results feel generic and unhelpful",
+            "I waste time trying different prompts",
+            "I can't save or reuse good results"
+        ]
+    },
+    workflows: {
+        icon: "🎯",
+        category: "Step 2: Your Biggest Challenge",
+        title: "What's holding you back?",
+        description: "You've started building workflows—what's the blocker?",
+        options: [
+            "They're inconsistent and unreliable",
+            "They don't save much time yet",
+            "I don't know how to scale them"
+        ]
+    },
+    overwhelmed: {
+        icon: "🎯",
+        category: "Step 2: Your Biggest Challenge",
+        title: "What's overwhelming you most?",
+        description: "Let's identify the core issue:",
+        options: [
+            "Too many tools—don't know which to use",
+            "Too much information—no clear starting point",
+            "Everything seems too complex"
+        ]
+    },
+    beginner: {
+        icon: "🎯",
+        category: "Step 2: Your Biggest Challenge",
+        title: "What's stopping you from starting?",
+        description: "Everyone starts somewhere—what's your hesitation?",
+        options: [
+            "I don't understand what AI can actually do",
+            "I'm worried I'll use it wrong",
+            "I don't know which tool to try first"
+        ]
+    }
+};
+
+// STEP 3: Skill Prioritization
+const step3Content = {
+    search: {
+        icon: "🎯",
+        category: "Step 3: Skill Priority",
+        title: "Which skill would help you MOST?",
+        description: "If you could master one thing first, what would move the needle?",
+        options: [
+            { value: "prompts", text: "Prompt engineering", subtitle: "Getting quality results consistently" },
+            { value: "context", text: "Context management", subtitle: "Building on previous conversations" },
+            { value: "templates", text: "Reusable templates", subtitle: "Stop starting from scratch every time" }
+        ]
+    },
+    workflows: {
+        icon: "🎯",
+        category: "Step 3: Skill Priority",
+        title: "Which skill would help you MOST?",
+        description: "To take your workflows to the next level, what do you need?",
+        options: [
+            { value: "automation", text: "Workflow automation", subtitle: "Systems that run on autopilot" },
+            { value: "advanced-context", text: "Advanced context strategies", subtitle: "Memory across sessions" },
+            { value: "integration", text: "Tool integration", subtitle: "Connecting AI to your workspace" }
+        ]
+    },
+    overwhelmed: {
+        icon: "🎯",
+        category: "Step 3: Skill Priority",
+        title: "What would give you clarity FIRST?",
+        description: "Let's cut through the noise—what do you need most?",
+        options: [
+            { value: "tool-guidance", text: "Tool guidance", subtitle: "Which tools actually matter for YOUR work" },
+            { value: "simple-workflows", text: "Simple workflows", subtitle: "Just the basics that work immediately" },
+            { value: "focus", text: "The 20% that matters", subtitle: "Core skills, not everything" }
+        ]
+    },
+    beginner: {
+        icon: "🎯",
+        category: "Step 3: Skill Priority",
+        title: "Where should you start?",
+        description: "Let's build your foundation—what feels most important?",
+        options: [
+            { value: "fundamentals", text: "The fundamentals", subtitle: "What GenAI is and how it works" },
+            { value: "basic-prompting", text: "Basic prompting", subtitle: "How to ask AI for what you need" },
+            { value: "confidence", text: "Hands-on practice", subtitle: "Just trying things without fear" }
+        ]
+    }
+};
+
+// STEP 4: Learning Style
+const step4Content = {
+    icon: "🎓",
+    category: "Step 4: Learning Style",
+    title: "How do you learn best?",
+    description: "Everyone learns differently—what works for you?",
+    options: [
+        { value: "hands-on", text: "Hands-on practice", subtitle: "Work on my actual projects with guidance" },
+        { value: "structured", text: "Structured lessons", subtitle: "Step-by-step curriculum I can follow" },
+        { value: "examples", text: "Real examples", subtitle: "See how others use it, then adapt" },
+        { value: "accountability", text: "Accountability", subtitle: "Someone to keep me on track" }
+    ]
+};
+
+// Next Steps Content (personalized)
+const nextStepsContent = {
+    search: {
+        title: "Transform Search Into Systems",
+        summary: "You're using AI like Google—getting answers but not building systems. Here's your path forward:",
+        skills: [
+            "Prompt engineering fundamentals",
+            "Context management strategies",
+            "Building reusable template libraries"
+        ],
+        nextSteps: [
+            "Session 1: Master prompt engineering—learn to get quality results on the first try",
+            "Session 2: Build your first reusable template system",
+            "Session 3: Create context workflows that build on previous conversations"
+        ],
+        outcome: "In 2-3 sessions, you'll go from asking questions to building workflows that save 10+ hours/week."
+    },
+    workflows: {
+        title: "Level Up to Real Automation",
+        summary: "You've started building—now let's make them actually save serious time:",
+        skills: [
+            "Advanced workflow automation",
+            "Context engineering for complex projects",
+            "Tool integration strategies"
+        ],
+        nextSteps: [
+            "Session 1: Audit your current workflows and identify automation opportunities",
+            "Session 2: Build advanced context strategies for multi-session projects",
+            "Session 3: Integrate AI into your actual workspace (Gmail, Docs, Sheets)"
+        ],
+        outcome: "In 2-3 sessions, you'll go from 2 hours/week saved to 10+ hours/week with systems that compound."
+    },
+    overwhelmed: {
+        title: "Cut Through the Noise",
+        summary: "You don't need more content—you need clarity on the 20% that matters:",
+        skills: [
+            "Tool guidance for YOUR specific work",
+            "Simple workflows that work immediately",
+            "Core fundamentals (no fluff)"
+        ],
+        nextSteps: [
+            "Session 1: Identify which tools actually matter for YOUR role",
+            "Session 2: Build one simple workflow that saves time this week",
+            "Session 3: Master the core skills—ignore everything else"
+        ],
+        outcome: "In 2-3 sessions, you'll go from overwhelmed to focused—using AI confidently without the noise."
+    },
+    beginner: {
+        title: "Start From Zero (No Judgment)",
+        summary: "You're starting fresh—that's actually an advantage. Here's your foundation:",
+        skills: [
+            "GenAI fundamentals (what it is, what it's not)",
+            "Basic prompting skills",
+            "Hands-on practice with real tasks"
+        ],
+        nextSteps: [
+            "Session 1: Understand what GenAI actually is and try your first prompts",
+            "Session 2: Practice on YOUR real work tasks (no generic examples)",
+            "Session 3: Build your first simple workflow you'll use daily"
+        ],
+        outcome: "In 2-3 sessions, you'll go from complete beginner to confidently using AI for daily tasks."
+    }
+};
+
+// Start Quiz
+function startQuizGame() {
+    document.getElementById('quiz-welcome').style.display = 'none';
+    document.getElementById('quiz-question').style.display = 'block';
+    document.getElementById('quiz-header').style.display = 'block';
+    
+    quizGameState.currentStep = 0;
+    showQuizStep(0);
+}
+
+// Show Quiz Step
+function showQuizStep(step) {
+    quizGameState.currentStep = step;
+    updateQuizProgress();
+    
+    let stepData;
+    
+    if (step === 0) {
+        stepData = step1Content;
+    } else if (step === 1 && quizGameState.persona) {
+        stepData = step2Content[quizGameState.persona];
+    } else if (step === 2 && quizGameState.persona) {
+        stepData = step3Content[quizGameState.persona];
+    } else if (step === 3) {
+        stepData = step4Content;
+    }
+    
+    if (!stepData) return;
+    
+    document.getElementById('quiz-icon').textContent = stepData.icon;
+    document.getElementById('quiz-category').textContent = stepData.category;
+    document.getElementById('quiz-title').textContent = stepData.title;
+    document.getElementById('quiz-description').textContent = stepData.description || "";
+    
+    generateQuizOptions(stepData, step);
+    updateQuizNavigation();
+}
+
+// Generate Options
+function generateQuizOptions(stepData, step) {
+    const container = document.getElementById('quiz-options-container');
+    container.innerHTML = '';
+    
+    stepData.options.forEach((option, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option-btn';
+        
+        if (option.subtitle) {
+            // Has subtitle (Steps 1, 3, 4)
+            btn.innerHTML = `
+                <div>
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">${option.text}</div>
+                    <div style="font-size: 0.85rem; font-weight: 400; color: var(--text-gray);">${option.subtitle}</div>
                 </div>
             `;
-            
-            resultsDiv.style.display = 'block';
-            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            btn.onclick = () => selectQuizOptionWithValue(option.value, btn, step);
+        } else {
+            // No subtitle (Step 2)
+            btn.textContent = option;
+            btn.onclick = () => selectQuizOption(index, btn, step);
         }
+        
+        container.appendChild(btn);
+    });
+}
+
+// Select Option (for Step 2 - no value, just index)
+function selectQuizOption(index, btn, step) {
+    document.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    quizGameState.answers[step] = index;
+    
+    if (step === 1) {
+        quizGameState.assessment = index;
+        showQuizEncouragement('assessment');
+    }
+    
+    enableQuizNext();
+}
+
+// Select Option with Value (for Steps 1, 3, 4)
+function selectQuizOptionWithValue(value, btn, step) {
+    document.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    quizGameState.answers[step] = value;
+    
+    if (step === 0) {
+        quizGameState.persona = value;
+        showQuizEncouragement('persona', value);
+    } else if (step === 2) {
+        quizGameState.skillPriority = value;
+        showQuizEncouragement('skillPriority');
+    } else if (step === 3) {
+        quizGameState.learningStyle = value;
+        showQuizEncouragement('learningStyle');
+    }
+    
+    enableQuizNext();
+}
+
+// Show Personalized Encouragement
+function showQuizEncouragement(type, personaValue = null) {
+    const popup = document.getElementById('quiz-encouragement');
+    let message;
+    
+    if (type === 'persona' && personaValue) {
+        // Get persona-specific message
+        const messages = encouragementMessages.persona[personaValue];
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else if (type === 'assessment') {
+        // Get assessment message
+        const messages = encouragementMessages.assessment;
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else if (type === 'skillPriority') {
+        // Get skill priority message
+        const messages = encouragementMessages.skillPriority;
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else if (type === 'learningStyle') {
+        // Get learning style message
+        const messages = encouragementMessages.learningStyle;
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else {
+        // Fallback
+        message = genericEncouragement[Math.floor(Math.random() * genericEncouragement.length)];
+    }
+    
+    popup.textContent = message;
+    popup.style.display = 'block';
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 2000);
+}
+
+// Update Progress
+function updateQuizProgress() {
+    const progress = ((quizGameState.currentStep + 1) / quizGameState.totalSteps) * 100;
+    document.getElementById('quiz-progress-bar-fill').style.width = progress + '%';
+    document.getElementById('quiz-progress-percent').textContent = Math.round(progress);
+    document.getElementById('quiz-current-num').textContent = quizGameState.currentStep + 1;
+    document.getElementById('quiz-total-num').textContent = quizGameState.totalSteps;
+    document.getElementById('quiz-current').textContent = quizGameState.currentStep + 1;
+    document.getElementById('quiz-total').textContent = quizGameState.totalSteps;
+}
+
+// Update Navigation
+function updateQuizNavigation() {
+    const backBtn = document.getElementById('quiz-back-btn');
+    const nextBtn = document.getElementById('quiz-next-btn');
+    
+    if (quizGameState.currentStep === 0) {
+        backBtn.disabled = true;
+        backBtn.style.opacity = '0.5';
+        backBtn.style.cursor = 'not-allowed';
+    } else {
+        backBtn.disabled = false;
+        backBtn.style.opacity = '1';
+        backBtn.style.cursor = 'pointer';
+    }
+    
+    if (quizGameState.currentStep === quizGameState.totalSteps - 1) {
+        nextBtn.textContent = 'See My Next Steps 🏆';
+    } else {
+        nextBtn.textContent = 'Next →';
+    }
+    
+    // Disable next initially
+    disableQuizNext();
+}
+
+// Enable/Disable Next
+function enableQuizNext() {
+    const btn = document.getElementById('quiz-next-btn');
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.style.cursor = 'pointer';
+}
+
+function disableQuizNext() {
+    const btn = document.getElementById('quiz-next-btn');
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    btn.style.cursor = 'not-allowed';
+}
+
+// Navigation
+function quizGoNext() {
+    if (quizGameState.currentStep < quizGameState.totalSteps - 1) {
+        showQuizStep(quizGameState.currentStep + 1);
+    } else {
+        completeQuizGame();
+    }
+}
+
+function quizGoBack() {
+    if (quizGameState.currentStep > 0) {
+        showQuizStep(quizGameState.currentStep - 1);
+    }
+}
+
+// Complete Quiz
+function completeQuizGame() {
+    document.getElementById('quiz-question').style.display = 'none';
+    document.getElementById('quiz-header').style.display = 'none';
+    document.getElementById('quiz-complete').style.display = 'block';
+    
+    const resultsContainer = document.getElementById('quiz-results-content');
+    const nextSteps = nextStepsContent[quizGameState.persona];
+    
+    resultsContainer.innerHTML = `
+        <div style="margin-bottom: 2.5rem;">
+            <h3 style="font-size: 1.5rem; color: var(--primary-green); margin-bottom: 1rem;">${nextSteps.title}</h3>
+            <p style="font-size: 1.05rem; color: var(--text-gray); line-height: 1.7;">
+                ${nextSteps.summary}
+            </p>
+        </div>
+        
+        <div style="margin-bottom: 2rem;">
+            <h4 style="color: var(--primary-green); margin-bottom: 1rem; font-size: 1.1rem;">You'll master:</h4>
+            <ul style="list-style: none; padding: 0;">
+                ${nextSteps.skills.map(skill => `<li style="padding: 0.5rem 0 0.5rem 2rem; position: relative;"><span style="position: absolute; left: 0; color: var(--primary-green); font-weight: 700;">✓</span> ${skill}</li>`).join('')}
+            </ul>
+        </div>
+        
+        <div style="background: rgba(46, 84, 61, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary-green); margin-bottom: 2rem;">
+            <h4 style="color: var(--primary-green); margin-bottom: 1rem; font-size: 1.1rem;">Your 3-session roadmap:</h4>
+            <ol style="padding-left: 1.25rem; margin: 0;">
+                ${nextSteps.nextSteps.map(step => `<li style="padding: 0.5rem 0; color: var(--text-gray); line-height: 1.6;">${step}</li>`).join('')}
+            </ol>
+        </div>
+        
+        <div style="background: rgba(255, 187, 54, 0.1); border-left: 4px solid var(--gold); padding: 1.25rem; border-radius: 8px; font-weight: 600;">
+            ${nextSteps.outcome}
+        </div>
+    `;
+}
+
+// Restart Quiz
+function restartQuizGame() {
+    quizGameState = {
+        currentStep: 0,
+        totalSteps: 4,
+        persona: null,
+        assessment: null,
+        skillPriority: null,
+        learningStyle: null,
+        answers: {}
+    };
+    document.getElementById('quiz-complete').style.display = 'none';
+    document.getElementById('quiz-welcome').style.display = 'block';
+}
     </script>
 
 </body>
