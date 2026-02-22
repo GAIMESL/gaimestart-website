@@ -349,6 +349,30 @@
             text-align: center;
             display: block;
         }
+        
+        /* ========== QUIZ BUTTONS ========== */
+        .quiz-btn {
+            background: white;
+            border: 2px solid var(--border-gray);
+            color: var(--text-black);
+            padding: 1.25rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .quiz-btn:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 84, 61, 0.2);
+        }
 
         /* ========== MARKER HIGHLIGHT ========== */
         .marker-highlight {
@@ -1018,6 +1042,142 @@
                         <h3>Busy Work?</h3>
                         <p>Emails, meeting notes, reports—all eating your time. You know AI can help.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two People Comparison -->
+        <section style="background: linear-gradient(135deg, var(--primary-green), var(--navy)); color: white; padding: 4rem 0;">
+            <div class="container" style="max-width: 1100px;">
+                <h2 class="text-center reveal" style="color: var(--gold); margin-bottom: 3rem;">Two People. Same Tools. Different Results.</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="glass-card reveal delay-1" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
+                        <h3 style="color: rgba(255,255,255,0.7); font-size: 1.3rem; margin-bottom: 1.5rem;">PERSON A:</h3>
+                        <p style="color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">"I use AI all the time!"</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">→</span> Asks generic questions, gets generic answers
+                            </li>
+                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">→</span> Copies/pastes responses manually
+                            </li>
+                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">→</span> Starts from scratch every session
+                            </li>
+                            <li style="color: var(--gold); font-weight: 700; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">→</span> Saves maybe 10 minutes/week
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card reveal delay-2" style="background: rgba(255,187,54,0.15); border: 2px solid var(--gold);">
+                        <h3 style="color: var(--gold); font-size: 1.3rem; margin-bottom: 1.5rem;">PERSON B:</h3>
+                        <p style="color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">"GenAI is my second brain"</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span> Built custom research workflows in NotebookLM
+                            </li>
+                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span> Has Gemini integrated into Gmail and Docs
+                            </li>
+                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span> Reuses proven templates and systems
+                            </li>
+                            <li style="color: var(--gold); font-weight: 700; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span> Saves 10+ hours/week
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p class="text-center reveal delay-3" style="color: white; font-size: 1.3rem; margin-top: 3rem; font-weight: 600;">
+                    Same access. Same technology. Completely different outcomes.<br>
+                    <span style="color: var(--gold);">The difference? One learned how to drive the car.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Interactive Quiz -->
+        <section style="padding: 5rem 0; background: var(--bg-light);">
+            <div class="container" style="max-width: 900px; text-align: center;">
+                <h2 class="reveal" style="margin-bottom: 1.5rem;">How Are You Actually Using GenAI?</h2>
+                <p class="reveal delay-1" style="font-size: 1.1rem; color: var(--text-gray); margin-bottom: 3rem;">
+                    Pick the one that sounds most like you:
+                </p>
+                
+                <div class="quiz-options reveal delay-2" style="display: grid; gap: 1.5rem; max-width: 700px; margin: 0 auto;">
+                    <button class="quiz-btn" onclick="showQuizResult('search')">
+                        🔍 Like a Search Engine
+                    </button>
+                    
+                    <button class="quiz-btn" onclick="showQuizResult('workflows')">
+                        ⚙️ I Have Some Workflows
+                    </button>
+                    
+                    <button class="quiz-btn" onclick="showQuizResult('overwhelmed')">
+                        😵 I'm Overwhelmed
+                    </button>
+                    
+                    <button class="quiz-btn" onclick="showQuizResult('beginner')">
+                        🤷 What Even Is GenAI?
+                    </button>
+                </div>
+                
+                <div id="quiz-results" style="margin-top: 3rem; display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Uncomfortable Truth -->
+        <section style="background: var(--primary-green); color: white; padding: 4rem 0;">
+            <div class="container" style="max-width: 1000px;">
+                <h2 class="text-center reveal" style="color: var(--gold); margin-bottom: 2rem;">The Uncomfortable Truth</h2>
+                
+                <p class="reveal delay-1" style="font-size: 1.3rem; text-align: center; margin-bottom: 2rem; line-height: 1.8; color: white;">
+                    You don't have an "AI problem."<br>
+                    <strong style="color: var(--gold);">You have a workflow problem.</strong>
+                </p>
+                
+                <div class="reveal delay-2" style="font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto; color: white;">
+                    <p style="margin-bottom: 1.5rem; color: white;">
+                        You've tried the tools. You've read the articles. You might even have a paid subscription.
+                    </p>
+                    
+                    <div style="background: rgba(0,0,0,0.2); padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                        <p style="margin-bottom: 0.75rem; color: white;"><strong>But you're still:</strong></p>
+                        <ul style="list-style: none; padding-left: 1.5rem; color: white;">
+                            <li style="margin-bottom: 0.75rem; color: white;">❌ Starting from scratch every time</li>
+                            <li style="margin-bottom: 0.75rem; color: white;">❌ Getting mediocre, generic results</li>
+                            <li style="margin-bottom: 0.75rem; color: white;">❌ Not sure which tool does what</li>
+                            <li style="color: white;">❌ Spending more time fighting AI than it saves you</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="margin-bottom: 1.5rem; color: white;">
+                        <strong>Here's the reality:</strong><br>
+                        Google won't teach you this. YouTube tutorials won't either.
+                    </p>
+                    
+                    <p style="margin-bottom: 1.5rem; color: var(--gold); font-size: 1.2rem; font-weight: 700;">
+                        You need someone to watch YOU work and say:
+                    </p>
+                    
+                    <ul style="list-style: none; padding-left: 1.5rem; margin-bottom: 2rem; color: white;">
+                        <li style="margin-bottom: 0.75rem; color: white;">"Here's exactly where Gemini fits in YOUR process."</li>
+                        <li style="margin-bottom: 0.75rem; color: white;">"Here's how NotebookLM transforms YOUR research."</li>
+                        <li style="color: white;">"Here's the system that works for YOUR workflow."</li>
+                    </ul>
+                    
+                    <p style="text-align: center; font-size: 1.2rem; margin-top: 2.5rem; color: white;">
+                        That's what actual coaching looks like.<br>
+                        <strong style="color: var(--gold);">Not generic tips. Personalized systems.</strong>
+                    </p>
+                </div>
+                
+                <div class="text-center reveal delay-3" style="margin-top: 3rem;">
+                    <a onclick="navigateTo('book')" class="btn-primary" style="background: var(--gold); color: var(--primary-green); font-size: 1.1rem; padding: 1.25rem 3rem;">
+                        Get Personalized Coaching
+                    </a>
                 </div>
             </div>
         </section>
@@ -1908,6 +2068,52 @@
             if (!wasActive) {
                 item.classList.add('active');
             }
+        }
+        
+        // Quiz functionality
+        function showQuizResult(type) {
+            const results = {
+                search: {
+                    title: "You're Not Alone—But You're Leaving Value on the Table",
+                    text: "Most people use GenAI like a search engine: ask a question, get an answer, move on. That's fine for quick lookups, but you're missing the real power. Imagine NotebookLM turning 50 pages into a 10-minute audio briefing. Or Gemini in Docs drafting your entire report from bullet points. That's the difference between using AI and mastering it.",
+                    cta: "See What You're Missing"
+                },
+                workflows: {
+                    title: "Good Start—But Are They Saving You 10+ Hours/Week?",
+                    text: "You're ahead of most people. But here's the test: Are your workflows saving you HOURS every week, or just minutes? Real GenAI mastery means systems that compound. NotebookLM for research. Gemini integrated into your actual workspace. Reusable templates that get smarter over time. If you're not there yet, there's another level waiting.",
+                    cta: "Level Up Your Workflows"
+                },
+                overwhelmed: {
+                    title: "That's the Problem With Tutorial Overload",
+                    text: "YouTube shows you 100 features but doesn't tell you which 5 actually matter for YOUR work. Articles assume you already know the basics. You're not overwhelmed by GenAI—you're overwhelmed by noise. What you need: someone to cut through the chaos and show you the 20% that gets 80% of results. For YOUR specific work. Not generic tips.",
+                    cta: "Cut Through the Noise"
+                },
+                beginner: {
+                    title: "Perfect Place to Start—No Judgment",
+                    text: "Most 'AI experts' started exactly where you are. GenAI isn't one tool—it's an entire category. The good news? You don't need to learn it all. Just the parts that actually help YOU. I specialize in Google's AI tools (Gemini, NotebookLM) because they integrate directly into Gmail, Docs, and Sheets—the apps you already use. But the principles? They work everywhere.",
+                    cta: "Start From Zero"
+                }
+            };
+            
+            const result = results[type];
+            const resultsDiv = document.getElementById('quiz-results');
+            
+            resultsDiv.innerHTML = `
+                <div class="glass-card" style="text-align: left; padding: 2.5rem; background: rgba(46, 84, 61, 0.05); border: 2px solid var(--primary-green);">
+                    <h3 style="color: var(--primary-green); font-size: 1.5rem; margin-bottom: 1rem;">
+                        ${result.title}
+                    </h3>
+                    <p style="color: var(--text-gray); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        ${result.text}
+                    </p>
+                    <a onclick="navigateTo('book')" class="btn-primary" style="display: inline-block;">
+                        ${result.cta}
+                    </a>
+                </div>
+            `;
+            
+            resultsDiv.style.display = 'block';
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
 
