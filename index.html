@@ -687,13 +687,12 @@
             z-index: -1;
             border-radius: 2px;
             transform: rotate(-1deg);
-            width: 100%;
-            animation: markerSweep 1s var(--ease-spring) 0.6s backwards;
+            width: 0%;
+            transition: width 1s var(--ease-spring) 0.4s;
         }
         
-        @keyframes markerSweep {
-            from { width: 0%; }
-            to { width: 100%; }
+        .marker-highlight.active::after {
+            width: 100%;
         }
 
         /* ========== LAYOUT ========== */
@@ -1283,18 +1282,12 @@
             <div class="container">
                 <div class="badge reveal">GenAI Made Easy</div>
                 <h1 class="reveal delay-1">From Passive Chatting to<br><span class="marker-highlight">Active Mastery</span></h1>
-                
-                <div class="reveal delay-2" style="max-width: 800px; margin: 0 auto;">
-                    <p style="font-size: 1.25rem; margin-bottom: 1.25rem; line-height: 1.7; color: var(--text-gray);">
-                        Learn GenAI skills that work everywhere—prompt engineering, workflow automation, context management.
-                    </p>
-                    <p style="font-size: 1.15rem; margin-bottom: 1.25rem; line-height: 1.7; color: var(--text-gray);">
-                        I teach using Google's tools (Gemini, NotebookLM) but principles transfer to ChatGPT, Claude, any tool.
-                    </p>
-                    <p style="font-size: 1.1rem; margin-bottom: 3rem; line-height: 1.7; color: var(--text-gray);">
-                        Personalized 1-on-1 coaching. No coding required.
-                    </p>
-                </div>
+                <p class="reveal delay-2" style="max-width: 800px; margin: 0 auto 1.5rem;">
+                    Learn GenAI skills that work everywhere—prompt engineering, workflow automation, context management.
+                </p>
+                <p class="reveal delay-2" style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">
+                    Personalized 1-on-1 coaching. No coding required.
+                </p>
                 <div class="hero-btns reveal delay-3">
                     <a onclick="navigateTo('book')" class="btn-primary">Book a Session</a>
                     <a onclick="navigateTo('how')" class="btn-secondary">See How It Works</a>
@@ -1666,7 +1659,7 @@
 
                 <div class="glass-card reveal delay-1" style="max-width: 1000px; margin: 0 auto; text-align: center;">
                     <div style="margin: 0 auto 2rem; display: flex; justify-content: center;">
-                        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="6405061c-3177-4c07-982a-2ad5debe4a3c" data-share-badge-host="https://www.credly.com"></div>
+                        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b35c6736-694c-455c-977d-18e8293485f7" data-share-badge-host="https://www.credly.com"></div>
                         <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
                     </div>
                     
@@ -2036,7 +2029,8 @@
                         <div>
                             <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary-green);">💳 Payment Methods</h3>
                             <p style="margin-bottom: 0.5rem;"><strong>E-Transfer (Virtual):</strong></p>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-light);">Instructions sent via email after booking</p>
+                            <p style="margin-bottom: 0.5rem;">Send to <strong style="color: var(--primary-green);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4c2129290c2b2d2521293f382d3e38622f2321">[email&#160;protected]</a></strong></p>
+                            <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-light);">Include: Your name + "GAIME Start"</p>
                             <p style="margin: 0;"><strong>Cash (In-Person):</strong></p>
                             <p style="margin: 0; font-size: 0.9rem;">North York locations only</p>
                         </div>
@@ -2095,8 +2089,8 @@
                 </p>
 
                 <div class="glass-card reveal delay-2" style="max-width: 600px; margin: 0 auto;">
-                    <a href="/cdn-cgi/l/email-protection#630e06062304020a0e0610170211174d000c0e5c101601090600175e210c0c084651530246515324222a2e264651533017021117465153300610100a0c0d45010c071a5e2b0a4651532e06064f4653274653224653274653222a44074651530f0a0806465153170c465153010c0c0846515302465153100610100a0c0d4d4651532b06110644104651530e1a465153000b020f0f060d0406594653274653224653274653223827061000110a0106465153140b02174651531a0c164411064651531017111604040f0a0d04465153140a170b3e465327465322465327465322370b020d081042" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 3rem; width: 100%; display: block;">
-                        📧 Email Me to Book
+                    <a href="/cdn-cgi/l/email-protection#8be6eeeecbeceae2e6eef8ffeaf9ffa5e8e4e6b4f8fee9e1eee8ffb6c2ace6abd9eeeaeff2abffe4abd8ffeaf9ffabcccac2c6ceade9e4eff2b6c3e2aaabc2ace6abe2e5ffeef9eef8ffeeefabe2e5abe9e4e4e0e2e5ecabeaabf8eef8f8e2e4e5a5aebbcfaebbcaaebbcfaebbcac6f2abe8e3eae7e7eee5eceeb1aebbcfaebbcad0cfeef8e8f9e2e9eeabfce3eaffabf2e4feabfceae5ffabffe4abeae8e8e4e6fbe7e2f8e3d6aebbcfaebbcaaebbcfaebbcac6f2abeafdeae2e7eae9e2e7e2fff2b1aebbcfaebbcad0c7eeffabe6eeabe0e5e4fcabfce3eaffabffe2e6eef8abfce4f9e0abede4f9abf2e4fed6" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 3rem; width: 100%; display: block;">
+                        📧 Email to Book
                     </a>
                     
                     <div style="text-align: left; margin-top: 3rem;">
@@ -2104,9 +2098,8 @@
                         <ol style="padding-left: 20px; line-height: 2; color: var(--text-gray);">
                             <li>You email me with your challenge</li>
                             <li>I reply within 24 hours with an intake form & track recommendation</li>
-                            <li>You choose a time slot that works for you</li>
-                            <li>I send you payment instructions (e-transfer or cash)</li>
-                            <li>Once payment is received, I send the Google Meet link (or in-person details)</li>
+                            <li>You choose a time slot and send payment to <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="58353d3d183f3931353d2b2c392a2c763b3735">[email&#160;protected]</a></strong></li>
+                            <li>I send you the Google Meet link (or in-person details)</li>
                             <li>We meet and solve your problem—live!</li>
                         </ol>
                     </div>
@@ -2271,7 +2264,7 @@
             <div class="meta-info">
                 Effective Date: February 7, 2026<br>
                 Last Updated: February 7, 2026<br>
-                Email: <a href="/cdn-cgi/l/email-protection#deb3bbbb9eb9bfb7b3bbadaabfacaaf0bdb1b3"><span class="__cf_email__" data-cfemail="b2dfd7d7f2d5d3dbdfd7c1c6d3c0c69cd1dddf">[email&#160;protected]</span></a>
+                Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e8858d8da88f8981858d9b9c899a9cc68b8785">[email&#160;protected]</a>
             </div>
 
             <div class="highlight-box">
@@ -2350,7 +2343,7 @@
             </div>
 
             <h3>Payment Terms</h3>
-            <p><strong>Accepted Payment Methods:</strong> E-Transfer (Interac) - Primary method for virtual sessions. Payment instructions sent via email after booking. Include in message: Your name + "GAIME Start". Cash - Accepted for in-person sessions in North York/Toronto only.</p>
+            <p><strong>Accepted Payment Methods:</strong> E-Transfer (Interac) - Primary method for virtual sessions. Send to <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a474f4f6a4d4b43474f595e4b585e04494547">[email&#160;protected]</a></strong>. Include in message: Your name + "GAIME Start". Cash - Accepted for in-person sessions in North York/Toronto only.</p>
             <p><strong>Payment Schedule:</strong> Payment is required in advance to secure your session slot. Calendar invites and Google Meet links are sent ONLY AFTER payment is received. For packages, full payment is required upfront.</p>
 
             <h3>Cancellation & Rescheduling Policy</h3>
@@ -2394,7 +2387,7 @@
             <p>I reserve the right to update these Terms & Policies at any time. Updated terms will be posted with a new "Last Updated" date. Significant changes will be communicated via email. Continued booking after changes constitutes acceptance.</p>
 
             <h2 style="margin-top: 4rem;">Contact Information</h2>
-            <p>Questions about these terms? Email me at <a href="/cdn-cgi/l/email-protection#650800002502040c080016110417114b060a08" style="color: var(--primary-green); text-decoration: underline;"><span class="__cf_email__" data-cfemail="acc1c9c9eccbcdc5c1c9dfd8cdded882cfc3c1">[email&#160;protected]</span></a></p>
+            <p>Questions about these terms? Email me at <a href="/cdn-cgi/l/email-protection#513c3434113630383c3422253023257f323e3c" style="color: var(--primary-green); text-decoration: underline;"><span class="__cf_email__" data-cfemail="7b161e1e3b1c1a12161e080f1a090f55181416">[email&#160;protected]</span></a></p>
             <p style="text-align: center; margin-top: 2rem; color: #aaa; font-size: 0.9rem;">© 2026 GAIME Start Learning</p>
         </div>
 
@@ -2405,7 +2398,7 @@
         </footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Page navigation
         function navigateTo(pageName) {
             // Hide all pages
@@ -2458,12 +2451,6 @@
             // Activate home page reveals
             setTimeout(() => {
                 document.querySelectorAll('#page-home .reveal').forEach(el => el.classList.add('active'));
-                
-                // Activate marker highlight
-                const marker = document.querySelector('#page-home .marker-highlight');
-                if (marker) {
-                    setTimeout(() => marker.classList.add('active'), 500);
-                }
             }, 200);
         });
         
@@ -2495,7 +2482,7 @@
         }
         
 
-// UPDATED QUIZ GAME - TRUE 4 INTERACTIVE STEPS + NEXT STEPS SUMMARY
+// QUIZ GAME - WITH PERSONALIZED ENCOURAGEMENT MESSAGES
 
 // Quiz Game State
 let quizGameState = {
@@ -2508,17 +2495,25 @@ let quizGameState = {
     answers: {}
 };
 
-// Encouragement Messages
-const quizEncouragementMessages = [
-    "Great choice! 🌟",
-    "You're doing amazing! 💪",
-    "Fantastic! 🚀",
-    "Keep it up! ⭐",
-    "Excellent! 🎯",
-    "Perfect! 💎",
-    "Awesome! 🎉",
-    "Brilliant! 🧠"
-];
+// Personalized Encouragement Messages
+const encouragementMessages = {
+    // Step 1: Persona selection
+    persona: {
+        search: ["Great start! Let's transform how you use AI! 🚀", "Perfect! Search is just the beginning! ✨"],
+        workflows: ["Excellent! You're already ahead of most people! 💪", "Nice! Let's level up those workflows! ⚡"],
+        overwhelmed: ["I hear you! We'll cut through the noise together! 🎯", "You're in the right place! Clarity is coming! 💡"],
+        beginner: ["Perfect place to start! No judgment, just growth! 🌱", "Awesome! Everyone starts somewhere! 🚀"]
+    },
+    // Step 2: Assessment
+    assessment: ["That's so common—you're not alone! 💪", "I've heard that before! We can fix it! ✨", "Great insight into what you need! 🎯"],
+    // Step 3: Skill priority  
+    skillPriority: ["Smart choice! That'll make a huge difference! 💎", "Excellent prioritization! Let's make it happen! 🚀", "Perfect! That's exactly where to focus! ⭐"],
+    // Step 4: Learning style
+    learningStyle: ["That's how you learn best! Got it! 🎓", "Perfect! We'll tailor it to your style! ✨", "Great to know! This will be personalized! 🎯"]
+};
+
+// Generic fallback (just in case)
+const genericEncouragement = ["Great choice! 🌟", "Perfect! ⭐", "Excellent! 🎯"];
 
 // STEP 1: Persona Selection
 const step1Content = {
@@ -2783,9 +2778,9 @@ function selectQuizOption(index, btn, step) {
     
     if (step === 1) {
         quizGameState.assessment = index;
+        showQuizEncouragement('assessment');
     }
     
-    showQuizEncouragement();
     enableQuizNext();
 }
 
@@ -2797,21 +2792,45 @@ function selectQuizOptionWithValue(value, btn, step) {
     
     if (step === 0) {
         quizGameState.persona = value;
+        showQuizEncouragement('persona', value);
     } else if (step === 2) {
         quizGameState.skillPriority = value;
+        showQuizEncouragement('skillPriority');
     } else if (step === 3) {
         quizGameState.learningStyle = value;
+        showQuizEncouragement('learningStyle');
     }
     
-    showQuizEncouragement();
     enableQuizNext();
 }
 
-// Show Encouragement
-function showQuizEncouragement() {
+// Show Personalized Encouragement
+function showQuizEncouragement(type, personaValue = null) {
     const popup = document.getElementById('quiz-encouragement');
-    const randomMsg = quizEncouragementMessages[Math.floor(Math.random() * quizEncouragementMessages.length)];
-    popup.textContent = randomMsg;
+    let message;
+    
+    if (type === 'persona' && personaValue) {
+        // Get persona-specific message
+        const messages = encouragementMessages.persona[personaValue];
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else if (type === 'assessment') {
+        // Get assessment message
+        const messages = encouragementMessages.assessment;
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else if (type === 'skillPriority') {
+        // Get skill priority message
+        const messages = encouragementMessages.skillPriority;
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else if (type === 'learningStyle') {
+        // Get learning style message
+        const messages = encouragementMessages.learningStyle;
+        message = messages[Math.floor(Math.random() * messages.length)];
+    } else {
+        // Fallback
+        message = genericEncouragement[Math.floor(Math.random() * genericEncouragement.length)];
+    }
+    
+    popup.textContent = message;
     popup.style.display = 'block';
     setTimeout(() => {
         popup.style.display = 'none';
@@ -2915,4 +2934,27 @@ function completeQuizGame() {
             </ol>
         </div>
         
-  
+        <div style="background: rgba(255, 187, 54, 0.1); border-left: 4px solid var(--gold); padding: 1.25rem; border-radius: 8px; font-weight: 600;">
+            ${nextSteps.outcome}
+        </div>
+    `;
+}
+
+// Restart Quiz
+function restartQuizGame() {
+    quizGameState = {
+        currentStep: 0,
+        totalSteps: 4,
+        persona: null,
+        assessment: null,
+        skillPriority: null,
+        learningStyle: null,
+        answers: {}
+    };
+    document.getElementById('quiz-complete').style.display = 'none';
+    document.getElementById('quiz-welcome').style.display = 'block';
+}
+    </script>
+
+</body>
+</html>
