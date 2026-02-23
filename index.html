@@ -687,12 +687,13 @@
             z-index: -1;
             border-radius: 2px;
             transform: rotate(-1deg);
-            width: 0%;
-            transition: width 1s var(--ease-spring) 0.4s;
+            width: 100%;
+            animation: markerSweep 1s var(--ease-spring) 0.6s backwards;
         }
         
-        .marker-highlight.active::after {
-            width: 100%;
+        @keyframes markerSweep {
+            from { width: 0%; }
+            to { width: 100%; }
         }
 
         /* ========== LAYOUT ========== */
@@ -1283,7 +1284,8 @@
                 <div class="badge reveal">GenAI Made Easy</div>
                 <h1 class="reveal delay-1">From Passive Chatting to<br><span class="marker-highlight">Active Mastery</span></h1>
                 <p class="reveal delay-2">
-                    Learn to actually USE Google's AI tools—Gemini, NotebookLM, and beyond.<br>
+                    Learn GenAI skills that work everywhere—prompt engineering, workflow automation, context management.<br>
+                    I teach using Google's tools (Gemini, NotebookLM) but principles transfer to ChatGPT, Claude, any tool.<br>
                     Personalized 1-on-1 coaching. No coding required.
                 </p>
                 <div class="hero-btns reveal delay-3">
@@ -2086,7 +2088,7 @@
                 </p>
 
                 <div class="glass-card reveal delay-2" style="max-width: 600px; margin: 0 auto;">
-                    <a href="mailto:mee@gaimestart.com?subject=Book%20a%20GAIME%20Start%20Session&body=Hi%20Mee,%0D%0A%0D%0AI'd%20like%20to%20book%20a%20session.%20Here's%20my%20challenge:%0D%0A%0D%0A[Describe%20what%20you're%20struggling%20with]%0D%0A%0D%0AThanks!" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 3rem; width: 100%; display: block;">
+                    <a href="/cdn-cgi/l/email-protection#630e06062304020a0e0610170211174d000c0e5c101601090600175e210c0c084651530246515324222a2e264651533017021117465153300610100a0c0d45010c071a5e2b0a4651532e06064f4653274653224653274653222a44074651530f0a0806465153170c465153010c0c0846515302465153100610100a0c0d4d4651532b06110644104651530e1a465153000b020f0f060d0406594653274653224653274653223827061000110a0106465153140b02174651531a0c164411064651531017111604040f0a0d04465153140a170b3e465327465322465327465322370b020d081042" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 3rem; width: 100%; display: block;">
                         📧 Email Me to Book
                     </a>
                     
@@ -2262,7 +2264,7 @@
             <div class="meta-info">
                 Effective Date: February 7, 2026<br>
                 Last Updated: February 7, 2026<br>
-                Email: <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+                Email: <a href="/cdn-cgi/l/email-protection#deb3bbbb9eb9bfb7b3bbadaabfacaaf0bdb1b3"><span class="__cf_email__" data-cfemail="b2dfd7d7f2d5d3dbdfd7c1c6d3c0c69cd1dddf">[email&#160;protected]</span></a>
             </div>
 
             <div class="highlight-box">
@@ -2385,7 +2387,7 @@
             <p>I reserve the right to update these Terms & Policies at any time. Updated terms will be posted with a new "Last Updated" date. Significant changes will be communicated via email. Continued booking after changes constitutes acceptance.</p>
 
             <h2 style="margin-top: 4rem;">Contact Information</h2>
-            <p>Questions about these terms? Email me at <a href="mailto:mee@gaimestart.com" style="color: var(--primary-green); text-decoration: underline;">mee@gaimestart.com</a></p>
+            <p>Questions about these terms? Email me at <a href="/cdn-cgi/l/email-protection#650800002502040c080016110417114b060a08" style="color: var(--primary-green); text-decoration: underline;"><span class="__cf_email__" data-cfemail="acc1c9c9eccbcdc5c1c9dfd8cdded882cfc3c1">[email&#160;protected]</span></a></p>
             <p style="text-align: center; margin-top: 2rem; color: #aaa; font-size: 0.9rem;">© 2026 GAIME Start Learning</p>
         </div>
 
@@ -2396,7 +2398,7 @@
         </footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Page navigation
         function navigateTo(pageName) {
             // Hide all pages
@@ -2449,6 +2451,12 @@
             // Activate home page reveals
             setTimeout(() => {
                 document.querySelectorAll('#page-home .reveal').forEach(el => el.classList.add('active'));
+                
+                // Activate marker highlight
+                const marker = document.querySelector('#page-home .marker-highlight');
+                if (marker) {
+                    setTimeout(() => marker.classList.add('active'), 500);
+                }
             }, 200);
         });
         
@@ -2900,27 +2908,4 @@ function completeQuizGame() {
             </ol>
         </div>
         
-        <div style="background: rgba(255, 187, 54, 0.1); border-left: 4px solid var(--gold); padding: 1.25rem; border-radius: 8px; font-weight: 600;">
-            ${nextSteps.outcome}
-        </div>
-    `;
-}
-
-// Restart Quiz
-function restartQuizGame() {
-    quizGameState = {
-        currentStep: 0,
-        totalSteps: 4,
-        persona: null,
-        assessment: null,
-        skillPriority: null,
-        learningStyle: null,
-        answers: {}
-    };
-    document.getElementById('quiz-complete').style.display = 'none';
-    document.getElementById('quiz-welcome').style.display = 'block';
-}
-    </script>
-
-</body>
-</html>
+  
