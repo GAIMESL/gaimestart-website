@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Coach · GAIME Start Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    .hero-section {
+      background: var(--off-white);
+      padding-top: 140px;
+      padding-bottom: 5rem;
+    }
+
+    .hero-section h1 { max-width: 700px; }
+
+    .b-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .b-hero-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 860px) {
+      .b-hero-grid { grid-template-columns: 1fr; }
+      .b-hero-photo { max-width: 340px; }
+    }
+
+    .coach-photo-wrap {
+      width: 260px;
+      aspect-ratio: 3 / 4;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--cool-greige);
+      border: 1px dashed rgba(46,84,61,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .coach-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      border-radius: 20px;
+    }
+    .coach-photo-placeholder {
+      text-align: center;
+      color: rgba(28,26,22,0.3);
+      font-size: 12px;
+      line-height: 1.8;
+      padding: 1.5rem;
+      pointer-events: none;
+    }
+    .coach-photo-placeholder svg { display: block; margin: 0 auto 0.75rem; opacity: 0.25; }
+
+    .hero-section p {
+      font-size: 17px;
+      color: rgba(28, 26, 22, 0.6);
+      max-width: 540px;
+      line-height: 1.78;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(28, 26, 22, 0.1);
+    }
+
+    .stat-block { flex: 0 0 auto; }
+
+    .stat-block .stat-num {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 0;
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--deep-green);
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-block span:last-child {
+      font-size: 12px;
+      color: rgba(28, 26, 22, 0.5);
+      letter-spacing: 0.04em;
+    }
+
+    /* Credentials section */
+    .creds-section {
+      background: var(--cool-greige);
+    }
+
+    .creds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .cred-card {
+      background: var(--pure-white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cred-card h3 {
+      font-size: 16px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Badge embed */
+    .badge-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Philosophy section */
+    .philosophy-section {
+      background: var(--off-white);
+    }
+
+    .philosophy-box {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--off-white);
+      border: 1px solid rgba(28, 26, 22, 0.08);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .philosophy-box p {
+      font-size: 16px;
+      line-height: 1.82;
+      color: rgba(28, 26, 22, 0.7);
+    }
+
+    .philosophy-quote {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 1;
+      font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--warm-ink);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      border-left: 3px solid var(--jewelry-gold);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .linkedin-link {
+      display: inline-block;
+      color: var(--deep-green);
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .linkedin-link:hover { color: var(--warm-chestnut); }
+
+    /* CTA band */
+    .cta-band {
+      background: var(--dark-walnut);
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .cta-band h2 { color: var(--off-white); margin-bottom: 1rem; }
+    .cta-band p { color: rgba(250, 248, 244, 0.6); font-size: 16px; margin-bottom: 2.5rem; }
+
+    @media (max-width: 768px) {
+      .creds-grid { grid-template-columns: 1fr; }
+      .stats-strip { gap: 2rem; }
+      .philosophy-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">Your Coach</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="what-we-cover.html">What We Cover</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero-section atmo">
+    <div class="b-orb"></div>
+    <div class="flora front tilt-r" style="top:-30px; right:38px; width:140px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="container">
+      <div class="b-hero-wrap">
+        <span class="b-ghost-num">M</span>
+        <div class="b-hero-grid">
+          <div class="b-hero">
+            <div class="kicker reveal"><span class="idx">01</span><span class="line"></span><span class="label label-cream">Your Coach</span></div>
+            <h1 class="reveal delay-1">Meet <span class="gold-underline">Mee</span></h1>
+            <p class="b-lead reveal delay-2">Canada's AI Workflow Coach. Anti-hype. Human-first. Practical. Cutting through the noise so you can catch up without the overwhelm.</p>
+            <div class="b-statline reveal delay-3">
+              <div class="b-stat"><span class="n">6+</span><span class="l">Years in Learning &amp; Development</span></div>
+              <div class="b-stat"><span class="n">2,000+</span><span class="l">Employees trained on GenAI</span></div>
+            </div>
+          </div>
+          <div class="b-hero-photo reveal delay-2">
+            <image-slot id="mee-headshot" shape="rounded" radius="24" placeholder="Drop Mee's headshot" src="img/mee-headshot.png"></image-slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="creds-section">
+    <div class="peek peek-online peek-tight" style="left:2%; width:150px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-sleep.png" alt=""></div></div>
+    <div class="container">
+      <span class="label reveal">Credentials</span>
+      <h2 class="reveal delay-1">Background &amp; Certifications</h2>
+
+      <div class="badge-wrap reveal delay-2">
+        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b35c6736-694c-455c-977d-18e8293485f7" data-share-badge-host="https://www.credly.com"></div>
+        <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+      </div>
+
+      <div class="creds-grid">
+        <div class="cred-card reveal delay-2">
+          <span class="gold-rule"></span>
+          <h3>Professional Experience</h3>
+          <ul class="check-list">
+            <li>6+ years in Learning &amp; Development</li>
+            <li>Enterprise AI Literacy &amp; Adoption Lead</li>
+            <li>Upskilled 2,000+ employees on Gemini and NotebookLM</li>
+            <li>Led enterprise-wide AI training programs from conception to launch</li>
+          </ul>
+        </div>
+        <div class="cred-card reveal delay-3">
+          <span class="gold-rule"></span>
+          <h3>Certifications</h3>
+          <ul class="check-list">
+            <li>Prosci Certified Change Practitioner (2026)</li>
+            <li>LinkedIn Learning: AI Foundations</li>
+            <li>Performance Management with AI</li>
+            <li>Future of Work with AI Agents</li>
+            <li>Specialized in adult learning principles &amp; agile training design</li>
+          </ul>
+          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(28,26,22,0.08);">
+            <a href="https://www.linkedin.com/in/meeshunyang" target="_blank" rel="noopener" class="linkedin-link">LinkedIn Profile &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy-section">
+    <div class="peek tilt-l" style="right:-22px; top:-40px; width:176px;" data-speed="0.06" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-think.png" alt=""></div></div>
+    <div class="container">
+      <span class="label reveal">The Approach</span>
+      <h2 class="reveal delay-1" style="max-width: 540px;">Human in the Lead, AI in the Loop</h2>
+
+      <div class="philosophy-box reveal delay-2" style="margin-top: 2.5rem;">
+        <p><strong style="color: var(--warm-ink);">There's too much noise about AI.</strong></p>
+        <p>Too many tools. Too many tutorials. Too much hype. People are either falling behind or drowning in content they don't need.</p>
+        <p>I help you cut through the chaos. My job is to get you caught up to speed without the overwhelm: just the workflows you actually need, for the work you actually do.</p>
+        <p>No fluff. No hype. Just practical guidance on making AI work for you.</p>
+
+        <div class="philosophy-quote">
+          "I teach you how to drive the car. You choose where to go."
+        </div>
+
+        <p>I won't do your work for you, but I'll show you exactly how to do it yourself, faster and smarter than you thought possible. My goal isn't to create dependency. It's to get you confident enough to work independently.</p>
+        <p style="margin-bottom: 0;"><em>"Meet Mee at the start, master the art, then we part."</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="flora front tilt-r" style="right:34px; top:-20px; width:118px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
+    <div class="peek peek-online" style="right:11%; width:140px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-pounce.png" alt=""></div></div>
+    <div class="container">
+      <h2 class="reveal">Work With Mee</h2>
+      <p class="reveal delay-1">One email. I'll reply within 24 hours with a custom plan.</p>
+      <a href="book.html" class="btn-coin reveal delay-2">Book a Session</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p>"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="terms.html">Terms &amp; Policies</a>
+        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.add('open');
+    });
+    document.getElementById('menuClose').addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.remove('open');
+    });
+    document.body.classList.add('js-ready');
+    const revealAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('visible');
+      });
+    };
+    revealAll();
+    window.addEventListener('scroll', revealAll, { passive: true });
+    window.addEventListener('load', revealAll);
+    setTimeout(revealAll, 200);
+  </script>
+  <script src="peek.js"></script>
+  <script src="image-slot.js"></script>
+</body>
+</html>

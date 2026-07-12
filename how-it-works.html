@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works · GAIME Start Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    .hero-section {
+      background: var(--cool-greige);
+      padding-top: 140px;
+      padding-bottom: 5rem;
+    }
+
+    .hero-section p {
+      font-size: 17px;
+      color: rgba(28, 26, 22, 0.6);
+      max-width: 520px;
+      line-height: 1.78;
+    }
+
+    /* Steps */
+    .steps-section {
+      background: var(--cool-greige);
+    }
+
+    .steps-section .card { text-align: center; }
+    .steps-section .card p { font-size: 14px; color: rgba(28,26,22,0.65); margin-bottom: 0; }
+
+    /* Location note */
+    .location-note {
+      background: rgba(232, 168, 32, 0.07);
+      border-left: 3px solid var(--honey-gold);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      margin-top: 2.5rem;
+    }
+
+    .location-note p { margin: 0; font-size: 14px; }
+
+    /* Session breakdown */
+    .session-section {
+      background: var(--off-white);
+    }
+
+    .timeline {
+      max-width: 680px;
+      margin: 3rem auto 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .timeline-time {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 0;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--deep-green);
+      text-align: right;
+      padding-top: 3px;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline-body {
+      border-left: 2px solid rgba(28, 26, 22, 0.1);
+      padding-left: 1.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .timeline-body h3 {
+      font-size: 16px;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-body p {
+      font-size: 14px;
+      color: rgba(28, 26, 22, 0.65);
+      margin-bottom: 0;
+    }
+
+    /* Bring + Responsibilities */
+    .prep-section {
+      background: var(--warm-grey);
+    }
+
+    /* CTA band */
+    .cta-band {
+      background: var(--dark-walnut);
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .cta-band h2 { color: var(--off-white); margin-bottom: 1rem; }
+    .cta-band p  { color: rgba(250,248,244,0.6); font-size: 16px; margin-bottom: 2.5rem; }
+
+    @media (max-width: 640px) {
+      .timeline-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
+      <li><a href="how-it-works.html" class="active">How It Works</a></li>
+      <li><a href="what-we-cover.html">What We Cover</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero-section atmo">
+    <div class="b-orb"></div>
+    <div class="flora front tilt-r" style="top:-30px; right:38px; width:140px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="container">
+      <div class="b-hero-wrap">
+        <span class="b-ghost-num">3</span>
+        <div class="b-hero">
+          <div class="kicker reveal"><span class="idx">01</span><span class="line"></span><span class="label">The Process</span></div>
+          <h1 class="reveal delay-1">How It <span class="gold-underline">Works</span></h1>
+          <p class="b-lead reveal delay-2">A simple three-step process to go from stuck to confident — contact, plan, then a live session built around your real task.</p>
+          <div class="hero-btns reveal delay-3" style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="book.html" class="btn-primary">Book a Session</a>
+            <a href="pricing.html" class="btn-outline">See Pricing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps-section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-3">
+        <div class="card reveal delay-1">
+          <div class="step-circle">1</div>
+          <h3>Contact</h3>
+          <p>Email me with your specific challenge, or if you're not sure yet, book a free 10-minute chat instead. Either way, I'll get back to you within 24 hours.</p>
+        </div>
+        <div class="card reveal delay-2">
+          <div class="step-circle">2</div>
+          <h3>Plan</h3>
+          <p>I'll reply within 24 hours with a custom plan and intake form.</p>
+        </div>
+        <div class="card reveal delay-3">
+          <div class="step-circle">3</div>
+          <h3>Session</h3>
+          <p>We meet live on Google Meet or in person. We build the workflow together.</p>
+        </div>
+      </div>
+
+      <div class="location-note reveal delay-4">
+        <p><strong>In-Person Sessions:</strong> Held at public venues (coffee shops) in North York between Finch and Sheppard. I provide the location options, no private residences.</p>
+      </div>
+
+      <div class="location-note reveal delay-4">
+        <p><strong>New to this?</strong> No pressure to know exactly what you need. The free 10-min chat is there to help you figure it out first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SESSION BREAKDOWN -->
+  <section class="session-section">
+    <div class="peek tilt-r" style="left:-28px; top:-36px; width:174px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-confident.png" alt=""></div></div>
+    <div class="container">
+      <span class="label reveal">Inside a Session</span>
+      <h2 class="reveal delay-1">What Happens in a Session?</h2>
+      <p class="reveal delay-2" style="color: rgba(28,26,22,0.6); max-width: 480px;">Sessions run 30, 60, or 90 minutes depending on what you book. Here's how a Standard 60-minute session breaks down.</p>
+
+      <div class="timeline reveal delay-3">
+        <div class="timeline-item">
+          <div class="timeline-time">First 10</div>
+          <div class="timeline-body">
+            <h3>Review Your Challenge</h3>
+            <p>We clarify exactly what you need. I ask questions to understand your context and goals before we touch any tools.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Next 40</div>
+          <div class="timeline-body">
+            <h3>Hands-On Work</h3>
+            <p>We work with your actual content. I show you the workflow, you practice with me guiding you. We build it together in real time.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">Final 10</div>
+          <div class="timeline-body">
+            <h3>Wrap Up &amp; Next Steps</h3>
+            <p>We review what we built. I give you action items to practice. We schedule the next session if needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREP -->
+  <section class="prep-section">
+    <div class="flora front tilt-r" style="right:-22px; top:-26px; width:128px;" data-speed="0.08" aria-hidden="true"><div class="flora-inner"><img src="img/cut/leaf-sprig.png" alt=""></div></div>
+    <div class="peek peek-online peek-tight" style="left:9%; width:150px;" data-speed="0.06" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-sleep.png" alt=""></div></div>
+    <div class="container">
+      <span class="label reveal">Come Prepared</span>
+      <h2 class="reveal delay-1">What to Bring</h2>
+
+      <div class="grid-2" style="margin-top: 2.5rem;">
+        <div class="card reveal delay-2">
+          <span class="gold-rule"></span>
+          <h3 style="margin-bottom: 1.25rem;">Bring These</h3>
+          <ul class="check-list">
+            <li>Working laptop or computer (phone or tablet not sufficient for hands-on work)</li>
+            <li>Stable internet connection</li>
+            <li>Google account (for Gemini and NotebookLM access)</li>
+            <li>Screen sharing capability (Google Meet or Zoom)</li>
+            <li>Your actual content or project ready to work on</li>
+          </ul>
+        </div>
+        <div class="card reveal delay-3">
+          <span class="gold-rule"></span>
+          <h3 style="margin-bottom: 1.25rem;">Your Responsibilities</h3>
+          <ul class="check-list">
+            <li>Come with specific examples or projects</li>
+            <li>Share your screen when requested</li>
+            <li>Practice techniques between sessions</li>
+            <li>Verify all AI outputs, you are the human in the lead</li>
+            <li>Follow your institution's AI policies</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="location-note reveal delay-4" style="margin-top: 2rem;">
+        <p><strong>Which Gemini plan?</strong> Start with Gemini Free if you want to try it first. We recommend AI Plus for most sessions. AI Pro is more than enough if you've already got it. Ultra is only worth it for the extra storage and features, that's your call. Plans and pricing: <a href="https://gemini.google/subscriptions/" target="_blank" rel="noopener" style="color: var(--deep-green); text-decoration: underline;">gemini.google/subscriptions</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="flora front tilt-r" style="right:34px; top:-20px; width:118px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
+    <div class="peek peek-online" style="right:11%; width:140px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-belly.png" alt=""></div></div>
+    <div class="container">
+      <h2 class="reveal">Ready to Start?</h2>
+      <p class="reveal delay-1">Email me your challenge. I'll reply within 24 hours.</p>
+      <a href="book.html" class="btn-coin reveal delay-2">Book a Session</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p>"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="terms.html">Terms &amp; Policies</a>
+        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+    document.body.classList.add('js-ready');
+    const revealAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('visible');
+      });
+    };
+    revealAll();
+    window.addEventListener('scroll', revealAll, { passive: true });
+    window.addEventListener('load', revealAll);
+    setTimeout(revealAll, 200);
+  </script>
+  <script src="peek.js"></script>
+</body>
+</html>

@@ -1,2957 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAIME Start Learning - GenAI Made Easy</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        /* ========== VARIABLES ========== */
-        :root {
-            --primary-green: #2E543D;
-            --light-green: #A8B79A;
-            --navy: #35394e;
-            --slate-blue: #4c5f74;
-            --gold: #ffbb36;
-            --text-black: #000000;
-            --text-gray: #4A5568;
-            --text-light: #718096;
-            --bg-white: #FFFFFF;
-            --bg-light: #F7F9FB;
-            --bg-cream: #FAFAF8;
-            --border-gray: #E2E8F0;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        /* ========== RESET ========== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { 
-            scroll-behavior: smooth;
-            color-scheme: light only;
-        }
-        
-        body {
-            font-family: 'Nunito', sans-serif;
-            font-size: 18px;
-            line-height: 1.7;
-            color: var(--text-black);
-            background-color: var(--bg-cream);
-            overflow-x: hidden;
-        }
-
-        /* PAGE SWITCHING */
-        .page { display: none; }
-        .page.active { display: block; }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        
-        h1 { font-size: 4rem; font-weight: 900; }
-        h2 { font-size: 3rem; font-weight: 800; }
-        h3 { font-size: 1.75rem; font-weight: 700; }
-        
-        p { margin-bottom: 1rem; color: var(--text-gray); }
-        a { text-decoration: none; transition: all 0.3s ease; cursor: pointer; }
-        ul { list-style: none; }
-
-        /* ========== ANIMATIONS ========== */
-        .reveal { opacity: 1; transform: none; }
-
-        body.js-active .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            filter: blur(5px);
-            transition: opacity 0.6s ease, transform 0.8s var(--ease-spring), filter 0.6s ease;
-        }
-
-        body.js-active .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-        }
-
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-
-        /* ========== GLASS CARDS ========== */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.4s var(--ease-spring);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .glass-card > *:last-child {
-            margin-top: auto;
-        }
-        
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-green), var(--light-green));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .glass-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(168, 183, 154, 0.3);
-        }
-
-        /* ========== ICONS ========== */
-        .icon-wrapper {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .icon-wrapper svg {
-            width: 32px;
-            height: 32px;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        
-        .icon-green { background: rgba(46, 84, 61, 0.1); color: var(--primary-green); }
-        .icon-gold { background: rgba(255, 187, 54, 0.15); color: #d49a2a; }
-        .icon-blue { background: rgba(76, 95, 116, 0.1); color: var(--slate-blue); }
-        
-        .glass-card:hover .icon-wrapper {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        /* ========== BUTTONS ========== */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gold) 0%, #e6a830 100%);
-            color: var(--text-black);
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            box-shadow: 0 4px 12px rgba(255, 187, 54, 0.25);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 187, 54, 0.35);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-green);
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            font-weight: 700;
-            border: 2px solid var(--primary-green);
-            transition: all 0.3s ease;
-            display: inline-block;
-            font-size: 1rem;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--primary-green);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* ========== NAVIGATION ========== */
-        nav {
-            position: fixed;
-            top: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1000px;
-            padding: 16px 32px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        }
-        
-        .logo {
-            font-weight: 900;
-            color: var(--primary-green);
-            font-size: 1.2rem;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: -0.02em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .logo:hover {
-            opacity: 0.7;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--text-gray);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-green);
-        }
-        
-        .nav-cta {
-            background: var(--primary-green);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 100px;
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-        
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary-green);
-        }
-        
-        /* ========== MOBILE MENU ========== */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: var(--bg-white);
-            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            z-index: 2000;
-            padding: 80px 2rem 2rem;
-            overflow-y: auto;
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 1500;
-        }
-        
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .mobile-menu-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--text-gray);
-            cursor: pointer;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .mobile-menu-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .mobile-menu-links a {
-            color: var(--text-gray);
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-gray);
-            transition: color 0.3s ease;
-        }
-        
-        .mobile-menu-links a:hover,
-        .mobile-menu-links a.active {
-            color: var(--primary-green);
-        }
-        
-        .mobile-menu-cta {
-            margin-top: 2rem;
-        }
-        
-        .mobile-menu-cta .btn-primary {
-            width: 100%;
-            text-align: center;
-            display: block;
-        }
-        
-        /* ========== QUIZ GAME ========== */
-        .quiz-game {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .quiz-progress-bar {
-            background: var(--bg-light);
-            height: 60px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quiz-progress-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-green), var(--light-green));
-            width: 25%;
-            transition: width 0.6s ease;
-        }
-        
-        .quiz-progress-text {
-            position: relative;
-            z-index: 1;
-            font-weight: 700;
-            color: var(--text-black);
-            font-size: 0.95rem;
-        }
-        
-        .quiz-screens-container {
-            position: relative;
-            overflow: hidden;
-            min-height: 400px;
-        }
-        
-        .quiz-screen {
-            position: absolute;
-            width: 100%;
-            padding: 3rem 2.5rem;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            pointer-events: none;
-        }
-        
-        .quiz-screen.active {
-            position: relative;
-            opacity: 1;
-            transform: translateX(0);
-            pointer-events: all;
-        }
-        
-        .quiz-screen.exiting-left {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-        
-        .quiz-choice-btn {
-            background: white;
-            border: 2px solid var(--border-gray);
-            padding: 1.25rem 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-black);
-            width: 100%;
-            text-align: left;
-        }
-        
-        .quiz-choice-btn:hover {
-            border-color: var(--primary-green);
-            background: rgba(46, 84, 61, 0.05);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(46, 84, 61, 0.15);
-        }
-        
-        .quiz-emoji {
-            font-size: 1.8rem;
-            flex-shrink: 0;
-        }
-        
-        .quiz-choice-text {
-            flex: 1;
-        }
-        
-        .quiz-back-btn {
-            background: none;
-            border: none;
-            color: var(--text-gray);
-            cursor: pointer;
-            font-size: 0.95rem;
-            padding: 0.5rem 0;
-            margin-top: 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
-        }
-        
-        .quiz-back-btn:hover {
-            color: var(--primary-green);
-        }
-        
-        .quiz-result-section {
-            margin-bottom: 2rem;
-        }
-        
-        .quiz-result-section h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--primary-green);
-        }
-        
-        .quiz-result-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .quiz-result-list li {
-            padding: 0.5rem 0 0.5rem 2rem;
-            position: relative;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-        
-        .quiz-result-list li::before {
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-        }
-        
-        .quiz-result-list.has li::before {
-            content: "✓";
-            color: var(--primary-green);
-        }
-        
-        .quiz-result-list.needs li::before {
-            content: "⚠️";
-        }
-        
-        .quiz-gap-highlight {
-            background: rgba(255, 187, 54, 0.1);
-            border-left: 4px solid var(--gold);
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            font-weight: 600;
-            color: var(--text-black);
-        }
-        
-        .quiz-final-cta {
-            text-align: center;
-            margin-top: 2.5rem;
-        }
-
-/* ADD THESE CSS STYLES TO YOUR STYLESHEET (REPLACE THE OLD QUIZ CSS) */
-
-/* ========== QUIZ GAME (GAMIFIED VERSION) ========== */
-
-/* Sticky Header */
-.quiz-sticky-header {
-    position: sticky;
-    top: 0;
-    background: linear-gradient(135deg, var(--primary-green), var(--navy));
-    padding: 1.5rem 2rem;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    margin-bottom: 3rem;
-}
-
-/* Question Card */
-.quiz-question-card {
-    background: white;
-    border-radius: 20px;
-    padding: 3.5rem 3rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    border: 2px solid var(--border-gray);
-    animation: slideInUp 0.6s ease-out;
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAIME Start Learning · GenAI Made Easy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    /* ---- Hero ---- */
+    .hero-section {
+      background: var(--off-white);
+      padding-top: 150px;
+      padding-bottom: 5.5rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 248, 244, 0.8);
+      border: 1px solid rgba(46, 84, 61, 0.18);
+      color: var(--deep-green);
+      padding: 7px 16px;
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
     }
-}
-
-/* Floating Icon Animation */
-.floating-icon {
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-}
-
-/* Quiz Option Buttons */
-.quiz-option-btn {
-    background: white;
-    border: 2px solid var(--border-gray);
-    padding: 1.5rem;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-black);
-    width: 100%;
-    text-align: left;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.quiz-option-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(46, 84, 61, 0.15);
-    border-color: var(--primary-green);
-}
-
-.quiz-option-btn.selected {
-    background: rgba(168, 183, 154, 0.2);
-    border-color: var(--primary-green);
-    color: var(--primary-green);
-    font-weight: 700;
-}
-
-.quiz-option-btn .option-icon {
-    font-size: 1.8rem;
-    margin-right: 1rem;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.quiz-option-btn .option-text {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.quiz-option-btn .option-subtitle {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-gray);
-    margin-top: 0.5rem;
-    display: block;
-}
-
-/* Encouragement Popup Animation */
-#quiz-encouragement {
-    animation: encouragementPop 2s ease-out forwards;
-}
-
-@keyframes encouragementPop {
-    0% {
-        transform: translate(-50%, -50%) scale(0) rotate(-10deg);
-        opacity: 0;
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--honey-gold);
     }
-    15% {
-        transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
-        opacity: 1;
+
+    .hero-copy h1 { font-size: clamp(42px, 5.4vw, 76px); }
+
+    .hero-copy > p {
+      font-size: 17px;
+      color: rgba(28, 26, 22, 0.66);
+      max-width: 440px;
+      margin-bottom: 2.25rem;
+      line-height: 1.78;
     }
-    30% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        opacity: 1;
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ---- Pain points (editorial, offset) ---- */
+    .pain-section { background: var(--warm-grey); }
+    .pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+    /* ---- Person A vs B ---- */
+    .ab-section { background: var(--stone); }
+    .ab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .ab-col {
+      border-radius: 18px;
+      padding: 2.5rem;
     }
-    85% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        opacity: 1;
+    .ab-col.muted {
+      background: rgba(28,26,22,0.03);
+      border: 1px solid rgba(28,26,22,0.08);
     }
-    100% {
-        transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
-        opacity: 0;
+    .ab-col.win {
+      background: var(--pure-white);
+      border: 1px solid rgba(46,84,61,0.18);
+      box-shadow: var(--shadow-md);
     }
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .quiz-sticky-header {
-        padding: 1rem 1.5rem;
+    .ab-col .tag {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 1.25rem; display: block;
     }
-    
-    .quiz-question-card {
-        padding: 2.5rem 2rem;
+    .ab-col.muted .tag { color: rgba(28,26,22,0.4); }
+    .ab-col.win .tag { color: var(--deep-green); }
+    .ab-list { list-style: none; padding: 0; }
+    .ab-list li {
+      position: relative; padding-left: 1.6rem; margin-bottom: 0.85rem;
+      font-size: 14.5px; line-height: 1.6;
     }
-    
-    .quiz-option-btn {
-        padding: 1.25rem;
+    .ab-col.muted .ab-list li { color: rgba(28,26,22,0.5); }
+    .ab-col.muted .ab-list li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 7px; height: 7px; border-radius: 50%; background: rgba(28,26,22,0.2);
     }
-    
-    #quiz-icon {
-        font-size: 3rem !important;
+    .ab-col.win .ab-list li { color: rgba(28,26,22,0.78); }
+    .ab-col.win .ab-list li::before {
+      content: ''; position: absolute; left: 0; top: 7px;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--honey-gold);
     }
-    
-    #quiz-title {
-        font-size: 1.5rem !important;
+
+    /* ---- Drive ---- */
+    .drive-section { background: var(--off-white); }
+    .drive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+    /* ---- Truth band ---- */
+    .truth-section { background: var(--warm-cream); padding: 7rem 0; }
+    .truth-quote {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 1;
+      font-weight: 700;
+      font-size: clamp(26px, 3.6vw, 44px);
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      max-width: 880px;
     }
-    
-    #quiz-description {
-        font-size: 1rem !important;
+    .truth-quote .hl { color: var(--deep-green); }
+
+    /* ---- Hero image placeholder ---- */
+    .hero-img-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 9 / 16;
+      max-height: 560px;
+      background: var(--cool-greige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(46,84,61,0.25);
     }
-}
-        /* ========== MARKER HIGHLIGHT ========== */
-        .marker-highlight {
-            position: relative;
-            z-index: 1;
-            display: inline-block;
-        }
-        
-        .marker-highlight::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 6px;
-            height: 14px;
-            background-color: rgba(255, 187, 54, 0.4);
-            z-index: -1;
-            border-radius: 2px;
-            transform: rotate(-1deg);
-            width: 0%;
-            transition: width 1s var(--ease-spring) 0.4s;
-        }
-        
-        .marker-highlight.active::after {
-            width: 100%;
-        }
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border-radius: 20px;
+    }
+    .hero-img-placeholder {
+      text-align: center;
+      color: rgba(28,26,22,0.3);
+      font-size: 13px;
+      line-height: 1.8;
+      padding: 2rem;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-img-placeholder svg {
+      display: block;
+      margin: 0 auto 1rem;
+      opacity: 0.25;
+    }
 
-        /* ========== LAYOUT ========== */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        section {
-            padding: 4rem 0;
-        }
-        
-        .section-compact {
-            padding: 3rem 0;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        @media (min-width: 1200px) {
-            .grid-4 {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        
-        /* ========== TABLET ========== */
-        @media (min-width: 769px) and (max-width: 1199px) {
-            .container {
-                padding: 0 2.5rem;
-            }
-            
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.25rem; }
-            
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .grid-3 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .nav-links {
-                gap: 1.5rem;
-            }
-            
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-        }
+    /* ---- Final CTA ---- */
+    .home-cta { background: var(--dark-walnut); padding: 6rem 0; }
+    .home-cta .cta-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .home-cta .cta-inner { max-width: 620px; }
+    .home-cta .cta-figure { display: flex; justify-content: center; }
+    .home-cta .cta-figure img {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      filter: drop-shadow(0 26px 44px rgba(0, 0, 0, 0.42));
+    }
+    .home-cta h2 { color: var(--off-white); margin-bottom: 1rem; }
+    .home-cta p { color: rgba(250, 248, 244, 0.62); font-size: 16px; margin-bottom: 2.25rem; }
+    @media (max-width: 860px) {
+      .home-cta .cta-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .home-cta .cta-figure img { max-width: 260px; }
+    }
 
-        /* ========== HERO ========== */
-        .hero {
-            padding-top: 140px;
-            padding-bottom: 60px;
-            text-align: center;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(46, 84, 61, 0.15);
-            color: var(--primary-green);
-            padding: 10px 24px;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-        }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            color: var(--primary-green);
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-        
-        .hero-btns {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* ========== PRICING ========== */
-        .price {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--primary-green);
-            font-family: 'Poppins', sans-serif;
-            margin: 1rem 0;
-        }
-        
-        .price span {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            font-weight: 600;
-        }
-        
-        .badge-pop {
-            background: var(--gold);
-            color: var(--text-black);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        
-        .featured {
-            border: 3px solid var(--gold) !important;
-            transform: scale(1.05);
-        }
-
-        /* ========== LISTS ========== */
-        .check-list li {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-gray);
-        }
-        
-        .check-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 4px;
-            width: 20px;
-            height: 20px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E543D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-        }
-
-        .cross-list li {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-gray);
-        }
-        
-        .cross-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 4px;
-            width: 20px;
-            height: 20px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EF4444' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-        }
-
-        /* ========== STEP CIRCLES ========== */
-        .step-circle {
-            width: 48px;
-            height: 48px;
-            background: var(--primary-green);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin: 0 auto 1.5rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* ========== LOCATION NOTE ========== */
-        .location-note {
-            background: linear-gradient(135deg, rgba(255, 187, 54, 0.1), rgba(255, 187, 54, 0.05));
-            border-left: 4px solid var(--gold);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-        }
-        
-        .location-note strong {
-            color: var(--primary-green);
-        }
-
-        /* ========== ABOUT PAGE SPECIFIC ========== */
-        .about-intro {
-            max-width: 1000px;
-            margin: 0 auto 4rem;
-            text-align: center;
-        }
-
-        .credentials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .philosophy-box {
-            background: linear-gradient(135deg, rgba(46, 84, 61, 0.05), rgba(168, 183, 154, 0.05));
-            border: 2px solid rgba(46, 84, 61, 0.15);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .philosophy-box h3 {
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--navy) 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        footer h3 {
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-        
-        footer p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        footer a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: underline;
-        }
-        
-        footer a:hover {
-            color: var(--gold);
-        }
-
-        /* ========== TERMS PAGE ========== */
-        .legal-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 24px;
-            padding: 4rem;
-            max-width: 1100px;
-            margin: 150px auto 4rem;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .legal-card h1 {
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin-bottom: 1rem;
-        }
-        
-        .legal-card h2 {
-            font-size: 1.8rem;
-            color: var(--navy);
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(46, 84, 61, 0.1);
-            padding-bottom: 0.75rem;
-        }
-        
-        .legal-card h3 {
-            font-size: 1.3rem;
-            color: var(--primary-green);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        /* ========== ACCORDION ========== */
-        .accordion-item {
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        .accordion-item:hover {
-            border-color: rgba(46, 84, 61, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-        
-        .accordion-header {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-            transition: background 0.3s ease;
-        }
-        
-        .accordion-header:hover {
-            background: rgba(46, 84, 61, 0.03);
-        }
-        
-        .accordion-header h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--text-black);
-            font-weight: 700;
-        }
-        
-        .accordion-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--primary-green);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-            margin-left: 1rem;
-        }
-        
-        .accordion-item.active .accordion-icon {
-            transform: rotate(45deg);
-        }
-        
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-        }
-        
-        .accordion-item.active .accordion-content {
-            max-height: 500px;
-            padding: 0 1.5rem 1.5rem;
-        }
-        
-        .accordion-content p {
-            margin: 0;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-        
-        
-        .meta-info {
-            font-size: 0.9rem;
-            color: #8899A6;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-        
-        .highlight-box {
-            background: rgba(255, 187, 54, 0.1);
-            border-left: 4px solid var(--gold);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 12px;
-            margin: 2rem 0;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px;
-        }
-        
-        th {
-            background: rgba(46, 84, 61, 0.05);
-            text-align: left;
-            padding: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-            color: var(--primary-green);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        td {
-            padding: 16px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            font-size: 0.95rem;
-            color: var(--text-gray);
-        }
-        
-        tr:hover td {
-            background: rgba(0, 0, 0, 0.01);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            h3 { font-size: 1.3rem; }
-            
-            nav {
-                width: 95%;
-                padding: 12px 20px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .hero {
-                padding-top: 100px;
-                padding-bottom: 40px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-                line-height: 1.2;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .hero-btns a {
-                width: 100%;
-                text-align: center;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-            
-            .container {
-                padding: 0 1.5rem;
-            }
-            
-            .featured {
-                transform: scale(1);
-            }
-            
-            .legal-card {
-                padding: 2rem 1.5rem;
-                margin-top: 120px;
-            }
-            
-            .grid-3, .grid-2, .grid-4 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .glass-card {
-                padding: 2rem;
-            }
-            
-            .price {
-                font-size: 2.5rem;
-            }
-            
-            .btn-primary, .btn-secondary {
-                padding: 0.875rem 2rem;
-                font-size: 0.95rem;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .badge {
-                font-size: 0.75rem;
-                padding: 8px 16px;
-            }
-            
-            .icon-wrapper {
-                width: 56px;
-                height: 56px;
-            }
-            
-            .icon-wrapper svg {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .accordion-header h3 {
-                font-size: 1rem;
-            }
-            
-            .accordion-header {
-                padding: 1.25rem;
-            }
-            
-            .accordion-item.active .accordion-content {
-                padding: 0 1.25rem 1.25rem;
-            }
-            
-            .credentials-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .philosophy-box {
-                padding: 2rem;
-            }
-        }
-    </style>
+    @media (max-width: 1024px) {
+      .pain-grid { grid-template-columns: repeat(2, 1fr); }
+      .drive-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .pain-grid { grid-template-columns: 1fr; }
+      .ab-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ========== NAVIGATION ========== -->
-    <nav>
-        <div class="logo" onclick="navigateTo('home')">GAIME START</div>
-        <div class="nav-links">
-            <a onclick="navigateTo('home')">Home</a>
-            <a onclick="navigateTo('about')">Your Coach</a>
-            <a onclick="navigateTo('how')">How It Works</a>
-            <a onclick="navigateTo('cover')">What We Cover</a>
-            <a onclick="navigateTo('pricing')">Pricing</a>
-            <a onclick="navigateTo('faq')">FAQ</a>
-        </div>
-        <a onclick="navigateTo('book')" class="nav-cta">Book Now</a>
-        <button class="mobile-toggle" onclick="openMobileMenu()">☰</button>
-    </nav>
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="what-we-cover.html">What We Cover</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <button class="mobile-menu-close" onclick="closeMobileMenu()">&times;</button>
-        <div class="mobile-menu-links">
-            <a onclick="navigateTo('home'); closeMobileMenu();">Home</a>
-            <a onclick="navigateTo('about'); closeMobileMenu();">Your Coach</a>
-            <a onclick="navigateTo('how'); closeMobileMenu();">How It Works</a>
-            <a onclick="navigateTo('cover'); closeMobileMenu();">What We Cover</a>
-            <a onclick="navigateTo('pricing'); closeMobileMenu();">Pricing</a>
-            <a onclick="navigateTo('faq'); closeMobileMenu();">FAQ</a>
-        </div>
-        <div class="mobile-menu-cta">
-            <a onclick="navigateTo('book'); closeMobileMenu();" class="btn-primary">Book Now</a>
-        </div>
-    </div>
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
 
-    <!-- ========== HOME PAGE ========== -->
-    <div id="page-home" class="page active">
-        <header class="hero">
-            <div class="container">
-                <div class="badge reveal">GenAI Made Easy</div>
-                <h1 class="reveal delay-1">From Passive Chatting to<br><span class="marker-highlight">Active Mastery</span></h1>
-                <p class="reveal delay-2" style="max-width: 800px; margin: 0 auto 3rem;">
-                    Learn GenAI skills that work everywhere—prompt engineering, workflow automation, context management.
-                </p>
-                <div class="hero-btns reveal delay-3">
-                    <a onclick="navigateTo('book')" class="btn-primary">Book a Session</a>
-                    <a onclick="navigateTo('how')" class="btn-secondary">See How It Works</a>
-                </div>
-            </div>
-        </header>
-
-        <section>
-            <div class="container">
-                <h2 class="text-center reveal">Sound Familiar?</h2>
-                <div class="grid-4">
-                    <div class="glass-card reveal delay-1">
-                        <div class="icon-wrapper icon-blue">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                            </svg>
-                        </div>
-                        <h3>Overwhelmed?</h3>
-                        <p>Everyone says "use AI!" but no one shows you HOW. You've tried ChatGPT but results are hit-or-miss.</p>
-                    </div>
-                    <div class="glass-card reveal delay-2">
-                        <div class="icon-wrapper icon-gold">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <h3>No Time?</h3>
-                        <p>You don't have hours to watch tutorials. You need a workflow for YOUR specific task.</p>
-                    </div>
-                    <div class="glass-card reveal delay-3">
-                        <div class="icon-wrapper icon-green">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                            </svg>
-                        </div>
-                        <h3>Student Ethics?</h3>
-                        <p>You want to use AI for studying without crossing the line into cheating. Guidance, not shortcuts.</p>
-                    </div>
-                    <div class="glass-card reveal delay-4">
-                        <div class="icon-wrapper icon-blue">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                            </svg>
-                        </div>
-                        <h3>Busy Work?</h3>
-                        <p>Emails, meeting notes, reports—all eating your time. You know AI can help.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Two People Comparison -->
-        <section style="background: linear-gradient(135deg, var(--primary-green), var(--navy)); color: white; padding: 4rem 0;">
-            <div class="container" style="max-width: 1100px;">
-                <h2 class="text-center reveal" style="color: var(--gold); margin-bottom: 3rem;">Two People. Same Tools. Different Journey.</h2>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div class="glass-card reveal delay-1" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
-                        <h3 style="color: rgba(255,255,255,0.7); font-size: 1.3rem; margin-bottom: 1.5rem;">PERSON A:</h3>
-                        <p style="color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">"I use AI all the time!"</p>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">→</span> Asks questions like a search engine
-                            </li>
-                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">→</span> Copies/pastes responses manually
-                            </li>
-                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">→</span> Starts from scratch every session
-                            </li>
-                            <li style="color: var(--gold); font-weight: 700; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">→</span> Saves maybe 10 minutes/week
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="glass-card reveal delay-2" style="background: rgba(255,187,54,0.15); border: 2px solid var(--gold);">
-                        <h3 style="color: var(--gold); font-size: 1.3rem; margin-bottom: 1.5rem;">PERSON B:</h3>
-                        <p style="color: white; font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">"I've mastered GenAI workflows"</p>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">✓</span> <strong>Prompt engineering</strong> (gets quality results consistently)
-                            </li>
-                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">✓</span> <strong>Context management</strong> (builds reusable systems)
-                            </li>
-                            <li style="color: rgba(255,255,255,0.9); margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">✓</span> <strong>Workflow automation</strong> (tasks run on autopilot)
-                            </li>
-                            <li style="color: var(--gold); font-weight: 700; padding-left: 1.5rem; position: relative;">
-                                <span style="position: absolute; left: 0;">✓</span> Saves 10+ hours/week
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="reveal delay-3" style="margin-top: 3rem; text-align: center;">
-                    <p style="color: white; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 600;">
-                        Same access. Same technology. Completely different outcomes.
-                    </p>
-                    <p style="color: var(--gold); font-size: 1.2rem; font-weight: 700; margin-bottom: 2rem;">
-                        The difference? One learned the fundamentals that work everywhere.
-                    </p>
-                    <p style="color: rgba(255,255,255,0.85); font-size: 1rem; font-style: italic; max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                        *These skills work with ANY GenAI tool—ChatGPT, Claude, Gemini, Perplexity. 
-                        I teach using Google's ecosystem for seamless integration, but everything 
-                        you learn transfers.*
-                    </p>
-                </div>
-            </div>
-        </section>
-
-<!-- REPLACE THE EXISTING QUIZ SECTION (lines 1255-1307) WITH THIS -->
-
-        <!-- Interactive Quiz Game -->
-        <section style="padding: 5rem 0; background: var(--bg-light);">
-            <div class="container" style="max-width: 100%;">
-                
-                <!-- Sticky Progress Header -->
-                <div id="quiz-header" class="quiz-sticky-header" style="display: none;">
-                    <div class="container" style="max-width: 1000px; margin: 0 auto;">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                            <h2 style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.5rem; color: white; margin: 0;">
-                                🚀 Your AI Learning Path
-                            </h2>
-                            <div style="text-align: right;">
-                                <div style="font-size: 0.9rem; color: var(--gold); font-weight: 600;">
-                                    Question <span id="quiz-current-num">1</span> of <span id="quiz-total-num">4</span>
-                                </div>
-                                <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">
-                                    <span id="quiz-progress-percent">25</span>% complete
-                                </div>
-                            </div>
-                        </div>
-                        <div style="width: 100%; background: rgba(255,255,255,0.2); border-radius: 20px; height: 8px; overflow: hidden;">
-                            <div id="quiz-progress-bar-fill" style="height: 100%; background: var(--gold); width: 25%; transition: width 0.8s ease; border-radius: 20px;"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="max-width: 900px; margin: 0 auto;">
-                    
-                    <!-- Welcome Screen -->
-                    <div id="quiz-welcome" class="text-center">
-                        <div style="font-size: 5rem; margin-bottom: 2rem;" class="floating-icon">🎮</div>
-                        <h2 class="reveal" style="font-size: 3rem; margin-bottom: 1.5rem; font-weight: 800;">
-                            Discover Your AI Learning Path
-                        </h2>
-                        <p class="reveal delay-1" style="font-size: 1.2rem; color: var(--text-gray); max-width: 700px; margin: 0 auto 3rem;">
-                            Take 60 seconds to see where you are and unlock your personalized journey to AI mastery.
-                        </p>
-                        
-                        <div class="glass-card reveal delay-2" style="max-width: 600px; margin: 0 auto 3rem; padding: 2.5rem;">
-                            <h3 style="font-size: 1.3rem; margin-bottom: 2rem; color: var(--primary-green);">What to expect:</h3>
-                            <div style="display: grid; gap: 1.25rem; text-align: left;">
-                                <div style="display: flex; align-items: center; gap: 1rem;">
-                                    <span style="font-size: 2rem;">🎯</span>
-                                    <span style="font-size: 1rem;">4 quick questions</span>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 1rem;">
-                                    <span style="font-size: 2rem;">🎭</span>
-                                    <span style="font-size: 1rem;">Personalized to YOUR work</span>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 1rem;">
-                                    <span style="font-size: 2rem;">🚀</span>
-                                    <span style="font-size: 1rem;">Your unique skills gap analysis</span>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 1rem;">
-                                    <span style="font-size: 2rem;">💡</span>
-                                    <span style="font-size: 1rem;">Actionable next steps</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button onclick="startQuizGame()" class="btn-primary" style="font-size: 1.2rem; padding: 1.25rem 3rem; box-shadow: 0 8px 20px rgba(46, 84, 61, 0.25);">
-                            🚀 Begin Your Journey
-                        </button>
-                    </div>
-                    
-                    <!-- Question Screen -->
-                    <div id="quiz-question" style="display: none;">
-                        <div class="quiz-question-card">
-                            <div class="text-center" style="margin-bottom: 2.5rem;">
-                                <div id="quiz-icon" style="font-size: 4rem; margin-bottom: 1.5rem;" class="floating-icon">🔍</div>
-                                <div id="quiz-category" style="font-size: 0.85rem; color: var(--primary-green); font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">
-                                    Your AI Journey
-                                </div>
-                                <h3 id="quiz-title" style="font-size: 1.75rem; margin-bottom: 1rem; font-weight: 700; color: var(--text-black);">
-                                    Question Title
-                                </h3>
-                                <p id="quiz-description" style="font-size: 1.1rem; color: var(--text-gray); max-width: 650px; margin: 0 auto; line-height: 1.6;">
-                                    Question description goes here
-                                </p>
-                            </div>
-                            
-                            <div id="quiz-options-container" style="max-width: 650px; margin: 0 auto;">
-                                <!-- Options dynamically loaded -->
-                            </div>
-                            
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; max-width: 650px; margin-left: auto; margin-right: auto;">
-                                <button id="quiz-back-btn" onclick="quizGoBack()" class="btn-secondary" style="opacity: 0.5; cursor: not-allowed;" disabled>
-                                    ← Back
-                                </button>
-                                <div style="text-align: center; font-size: 0.9rem; color: var(--text-gray);">
-                                    Question <span id="quiz-current">1</span> of <span id="quiz-total">4</span>
-                                </div>
-                                <button id="quiz-next-btn" onclick="quizGoNext()" class="btn-primary" style="opacity: 0.5; cursor: not-allowed;" disabled>
-                                    Next →
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Completion Screen -->
-                    <div id="quiz-complete" style="display: none;" class="text-center">
-                        <div style="font-size: 5rem; margin-bottom: 2rem;" class="floating-icon">🏆</div>
-                        <h2 style="font-size: 3rem; margin-bottom: 1.5rem; font-weight: 800; color: var(--primary-green);">
-                            Journey Complete!
-                        </h2>
-                        <p style="font-size: 1.2rem; color: var(--text-gray); max-width: 650px; margin: 0 auto 3rem;">
-                            You've unlocked your personalized AI learning path. Here's what you discovered:
-                        </p>
-                        
-                        <div id="quiz-results-content" class="glass-card" style="max-width: 600px; margin: 0 auto 3rem; padding: 2.5rem; text-align: left;">
-                            <!-- Results dynamically loaded -->
-                        </div>
-                        
-                        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                            <button onclick="navigateTo('book')" class="btn-primary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">
-                                Book Your First Session
-                            </button>
-                            <button onclick="restartQuizGame()" class="btn-secondary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">
-                                ← Start Over
-                            </button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <!-- Encouragement Popup -->
-        <div id="quiz-encouragement" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--primary-green); color: white; padding: 1.5rem 2.5rem; border-radius: 50px; font-weight: 700; font-size: 1.25rem; box-shadow: 0 8px 30px rgba(46, 84, 61, 0.4); z-index: 9999; display: none; pointer-events: none;">
-            Great choice! 🌟
+  <!-- HERO -->
+  <section class="hero-section atmo">
+    <div class="atmo-wash"></div>
+    <div class="flora front tilt-r" style="top:70px; right:14px; width:132px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="container">
+      <div class="x-hero">
+        <div class="x-copy">
+          <div class="kicker reveal"><span class="idx">01</span><span class="line"></span><span class="dot"></span><span class="label">GenAI Made Easy</span></div>
+          <h1 class="reveal delay-1">From passive chatting to <span class="gold-underline">active</span> mastery.</h1>
+          <p class="x-lead reveal delay-2">Learn to actually use Google's AI tools — Gemini, NotebookLM, and beyond. One-on-one coaching, built around your real work. No coding required.</p>
+          <div class="x-btns reveal delay-3">
+            <a href="book.html" class="btn-primary">Book a Session</a>
+            <a href="how-it-works.html" class="btn-outline">See How It Works</a>
+          </div>
+          <div class="x-tools reveal delay-4">
+            <span class="lbl">Tools we master</span>
+            <span class="x-chiptool">Gemini</span>
+            <span class="x-chiptool">NotebookLM</span>
+            <span class="x-chiptool">Gemini in Docs</span>
+            <span class="x-chiptool muted">+ beyond</span>
+          </div>
         </div>
 
-        <!-- Uncomfortable Truth -->
-        <section style="background: var(--primary-green); color: white; padding: 4rem 0;">
-            <div class="container" style="max-width: 1000px;">
-                <h2 class="text-center reveal" style="color: var(--gold); margin-bottom: 2rem;">The Uncomfortable Truth</h2>
-                
-                <p class="reveal delay-1" style="font-size: 1.3rem; text-align: center; margin-bottom: 2rem; line-height: 1.8; color: white;">
-                    You don't have an "AI problem."<br>
-                    <strong style="color: var(--gold);">You have a workflow problem.</strong>
-                </p>
-                
-                <div class="reveal delay-2" style="font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto; color: white;">
-                    <p style="margin-bottom: 1.5rem; color: white;">
-                        You've tried the tools. You've read the articles. You might even have a paid subscription.
-                    </p>
-                    
-                    <div style="background: rgba(0,0,0,0.2); padding: 2rem; border-radius: 12px; margin: 2rem 0;">
-                        <p style="margin-bottom: 0.75rem; color: white;"><strong>But you're still:</strong></p>
-                        <ul style="list-style: none; padding-left: 1.5rem; color: white;">
-                            <li style="margin-bottom: 0.75rem; color: white;">❌ Starting from scratch every time</li>
-                            <li style="margin-bottom: 0.75rem; color: white;">❌ Getting mediocre, generic results</li>
-                            <li style="margin-bottom: 0.75rem; color: white;">❌ Not sure which tool does what</li>
-                            <li style="color: white;">❌ Spending more time fighting AI than it saves you</li>
-                        </ul>
-                    </div>
-                    
-                    <p style="margin-bottom: 1.5rem; color: white;">
-                        <strong>Here's the reality:</strong><br>
-                        Google won't teach you this. YouTube tutorials won't either.
-                    </p>
-                    
-                    <p style="margin-bottom: 1.5rem; color: var(--gold); font-size: 1.2rem; font-weight: 700;">
-                        You need someone to watch YOU work and say:
-                    </p>
-                    
-                    <ul style="list-style: none; padding-left: 1.5rem; margin-bottom: 2rem; color: white;">
-                        <li style="margin-bottom: 0.75rem; color: white;">"Here's exactly where Gemini fits in YOUR process."</li>
-                        <li style="margin-bottom: 0.75rem; color: white;">"Here's how NotebookLM transforms YOUR research."</li>
-                        <li style="color: white;">"Here's the system that works for YOUR workflow."</li>
-                    </ul>
-                    
-                    <p style="text-align: center; font-size: 1.2rem; margin-top: 2.5rem; color: white;">
-                        That's what actual coaching looks like.<br>
-                        <strong style="color: var(--gold);">Not generic tips. Personalized systems.</strong>
-                    </p>
-                </div>
-                
-                <div class="text-center reveal delay-3" style="margin-top: 3rem;">
-                    <a onclick="navigateTo('book')" class="btn-primary" style="background: var(--gold); color: var(--primary-green); font-size: 1.1rem; padding: 1.25rem 3rem;">
-                        Get Personalized Coaching
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="container text-center">
-                <h2 class="reveal">I Teach You How to Drive</h2>
-                <p class="reveal delay-1" style="font-size: 1.3rem; color: var(--text-gray); margin-bottom: 4rem;">(You Choose Where to Go)</p>
-                <div class="grid-3">
-                    <div class="glass-card text-center reveal delay-1">
-                        <div class="icon-wrapper icon-green" style="margin: 0 auto 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
-                        </div>
-                        <h3>Personalized</h3>
-                        <p>We work on your actual essay, project, or workflow—not generic examples.</p>
-                    </div>
-                    <div class="glass-card text-center reveal delay-2">
-                        <div class="icon-wrapper icon-gold" style="margin: 0 auto 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
-                        </div>
-                        <h3>Fast Results</h3>
-                        <p>Most clients feel confident after 2-3 sessions. No 20-hour courses.</p>
-                    </div>
-                    <div class="glass-card text-center reveal delay-3">
-                        <div class="icon-wrapper icon-blue" style="margin: 0 auto 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h3>Ethical & Safe</h3>
-                        <p>Enhance thinking, don't replace it. Learn the right way to use tools.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="text-center" style="padding: 4rem 0;">
-            <div class="container">
-                <a onclick="navigateTo('book')" class="btn-primary" style="font-size: 1.2rem; padding: 1.25rem 3rem;">Ready to Get Started?</a>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <h3>GAIME Start Learning</h3>
-                <p>"GenAI Made Easy"</p>
-                <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">© 2026 GAIME Start Learning</p>
-                <p style="margin-top: 1rem;">
-                    <a onclick="navigateTo('terms')">Terms & Policies</a>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ========== ABOUT PAGE ========== -->
-    <div id="page-about" class="page">
-        <section style="padding-top: 150px; padding-bottom: 4rem;">
-            <div class="container">
-                <div class="about-intro reveal">
-                    <h1>Meet Your Coach</h1>
-                    <p style="font-size: 1.2rem;">Cutting through the AI noise so you can catch up without the overwhelm.</p>
-                </div>
-
-                <div class="glass-card reveal delay-1" style="max-width: 1000px; margin: 0 auto; text-align: center;">
-                    <div style="margin: 0 auto 2rem; display: flex; justify-content: center;">
-                        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b35c6736-694c-455c-977d-18e8293485f7" data-share-badge-host="https://www.credly.com"></div>
-                        <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                    </div>
-                    
-                    <h2 style="font-size: 2rem; margin-bottom: 2rem;">Credentials</h2>
-                    
-                    <div style="text-align: left;">
-                        <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Professional Experience</h3>
-                        <ul class="check-list" style="margin-bottom: 2rem;">
-                            <li>9+ years in Learning & Development</li>
-                            <li>Enterprise AI Literacy & Adoption Lead</li>
-                            <li>Upskilled 1500+ employees on Generative AI tools (Gemini, NotebookLM)</li>
-                            <li>Pioneered enterprise-wide AI training programs from conception to launch</li>
-                            <li>Trained 500+ staff during high-growth periods</li>
-                        </ul>
-                        
-                        <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Certifications</h3>
-                        <ul class="check-list" style="margin-bottom: 2rem;">
-                            <li>Prosci® Certified Change Practitioner (2026)</li>
-                            <li>LinkedIn Learning: AI Foundations, Performance Management with AI</li>
-                            <li>Future of Work with AI Agents</li>
-                            <li>Specialized in adult learning principles & agile training design</li>
-                        </ul>
-                        
-                        <div style="text-align: center; padding: 1.5rem; background: rgba(46, 84, 61, 0.05); border-radius: 12px;">
-                            <p style="margin: 0; font-size: 1rem;">
-                                <strong>Connect with me:</strong><br>
-                                <a href="https://www.linkedin.com/in/meeshunyang" target="_blank" style="color: var(--primary-green); text-decoration: underline; font-weight: 700; font-size: 1.1rem;">LinkedIn Profile →</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="philosophy-box reveal delay-2" style="max-width: 1000px; margin: 3rem auto;">
-                    <h3>My Approach</h3>
-                    <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 1rem;">
-                        <strong>There's too much noise about AI.</strong>
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">
-                        Too many tools. Too many tutorials. Too much hype. People are either falling behind or drowning in content they don't need.
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.7;">
-                        I help you cut through the chaos. My job is to get you caught up to speed without the overwhelm—just the workflows you actually need, for the work you actually do.
-                    </p>
-                    <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">
-                        No fluff. No hype. Just practical guidance on making AI work for you.
-                    </p>
-                    
-                    <div style="border-top: 2px solid rgba(46, 84, 61, 0.2); padding-top: 1.5rem; margin-top: 1.5rem;">
-                        <h4 style="font-size: 1.2rem; color: var(--primary-green); margin-bottom: 1rem;">My Teaching Philosophy:</h4>
-                        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 0.75rem;">
-                            <strong>"I teach you how to drive the car. You choose where to go."</strong>
-                        </p>
-                        <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 0;">
-                            I won't do your work for you—but I'll show you exactly how to do it yourself, faster and smarter than you thought possible. My goal isn't to create dependency. It's to get you confident enough to work independently.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="text-center reveal delay-3" style="margin-top: 3rem;">
-                    <a onclick="navigateTo('book')" class="btn-primary" style="font-size: 1.1rem; padding: 1.25rem 3rem;">Work With Me</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <h3>GAIME Start Learning</h3>
-                <p>"GenAI Made Easy"</p>
-                <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">© 2026 GAIME Start Learning</p>
-                <p style="margin-top: 1rem;">
-                    <a onclick="navigateTo('terms')">Terms & Policies</a>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ========== HOW IT WORKS PAGE ========== -->
-    <div id="page-how" class="page">
-        <section style="padding-top: 140px;">
-            <div class="container">
-                <h1 class="text-center reveal">How It Works</h1>
-                <p class="text-center reveal delay-1" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 4rem;">Simple 3-step process to go from stuck to confident</p>
-
-                <div class="grid-3">
-                    <div class="glass-card text-center reveal delay-1">
-                        <div class="step-circle">1</div>
-                        <h3>Contact</h3>
-                        <p>Email me with your specific challenge. Be as detailed as you want—I'll read it all.</p>
-                    </div>
-                    <div class="glass-card text-center reveal delay-2">
-                        <div class="step-circle">2</div>
-                        <h3>Plan</h3>
-                        <p>I'll reply within 24 hours with a custom plan and link to the intake form.</p>
-                    </div>
-                    <div class="glass-card text-center reveal delay-3">
-                        <div class="step-circle">3</div>
-                        <h3>Session</h3>
-                        <p>We meet live on Google Meet (or in-person). We build the workflow together.</p>
-                    </div>
-                </div>
-
-                <div class="location-note reveal delay-2" style="max-width: 1000px; margin: 3rem auto;">
-                    <p style="margin: 0;"><strong>📍 In-Person Sessions:</strong> Held at public venues (coffee shops) in North York between Finch and Sheppard. I provide location options—no private residences.</p>
-                </div>
-
-                <div class="glass-card reveal delay-3" style="max-width: 1000px; margin: 4rem auto;">
-                    <h2 style="margin-bottom: 2rem;">What Happens in a Session?</h2>
-                    
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">First 10 Minutes</h3>
-                        <p>We review your specific challenge. I ask clarifying questions to understand exactly what you need.</p>
-                    </div>
-                    
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Next 40 Minutes</h3>
-                        <p>Hands-on work with YOUR content. I show you the workflow, you practice with me guiding you. We build it together.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Final 10 Minutes</h3>
-                        <p>Review what we built. I give you action items to practice. We schedule next session if needed.</p>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top: 4rem;">
-                    <div class="glass-card reveal delay-4">
-                        <h2 style="margin-bottom: 2rem;">📋 What to Bring</h2>
-                        <ul class="check-list">
-                            <li>Working laptop/computer (phone/tablet not sufficient for hands-on work)</li>
-                            <li>Stable internet connection</li>
-                            <li>Google account (for Gemini/NotebookLM access)</li>
-                            <li>Screen sharing capability (Google Meet or Zoom)</li>
-                            <li>Your actual content/project ready to work on</li>
-                        </ul>
-                    </div>
-
-                    <div class="glass-card reveal delay-4">
-                        <h2 style="margin-bottom: 2rem;">🤝 Your Responsibilities</h2>
-                        <ul class="check-list">
-                            <li>Come prepared with specific examples or projects</li>
-                            <li>Share your screen when requested</li>
-                            <li>Practice techniques between sessions</li>
-                            <li>Verify all AI outputs (you're the "human in the loop")</li>
-                            <li>Follow your institution's AI policies</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="text-center reveal delay-5" style="margin-top: 4rem;">
-                    <a onclick="navigateTo('book')" class="btn-primary" style="font-size: 1.1rem; padding: 1.25rem 3rem;">Ready to Start</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <h3>GAIME Start Learning</h3>
-                <p>"GenAI Made Easy"</p>
-                <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">© 2026 GAIME Start Learning</p>
-                <p style="margin-top: 1rem;">
-                    <a onclick="navigateTo('terms')">Terms & Policies</a>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ========== WHAT WE COVER PAGE ========== -->
-    <div id="page-cover" class="page">
-        <section style="padding-top: 140px;">
-            <div class="container">
-                <h1 class="text-center reveal">What We Cover</h1>
-                <p class="text-center reveal delay-1" style="font-size: 1.3rem; max-width: 1000px; margin: 0 auto 2rem; color: var(--primary-green); font-weight: 700;">
-                    Every Session is Custom-Built for You
-                </p>
-                <p class="text-center reveal delay-2" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 4rem;">
-                    Here's what's possible. I'll recommend the right mix based on your specific challenge.
-                </p>
-
-                <div class="grid-3">
-                    <div class="glass-card reveal delay-1">
-                        <div class="icon-wrapper icon-green">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                            </svg>
-                        </div>
-                        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Learning & Research</h2>
-                        <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.5rem;">For students, researchers, and lifelong learners</p>
-                        
-                        <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 1rem;">You can learn to:</h3>
-                        <ul class="check-list">
-                            <li>Turn dense PDFs into audio podcasts for easier studying</li>
-                            <li>Analyze YouTube lectures without watching them fully</li>
-                            <li>Create study guides from messy notes</li>
-                            <li>Use AI ethically without academic integrity issues</li>
-                            <li>Fact-check AI outputs and spot hallucinations</li>
-                        </ul>
-                    </div>
-
-                    <div class="glass-card reveal delay-2">
-                        <div class="icon-wrapper icon-blue">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                            </svg>
-                        </div>
-                        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Work & Productivity</h2>
-                        <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.5rem;">For professionals, freelancers, and teams</p>
-                        
-                        <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 1rem;">You can learn to:</h3>
-                        <ul class="check-list">
-                            <li>Draft emails 10x faster with Gemini Side Panel</li>
-                            <li>Turn meeting recordings into action items</li>
-                            <li>Build repeatable workflows that save hours</li>
-                            <li>Use AI to manage projects and tasks</li>
-                            <li>Generate reports and summaries quickly</li>
-                        </ul>
-                    </div>
-
-                    <div class="glass-card reveal delay-3">
-                        <div class="icon-wrapper icon-gold">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Creative & Advanced</h2>
-                        <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.5rem;">For content creators, writers, and power users</p>
-                        
-                        <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 1rem;">You can learn to:</h3>
-                        <ul class="check-list">
-                            <li>Transform content formats (PDF → Podcast, Video → Summary)</li>
-                            <li>Brainstorm ideas when you're stuck</li>
-                            <li>Use AI for roleplay and simulation</li>
-                            <li>Discover advanced Gemini/NotebookLM features</li>
-                            <li>Build creative workflows</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="glass-card reveal delay-4" style="max-width: 1100px; margin: 4rem auto;">
-                    <h2 style="margin-bottom: 2.5rem; text-align: center;">Important Boundaries</h2>
-                    
-                    <div class="grid-2" style="margin-bottom: 2.5rem;">
-                        <div style="background: rgba(239, 68, 68, 0.05); padding: 2rem; border-radius: 16px; border: 2px solid rgba(239, 68, 68, 0.15);">
-                            <h3 style="margin-bottom: 1.5rem; color: #EF4444;">❌ What We DON'T Do</h3>
-                            <ul class="cross-list">
-                                <li>Technical support (fixing Google accounts, troubleshooting)</li>
-                                <li>Software development (code review, debugging, building apps)</li>
-                                <li>Ghostwriting (generating essays to submit as your own)</li>
-                                <li>Academic integrity violations (cheating, bypassing detectors)</li>
-                                <li>Professional advice (legal, financial, medical)</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="background: rgba(46, 84, 61, 0.05); padding: 2rem; border-radius: 16px; border: 2px solid rgba(46, 84, 61, 0.15);">
-                            <h3 style="margin-bottom: 1.5rem; color: var(--primary-green);">✅ What We DO</h3>
-                            <ul class="check-list">
-                                <li>Creative strategy & productivity coaching</li>
-                                <li>Hands-on learning with YOUR content</li>
-                                <li>Teaching prompting & workflows</li>
-                                <li>Ethical AI use guidance</li>
-                                <li>Building systems to work smarter</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div style="background: linear-gradient(135deg, rgba(46, 84, 61, 0.08), rgba(168, 183, 154, 0.08)); border: 2px solid rgba(46, 84, 61, 0.2); padding: 2rem; border-radius: 16px;">
-                        <h3 style="margin-bottom: 1rem; text-align: center;">🎓 Academic Integrity Promise</h3>
-                        <p style="text-align: center; font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                            <strong>We teach you how to enhance your thinking, not replace it.</strong><br>
-                            AI is a study tool and thinking partner—not a shortcut to bypass learning. 
-                            If you're looking for someone to write essays for you, this isn't the right service.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="glass-card reveal delay-5" style="max-width: 1000px; margin: 4rem auto; text-align: center; background: linear-gradient(135deg, rgba(255, 187, 54, 0.1), rgba(255, 187, 54, 0.05)); border: 2px solid rgba(255, 187, 54, 0.3);">
-                    <h2 style="margin-bottom: 1.5rem;">Not Sure What You Need?</h2>
-                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                        That's exactly why we start with an email conversation. Tell me your challenge, and I'll design a custom session that pulls from everything above.
-                    </p>
-                    <a onclick="navigateTo('book')" class="btn-primary" style="font-size: 1.1rem; padding: 1.25rem 3rem;">Email Me Your Challenge</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <h3>GAIME Start Learning</h3>
-                <p>"GenAI Made Easy"</p>
-                <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">© 2026 GAIME Start Learning</p>
-                <p style="margin-top: 1rem;">
-                    <a onclick="navigateTo('terms')">Terms & Policies</a>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ========== PRICING PAGE ========== -->
-    <div id="page-pricing" class="page">
-        <section style="padding-top: 140px;">
-            <div class="container">
-                <h1 class="text-center reveal">Transparent Pricing</h1>
-                <p class="text-center reveal delay-1" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 4rem;">Simple, honest pricing. No hidden fees.</p>
-
-                <div class="grid-3">
-                    <div class="glass-card featured text-center reveal delay-1">
-                        <div class="badge-pop">START HERE</div>
-                        <div class="icon-wrapper icon-blue" style="margin: 0 auto 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
-                        </div>
-                        <h3>Single Session</h3>
-                        <div class="price">$150<span>/hr</span></div>
-                        <p style="color: var(--primary-green); font-weight: 700; margin-bottom: 1.5rem;">Recommended for New Clients</p>
-                        <ul class="check-list" style="text-align: left; margin: 1.5rem 0;">
-                            <li>Virtual or In-Person</li>
-                            <li>Work on actual project</li>
-                            <li>Walk away with solution</li>
-                        </ul>
-                        <a onclick="navigateTo('book')" class="btn-primary" style="width: 100%;">Book Single</a>
-                    </div>
-                    
-                    <div class="glass-card text-center reveal delay-2">
-                        <div class="icon-wrapper icon-green" style="margin: 0 auto 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
-                        </div>
-                        <h3>Builder Pack</h3>
-                        <div class="price">$400</div>
-                        <p style="color: var(--primary-green); font-weight: 700;">Save $50 • 3 Sessions</p>
-                        <ul class="check-list" style="text-align: left; margin: 1.5rem 0;">
-                            <li>Everything in Single</li>
-                            <li>Flexible scheduling via email</li>
-                            <li>Best value for returning clients</li>
-                        </ul>
-                        <a onclick="navigateTo('book')" class="btn-secondary" style="width: 100%;">Book Bundle</a>
-                    </div>
-                    
-                    <div class="glass-card text-center reveal delay-3">
-                        <div class="icon-wrapper icon-gold" style="margin: 0 auto 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
-                        </div>
-                        <h3>System Pack</h3>
-                        <div class="price">$650</div>
-                        <p style="color: var(--primary-green); font-weight: 700;">Save $100 • 5 Sessions</p>
-                        <ul class="check-list" style="text-align: left; margin: 1.5rem 0;">
-                            <li>Deep dive mastery</li>
-                            <li>Flexible scheduling via email</li>
-                            <li>Multiple tools covered</li>
-                        </ul>
-                        <a onclick="navigateTo('book')" class="btn-secondary" style="width: 100%;">Book System</a>
-                    </div>
-                </div>
-
-                <div class="glass-card reveal delay-4" style="max-width: 1100px; margin: 4rem auto;">
-                    <h2 style="margin-bottom: 2rem; text-align: center;">Important Details</h2>
-                    
-                    <div class="grid-3" style="margin-bottom: 2.5rem;">
-                        <div>
-                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary-green);">💳 Payment Methods</h3>
-                            <p style="margin-bottom: 0.5rem;"><strong>E-Transfer (Virtual):</strong></p>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-light);">Instructions sent via email after booking</p>
-                            <p style="margin: 0;"><strong>Cash (In-Person):</strong></p>
-                            <p style="margin: 0; font-size: 0.9rem;">North York locations only</p>
-                        </div>
-                        
-                        <div>
-                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary-green);">📅 Cancellation Policy</h3>
-                            <ul style="list-style: none; padding: 0; font-size: 0.95rem;">
-                                <li style="margin-bottom: 0.5rem;"><strong>Proactive Contact:</strong> Free reschedule</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>No-Show/No Contact:</strong> Session forfeited</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>No Refunds:</strong> Rescheduling only</li>
-                                <li style="margin: 0; font-size: 0.85rem; color: var(--text-light);">Flexible if you communicate!</li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary-green);">📦 Package Terms</h3>
-                            <ul style="list-style: none; padding: 0; font-size: 0.95rem;">
-                                <li style="margin-bottom: 0.5rem;">Flexible scheduling via email</li>
-                                <li style="margin-bottom: 0.5rem;">No expiration dates</li>
-                                <li style="margin-bottom: 0.5rem;">Payment required upfront</li>
-                                <li style="margin: 0; font-size: 0.85rem; color: var(--text-light);">Coordinate sessions as needed</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(255, 187, 54, 0.1); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; text-align: center;">
-                        <p style="margin: 0; font-size: 0.95rem;"><strong>Note:</strong> All payments are final (no refunds). Need to reschedule? Just reach out proactively and we'll find a new time. Calendar invites sent only after payment received. See full <a onclick="navigateTo('terms')" style="color: var(--primary-green); text-decoration: underline; cursor: pointer;">Terms & Policies</a> for complete details.</p>
-                    </div>
-                </div>
-
-                <div class="text-center reveal delay-5" style="margin-top: 4rem;">
-                    <a onclick="navigateTo('book')" class="btn-primary" style="font-size: 1.2rem; padding: 1.25rem 3rem;">Ready to Book</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <h3>GAIME Start Learning</h3>
-                <p>"GenAI Made Easy"</p>
-                <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">© 2026 GAIME Start Learning</p>
-                <p style="margin-top: 1rem;">
-                    <a onclick="navigateTo('terms')">Terms & Policies</a>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ========== BOOK NOW PAGE ========== -->
-    <div id="page-book" class="page">
-        <section style="padding-top: 140px; padding-bottom: 80px;">
-            <div class="container text-center">
-                <h1 class="reveal">Ready to Press START?</h1>
-                <p class="reveal delay-1" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 3rem;">
-                    Email me to get started. I'll reply with the intake form and a custom plan.
-                </p>
-
-                <div class="glass-card reveal delay-2" style="max-width: 600px; margin: 0 auto;">
-                    <a href="mailto:mee@gaimestart.com?subject=Book%20a%20GAIME%20Start%20Session&body=Hi%20Mee,%0D%0A%0D%0AI'd%20like%20to%20book%20a%20session.%20Here's%20my%20challenge:%0D%0A%0D%0A[Describe%20what%20you're%20struggling%20with]%0D%0A%0D%0AThanks!" class="btn-primary" style="font-size: 1.3rem; padding: 1.5rem 3rem; width: 100%; display: block;">
-                        📧 Email Me to Book
-                    </a>
-                    
-                    <div style="text-align: left; margin-top: 3rem;">
-                        <h3 style="margin-bottom: 1.5rem;">What happens next:</h3>
-                        <ol style="padding-left: 20px; line-height: 2; color: var(--text-gray);">
-                            <li>You email me with your challenge</li>
-                            <li>I reply within 24 hours with an intake form & track recommendation</li>
-                            <li>You choose a time slot that works for you</li>
-                            <li>I send you payment instructions (e-transfer or cash)</li>
-                            <li>Once payment is received, I send the Google Meet link (or in-person details)</li>
-                            <li>We meet and solve your problem—live!</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <div class="glass-card reveal delay-3" style="max-width: 600px; margin: 3rem auto; background: linear-gradient(135deg, rgba(46, 84, 61, 0.05), rgba(168, 183, 154, 0.05)); border: 1px solid rgba(46, 84, 61, 0.15);">
-                    <h3 style="margin-bottom: 1.5rem;">Quick Pricing Reminder</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>Single Session (START HERE):</strong> $150/hour</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Builder Pack (3):</strong> $400 (Save $50)</p>
-                    <p style="margin-bottom: 0;"><strong>System Pack (5):</strong> $650 (Save $100)</p>
-                </div>
-
-                <div style="max-width: 700px; margin: 3rem auto; padding: 1.5rem; background: rgba(255, 187, 54, 0.08); border-left: 4px solid var(--gold); border-radius: 8px;" class="reveal delay-4">
-                    <p style="margin: 0; font-size: 0.95rem; text-align: center;">
-                        <strong>By booking a session, you agree to our</strong> 
-                        <a onclick="navigateTo('terms')" style="color: var(--primary-green); text-decoration: underline; cursor: pointer; font-weight: 700;">Terms & Policies</a>, 
-                        including our cancellation policy, academic integrity agreement, and scope of services.
-                    </p>
-                </div>
-
-                <p class="reveal delay-4" style="margin-top: 3rem; color: var(--text-light);">
-                    Questions? Check the <a onclick="navigateTo('faq')" style="color: var(--primary-green); text-decoration: underline;">FAQ</a> 
-                    or just ask in your email!
-                </p>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <h3>GAIME Start Learning</h3>
-                <p>"GenAI Made Easy"</p>
-                <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">© 2026 GAIME Start Learning</p>
-                <p style="margin-top: 1rem;">
-                    <a onclick="navigateTo('terms')">Terms & Policies</a>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ========== FAQ PAGE ========== -->
-    <div id="page-faq" class="page">
-        <section style="padding-top: 140px;">
-            <div class="container" style="max-width: 1000px;">
-                <h1 class="text-center reveal">Common Questions</h1>
-                <p class="text-center reveal delay-1" style="font-size: 1.1rem; margin-bottom: 3rem;">Everything you need to know before booking</p>
-
-                <div class="reveal delay-2">
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>Do I need technical skills?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>No. If you can use Google Docs and email, you're qualified. I teach non-technical people how to use AI tools.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>Will this work with ChatGPT too?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Yes! Prompting techniques apply everywhere, though I focus on Google's tools (Gemini, NotebookLM).</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>What if I can't attend my session?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Just reach out as soon as you can! I'm flexible as long as you communicate proactively. We'll find a new time that works. No-shows without contact = session forfeited.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>Do you offer refunds?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>No. All payments are final. Sessions are live and time slots are reserved for you. If you're unsure, ask questions before booking.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>Is this ethical for students?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Yes! I teach you how to use AI to enhance your learning—not cheat. We don't generate essays for you. We teach you to use AI as a study tool.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>Virtual or in-person?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Both! Virtual sessions via Google Meet (anywhere in Canada). In-person available at public venues (coffee shops) in North York between Finch and Sheppard.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>How many sessions will I need?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Most clients feel confident after 2-3 sessions. We'll assess together after your first session.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>Do I need the paid version of Gemini?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>For basic features, the free version works fine. For advanced productivity (Gemini in Docs/Gmail), you'll need Google Workspace. I'll tell you in our first email.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3>What should I bring to the session?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Your laptop, your actual project/content, and a willingness to learn by doing. I'll guide you through everything else.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="text-center reveal delay-3" style="margin-top: 3rem;">
-                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Still have questions?</p>
-                    <a onclick="navigateTo('book')" class="btn-primary" style="padding: 1rem 2.5rem;">Email Me</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <h3>GAIME Start Learning</h3>
-                <p>"GenAI Made Easy"</p>
-                <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">© 2026 GAIME Start Learning</p>
-                <p style="margin-top: 1rem;">
-                    <a onclick="navigateTo('terms')">Terms & Policies</a>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ========== TERMS PAGE ========== -->
-    <div id="page-terms" class="page">
-        <div class="legal-card">
-            <h1>Terms & Policies</h1>
-            <div class="meta-info">
-                Effective Date: February 7, 2026<br>
-                Last Updated: February 7, 2026<br>
-                Email: <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
-            </div>
-
-            <div class="highlight-box">
-                <p style="margin:0;"><strong>📌 Quick Note:</strong> The most important points from this document are already highlighted on our <a onclick="navigateTo('pricing')" style="color: var(--primary-green); text-decoration: underline; cursor: pointer;">Pricing</a>, <a onclick="navigateTo('cover')" style="color: var(--primary-green); text-decoration: underline; cursor: pointer;">What We Cover</a>, and <a onclick="navigateTo('how')" style="color: var(--primary-green); text-decoration: underline; cursor: pointer;">How It Works</a> pages. This is the full legal text for reference.</p>
-            </div>
-
-            <div class="highlight-box">
-                <p style="margin:0;"><strong>📍 Note on In-Person Sessions:</strong> In-Person (North York Hubs) Sessions are held at public venues only (e.g., Coffee Shops) between Finch and Sheppard. I will provide the location options; no private residences.</p>
-            </div>
-
-            <h2>1. Academic Integrity Policy</h2>
-            <p>GAIME Start Learning focuses on <strong>Ethical AI Use</strong>.</p>
-            <h3>The "Augmentor" Agreement:</h3>
-            <p>We are committed to teaching you how to use AI tools to enhance your learning and productivity while maintaining academic and professional integrity.</p>
-            <p>You are here to learn <strong>HOW</strong> to use the tools to enhance your thinking, not to replace it.</p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                <div>
-                    <h3>✅ What We WILL Do:</h3>
-                    <ul class="check-list">
-                        <li>Use AI to brainstorm topics, outline arguments, and critique your logic</li>
-                        <li>Turn your messy notes into organized study guides using NotebookLM</li>
-                        <li>Show you how to use AI as a research assistant and thinking partner</li>
-                        <li>Teach you to fact-check AI outputs and use tools safely</li>
-                        <li>Help you understand concepts faster through AI explanations</li>
-                        <li>Build systems that help you work smarter, not cheat</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>❌ What We WILL NOT Do:</h3>
-                    <ul class="cross-list">
-                        <li>Generate full essays, assignments, or exams for you to submit as your own work</li>
-                        <li>Help you cheat or violate your institution's academic policies</li>
-                        <li>Solve take-home exams or complete graded assignments</li>
-                        <li>Do your work for you instead of teaching you the skills</li>
-                        <li>Help you bypass academic integrity systems</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="highlight-box">
-                <p><strong>Termination for Violations:</strong> If during a session I determine that you are attempting to use AI in violation of academic integrity policies, I reserve the right to stop the session immediately (no refund for that session), terminate our coaching relationship (remaining package sessions forfeited), and decline future services.</p>
-            </div>
-
-            <h2>2. Scope of Services</h2>
-            <p>This is a <strong>Creative Strategy and Productivity Coaching</strong> service focused on helping you use Google's AI tools effectively.</p>
-
-            <h3>What We DO:</h3>
-            <p><strong>Educational Coaching:</strong> Explore tools like Gemini and NotebookLM to improve personal productivity, learning, and creative workflows.</p>
-            <p><strong>Hands-On Learning:</strong> Live demonstrations with your actual content, screen-sharing guidance while you practice, strategic discussions about the "Art of the Possible," and custom examples relevant to your field or goals.</p>
-            <p><strong>Creative Applications:</strong> Turn documents into podcasts or study guides, analyze videos without watching them fully, brainstorm ideas and overcome creative blocks, and use AI for roleplay scenarios and problem-solving.</p>
-
-            <h3>What We DON'T DO:</h3>
-            <p><strong>Technical Support:</strong> Fixing your Google account settings or permissions, troubleshooting software installation or updates, resolving sync issues or technical errors, or IT support/helpdesk services.</p>
-            <p><strong>Software Development:</strong> Code review or debugging of your applications, software engineering or custom development, building tools, apps, or systems for you, or ongoing technical maintenance.</p>
-            <p><strong>Professional Services:</strong> Legal advice or document review, financial planning or investment advice, medical or health-related guidance, or subject matter expertise outside of AI tools.</p>
-
-            <h2>3. Payment & Booking Policy</h2>
-            
-            <h3>Session Rates</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr><th>Service</th><th>Price (USD/CAD)</th><th>Notes</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>60-minute One-on-One</td><td>$150</td><td>Standard Session</td></tr>
-                        <tr><td>30-minute One-on-One</td><td>$80</td><td>Returning Clients Only</td></tr>
-                        <tr><td>3-Session Builder Pack</td><td>$400</td><td>Save $50</td></tr>
-                        <tr><td>5-Session System Pack</td><td>$650</td><td>Save $100</td></tr>
-                        <tr><td>Quick Fix Pack (5x 30-min)</td><td>$350</td><td>Save $50</td></tr>
-                        <tr><td>Monthly Check-In (4x 30-min)</td><td>$280/month</td><td>Returning Clients Only</td></tr>
-                        <tr><td>Monthly Deep Support (4x 60-min)</td><td>$500/month</td><td>Returning Clients Only</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>Payment Terms</h3>
-            <p><strong>Accepted Payment Methods:</strong> E-Transfer (Interac) - Primary method for virtual sessions. Payment instructions sent via email after booking. Include in message: Your name + "GAIME Start". Cash - Accepted for in-person sessions in North York/Toronto only.</p>
-            <p><strong>Payment Schedule:</strong> Payment is required in advance to secure your session slot. Calendar invites and Google Meet links are sent ONLY AFTER payment is received. For packages, full payment is required upfront.</p>
-
-            <h3>Cancellation & Rescheduling Policy</h3>
-            <p><strong>Proactive Communication = Flexibility:</strong> If you need to cancel or reschedule, reach out as soon as possible. I understand things come up. As long as you communicate proactively, we'll find a new time that works for both of us.</p>
-            
-            <p><strong>No-Show Policy:</strong> If you don't show up to your scheduled session and haven't contacted me, the session is forfeited. You'll need to book and pay for a new session.</p>
-            
-            <p><strong>Package Flexibility:</strong> Package sessions have no expiration dates. We coordinate scheduling via email at your pace—just maintain proactive communication.</p>
-            
-            <p><strong>Emergency Exceptions:</strong> True emergencies (medical crisis, family emergency, etc.) are handled with empathy and flexibility. Just communicate as soon as you can, and we'll work it out.</p>
-
-            <h3>Refund Policy</h3>
-            <p><strong>No Refunds:</strong> All payments are final and non-refundable. I offer rescheduling flexibility, not refunds. Sessions are live, time-bound, and scheduled specifically for you.</p>
-            
-            <p><strong>Unused Package Sessions:</strong> While packages don't expire, you're responsible for scheduling and using your sessions. Unused sessions cannot be refunded.</p>
-            
-            <p><strong>Before You Book:</strong> If you're unsure whether this service is right for you, please ask questions via email before booking. All sales are final once payment is received.</p>
-
-            <h2>4. Client Responsibilities</h2>
-            <p>By booking a session, you agree to:</p>
-            <p><strong>Come Prepared:</strong> Have your laptop and necessary accounts ready. Bring specific examples or projects to work on. Review any pre-session materials sent to you. Test your Google Meet connection before virtual sessions.</p>
-            <p><strong>Participate Actively:</strong> Share your screen when requested for hands-on practice. Ask questions when something is unclear. Practice techniques during and between sessions. Follow up on action items.</p>
-            <p><strong>Respect Boundaries:</strong> Use session time for coaching, not technical support. Honor the academic integrity agreement. Accept that I teach you to USE tools, not build them. Understand that AI outputs must be verified by you.</p>
-
-            <h2>5. Limitations & Disclaimers</h2>
-            <p>I teach you to use AI tools effectively, but I cannot guarantee: 100% accuracy of AI outputs (you must verify), that AI will solve every problem perfectly, specific outcomes or results, or that your institution/employer will permit AI use.</p>
-            <p><strong>Technology Requirements:</strong> You are responsible for having access to Gemini and/or NotebookLM, a stable internet connection for virtual sessions, a working laptop/computer with screen sharing capability, and any necessary software licenses or subscriptions.</p>
-            <p><strong>Professional Advice Disclaimer:</strong> I am an AI coaching specialist, not a lawyer (legal advice), a financial advisor (investment guidance), a doctor (medical guidance), a licensed therapist (mental health support), or your subject matter expert (you are).</p>
-
-            <h2>6. Privacy & Data</h2>
-            <p><strong>What I Collect:</strong> Name, email, and contact information (booking purposes). Session notes to track your progress. Examples or content you share during sessions.</p>
-            <p><strong>What I Don't Do:</strong> Share your information with third parties. Store sensitive personal data beyond session notes. Record sessions without explicit permission. Use your content for marketing without consent.</p>
-            <p><strong>Your Content:</strong> Any documents, projects, or examples you share remain yours. I may use anonymized examples for teaching (no identifying info). You can request deletion of your data at any time.</p>
-
-            <h2>7. Intellectual Property</h2>
-            <p><strong>Your Work:</strong> You own everything you create, with or without AI assistance. I claim no rights to your projects, essays, or outputs.</p>
-            <p><strong>My Materials:</strong> Session recordings (if made) are for your personal use only. Templates or resources provided are for your use, not resale. My teaching methods and frameworks remain my intellectual property.</p>
-            <p><strong>AI-Generated Content:</strong> You are responsible for properly attributing AI use per your institution's policies. I am not liable for how you use AI-generated content. You accept full responsibility for what you submit or publish.</p>
-
-            <h2>8. Modification of Terms</h2>
-            <p>I reserve the right to update these Terms & Policies at any time. Updated terms will be posted with a new "Last Updated" date. Significant changes will be communicated via email. Continued booking after changes constitutes acceptance.</p>
-
-            <h2 style="margin-top: 4rem;">Contact Information</h2>
-            <p>Questions about these terms? Email me at <a href="mailto:mee@gaimestart.com" style="color: var(--primary-green); text-decoration: underline;">mee@gaimestart.com</a></p>
-            <p style="text-align: center; margin-top: 2rem; color: #aaa; font-size: 0.9rem;">© 2026 GAIME Start Learning</p>
+        <div class="x-figure reveal delay-3">
+          <div class="x-art">
+            <img src="img/hero-day.jpeg" alt="Working with Google's AI tools — GenAI Made Easy">
+          </div>
         </div>
-
-        <footer>
-            <div class="container">
-                <p>© 2026 GAIME Start Learning. All rights reserved.</p>
-            </div>
-        </footer>
+      </div>
     </div>
+  </section>
 
-    <script>
-        // Page navigation
-        function navigateTo(pageName) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            const targetPage = document.getElementById('page-' + pageName);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                window.scrollTo(0, 0);
-                
-                // Update nav active states
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Set active state on current nav item
-                const navLinks = document.querySelectorAll('.nav-links a');
-                navLinks.forEach(link => {
-                    if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageName)) {
-                        link.classList.add('active');
-                    }
-                });
-                
-                // Trigger reveal animations
-                setTimeout(() => {
-                    const reveals = targetPage.querySelectorAll('.reveal');
-                    reveals.forEach(el => el.classList.add('active'));
-                    
-                    const marker = targetPage.querySelector('.marker-highlight');
-                    if (marker) {
-                        setTimeout(() => marker.classList.add('active'), 500);
-                    }
-                }, 100);
-            }
-        }
+  <!-- PAIN POINTS -->
+  <section class="pain-section atmo">
+    <div class="peek tilt-r" style="left:-26px; top:-44px; width:188px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-think.png" alt=""></div></div>
+    <div class="flora tilt-r" style="right:-58px; top:-54px; width:228px;" data-speed="0.08" aria-hidden="true"><div class="flora-inner"><img src="img/cut/monstera-fronds.png" alt=""></div></div>
+    <div class="container">
+      <div class="sec-head">
+        <div class="kicker reveal"><span class="idx">01</span><span class="line"></span><span class="label" style="margin:0;">Sound Familiar</span></div>
+        <h2 class="reveal delay-1">You know AI can help. You just don't know where to start.</h2>
+      </div>
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('js-active');
-            
-            // Set home as active in nav
-            const homeLink = document.querySelector('.nav-links a[onclick*="home"]');
-            if (homeLink) {
-                homeLink.classList.add('active');
-            }
-            
-            // Activate home page reveals
-            setTimeout(() => {
-                document.querySelectorAll('#page-home .reveal').forEach(el => el.classList.add('active'));
-            }, 200);
-        });
-        
-        // Mobile menu functions
-        function openMobileMenu() {
-            document.querySelector('.mobile-menu').classList.add('active');
-            document.querySelector('.mobile-menu-overlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMobileMenu() {
-            document.querySelector('.mobile-menu').classList.remove('active');
-            document.querySelector('.mobile-menu-overlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Accordion toggle
-        function toggleAccordion(header) {
-            const item = header.parentElement;
-            const wasActive = item.classList.contains('active');
-            
-            document.querySelectorAll('.accordion-item').forEach(accordion => {
-                accordion.classList.remove('active');
-            });
-            
-            if (!wasActive) {
-                item.classList.add('active');
-            }
-        }
-        
-
-// QUIZ GAME - WITH PERSONALIZED ENCOURAGEMENT MESSAGES
-
-// Quiz Game State
-let quizGameState = {
-    currentStep: 0,
-    totalSteps: 4,
-    persona: null,
-    assessment: null,
-    skillPriority: null,
-    learningStyle: null,
-    answers: {}
-};
-
-// Personalized Encouragement Messages
-const encouragementMessages = {
-    // Step 1: Persona selection
-    persona: {
-        search: ["Great start! Let's transform how you use AI! 🚀", "Perfect! Search is just the beginning! ✨"],
-        workflows: ["Excellent! You're already ahead of most people! 💪", "Nice! Let's level up those workflows! ⚡"],
-        overwhelmed: ["I hear you! We'll cut through the noise together! 🎯", "You're in the right place! Clarity is coming! 💡"],
-        beginner: ["Perfect place to start! No judgment, just growth! 🌱", "Awesome! Everyone starts somewhere! 🚀"]
-    },
-    // Step 2: Assessment
-    assessment: ["That's so common—you're not alone! 💪", "I've heard that before! We can fix it! ✨", "Great insight into what you need! 🎯"],
-    // Step 3: Skill priority  
-    skillPriority: ["Smart choice! That'll make a huge difference! 💎", "Excellent prioritization! Let's make it happen! 🚀", "Perfect! That's exactly where to focus! ⭐"],
-    // Step 4: Learning style
-    learningStyle: ["That's how you learn best! Got it! 🎓", "Perfect! We'll tailor it to your style! ✨", "Great to know! This will be personalized! 🎯"]
-};
-
-// Generic fallback (just in case)
-const genericEncouragement = ["Great choice! 🌟", "Perfect! ⭐", "Excellent! 🎯"];
-
-// STEP 1: Persona Selection
-const step1Content = {
-    icon: "🔍",
-    category: "Step 1: Your Current State",
-    title: "How Are You Using GenAI?",
-    description: "Let's start by understanding where you are right now.",
-    type: "persona",
-    options: [
-        { value: "search", text: "🔍 Like a Search Engine", subtitle: "I ask questions and get answers" },
-        { value: "workflows", text: "⚙️ I Have Some Workflows", subtitle: "I've built a few basic systems" },
-        { value: "overwhelmed", text: "😵 I'm Overwhelmed", subtitle: "Too many tools, too much noise" },
-        { value: "beginner", text: "🤷 What Even Is GenAI?", subtitle: "Just getting started" }
-    ]
-};
-
-// STEP 2: Assessment (personalized by persona)
-const step2Content = {
-    search: {
-        icon: "🎯",
-        category: "Step 2: Your Biggest Challenge",
-        title: "What frustrates you most right now?",
-        description: "Since you use AI like a search engine, which issue resonates?",
-        options: [
-            "Results feel generic and unhelpful",
-            "I waste time trying different prompts",
-            "I can't save or reuse good results"
-        ]
-    },
-    workflows: {
-        icon: "🎯",
-        category: "Step 2: Your Biggest Challenge",
-        title: "What's holding you back?",
-        description: "You've started building workflows—what's the blocker?",
-        options: [
-            "They're inconsistent and unreliable",
-            "They don't save much time yet",
-            "I don't know how to scale them"
-        ]
-    },
-    overwhelmed: {
-        icon: "🎯",
-        category: "Step 2: Your Biggest Challenge",
-        title: "What's overwhelming you most?",
-        description: "Let's identify the core issue:",
-        options: [
-            "Too many tools—don't know which to use",
-            "Too much information—no clear starting point",
-            "Everything seems too complex"
-        ]
-    },
-    beginner: {
-        icon: "🎯",
-        category: "Step 2: Your Biggest Challenge",
-        title: "What's stopping you from starting?",
-        description: "Everyone starts somewhere—what's your hesitation?",
-        options: [
-            "I don't understand what AI can actually do",
-            "I'm worried I'll use it wrong",
-            "I don't know which tool to try first"
-        ]
-    }
-};
-
-// STEP 3: Skill Prioritization
-const step3Content = {
-    search: {
-        icon: "🎯",
-        category: "Step 3: Skill Priority",
-        title: "Which skill would help you MOST?",
-        description: "If you could master one thing first, what would move the needle?",
-        options: [
-            { value: "prompts", text: "Prompt engineering", subtitle: "Getting quality results consistently" },
-            { value: "context", text: "Context management", subtitle: "Building on previous conversations" },
-            { value: "templates", text: "Reusable templates", subtitle: "Stop starting from scratch every time" }
-        ]
-    },
-    workflows: {
-        icon: "🎯",
-        category: "Step 3: Skill Priority",
-        title: "Which skill would help you MOST?",
-        description: "To take your workflows to the next level, what do you need?",
-        options: [
-            { value: "automation", text: "Workflow automation", subtitle: "Systems that run on autopilot" },
-            { value: "advanced-context", text: "Advanced context strategies", subtitle: "Memory across sessions" },
-            { value: "integration", text: "Tool integration", subtitle: "Connecting AI to your workspace" }
-        ]
-    },
-    overwhelmed: {
-        icon: "🎯",
-        category: "Step 3: Skill Priority",
-        title: "What would give you clarity FIRST?",
-        description: "Let's cut through the noise—what do you need most?",
-        options: [
-            { value: "tool-guidance", text: "Tool guidance", subtitle: "Which tools actually matter for YOUR work" },
-            { value: "simple-workflows", text: "Simple workflows", subtitle: "Just the basics that work immediately" },
-            { value: "focus", text: "The 20% that matters", subtitle: "Core skills, not everything" }
-        ]
-    },
-    beginner: {
-        icon: "🎯",
-        category: "Step 3: Skill Priority",
-        title: "Where should you start?",
-        description: "Let's build your foundation—what feels most important?",
-        options: [
-            { value: "fundamentals", text: "The fundamentals", subtitle: "What GenAI is and how it works" },
-            { value: "basic-prompting", text: "Basic prompting", subtitle: "How to ask AI for what you need" },
-            { value: "confidence", text: "Hands-on practice", subtitle: "Just trying things without fear" }
-        ]
-    }
-};
-
-// STEP 4: Learning Style
-const step4Content = {
-    icon: "🎓",
-    category: "Step 4: Learning Style",
-    title: "How do you learn best?",
-    description: "Everyone learns differently—what works for you?",
-    options: [
-        { value: "hands-on", text: "Hands-on practice", subtitle: "Work on my actual projects with guidance" },
-        { value: "structured", text: "Structured lessons", subtitle: "Step-by-step curriculum I can follow" },
-        { value: "examples", text: "Real examples", subtitle: "See how others use it, then adapt" },
-        { value: "accountability", text: "Accountability", subtitle: "Someone to keep me on track" }
-    ]
-};
-
-// Next Steps Content (personalized)
-const nextStepsContent = {
-    search: {
-        title: "Transform Search Into Systems",
-        summary: "You're using AI like Google—getting answers but not building systems. Here's your path forward:",
-        skills: [
-            "Prompt engineering fundamentals",
-            "Context management strategies",
-            "Building reusable template libraries"
-        ],
-        nextSteps: [
-            "Session 1: Master prompt engineering—learn to get quality results on the first try",
-            "Session 2: Build your first reusable template system",
-            "Session 3: Create context workflows that build on previous conversations"
-        ],
-        outcome: "In 2-3 sessions, you'll go from asking questions to building workflows that save 10+ hours/week."
-    },
-    workflows: {
-        title: "Level Up to Real Automation",
-        summary: "You've started building—now let's make them actually save serious time:",
-        skills: [
-            "Advanced workflow automation",
-            "Context engineering for complex projects",
-            "Tool integration strategies"
-        ],
-        nextSteps: [
-            "Session 1: Audit your current workflows and identify automation opportunities",
-            "Session 2: Build advanced context strategies for multi-session projects",
-            "Session 3: Integrate AI into your actual workspace (Gmail, Docs, Sheets)"
-        ],
-        outcome: "In 2-3 sessions, you'll go from 2 hours/week saved to 10+ hours/week with systems that compound."
-    },
-    overwhelmed: {
-        title: "Cut Through the Noise",
-        summary: "You don't need more content—you need clarity on the 20% that matters:",
-        skills: [
-            "Tool guidance for YOUR specific work",
-            "Simple workflows that work immediately",
-            "Core fundamentals (no fluff)"
-        ],
-        nextSteps: [
-            "Session 1: Identify which tools actually matter for YOUR role",
-            "Session 2: Build one simple workflow that saves time this week",
-            "Session 3: Master the core skills—ignore everything else"
-        ],
-        outcome: "In 2-3 sessions, you'll go from overwhelmed to focused—using AI confidently without the noise."
-    },
-    beginner: {
-        title: "Start From Zero (No Judgment)",
-        summary: "You're starting fresh—that's actually an advantage. Here's your foundation:",
-        skills: [
-            "GenAI fundamentals (what it is, what it's not)",
-            "Basic prompting skills",
-            "Hands-on practice with real tasks"
-        ],
-        nextSteps: [
-            "Session 1: Understand what GenAI actually is and try your first prompts",
-            "Session 2: Practice on YOUR real work tasks (no generic examples)",
-            "Session 3: Build your first simple workflow you'll use daily"
-        ],
-        outcome: "In 2-3 sessions, you'll go from complete beginner to confidently using AI for daily tasks."
-    }
-};
-
-// Start Quiz
-function startQuizGame() {
-    document.getElementById('quiz-welcome').style.display = 'none';
-    document.getElementById('quiz-question').style.display = 'block';
-    document.getElementById('quiz-header').style.display = 'block';
-    
-    quizGameState.currentStep = 0;
-    showQuizStep(0);
-}
-
-// Show Quiz Step
-function showQuizStep(step) {
-    quizGameState.currentStep = step;
-    updateQuizProgress();
-    
-    let stepData;
-    
-    if (step === 0) {
-        stepData = step1Content;
-    } else if (step === 1 && quizGameState.persona) {
-        stepData = step2Content[quizGameState.persona];
-    } else if (step === 2 && quizGameState.persona) {
-        stepData = step3Content[quizGameState.persona];
-    } else if (step === 3) {
-        stepData = step4Content;
-    }
-    
-    if (!stepData) return;
-    
-    document.getElementById('quiz-icon').textContent = stepData.icon;
-    document.getElementById('quiz-category').textContent = stepData.category;
-    document.getElementById('quiz-title').textContent = stepData.title;
-    document.getElementById('quiz-description').textContent = stepData.description || "";
-    
-    generateQuizOptions(stepData, step);
-    updateQuizNavigation();
-}
-
-// Generate Options
-function generateQuizOptions(stepData, step) {
-    const container = document.getElementById('quiz-options-container');
-    container.innerHTML = '';
-    
-    stepData.options.forEach((option, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'quiz-option-btn';
-        
-        if (option.subtitle) {
-            // Has subtitle (Steps 1, 3, 4)
-            btn.innerHTML = `
-                <div>
-                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">${option.text}</div>
-                    <div style="font-size: 0.85rem; font-weight: 400; color: var(--text-gray);">${option.subtitle}</div>
-                </div>
-            `;
-            btn.onclick = () => selectQuizOptionWithValue(option.value, btn, step);
-        } else {
-            // No subtitle (Step 2)
-            btn.textContent = option;
-            btn.onclick = () => selectQuizOption(index, btn, step);
-        }
-        
-        container.appendChild(btn);
-    });
-}
-
-// Select Option (for Step 2 - no value, just index)
-function selectQuizOption(index, btn, step) {
-    document.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    quizGameState.answers[step] = index;
-    
-    if (step === 1) {
-        quizGameState.assessment = index;
-        showQuizEncouragement('assessment');
-    }
-    
-    enableQuizNext();
-}
-
-// Select Option with Value (for Steps 1, 3, 4)
-function selectQuizOptionWithValue(value, btn, step) {
-    document.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    quizGameState.answers[step] = value;
-    
-    if (step === 0) {
-        quizGameState.persona = value;
-        showQuizEncouragement('persona', value);
-    } else if (step === 2) {
-        quizGameState.skillPriority = value;
-        showQuizEncouragement('skillPriority');
-    } else if (step === 3) {
-        quizGameState.learningStyle = value;
-        showQuizEncouragement('learningStyle');
-    }
-    
-    enableQuizNext();
-}
-
-// Show Personalized Encouragement
-function showQuizEncouragement(type, personaValue = null) {
-    const popup = document.getElementById('quiz-encouragement');
-    let message;
-    
-    if (type === 'persona' && personaValue) {
-        // Get persona-specific message
-        const messages = encouragementMessages.persona[personaValue];
-        message = messages[Math.floor(Math.random() * messages.length)];
-    } else if (type === 'assessment') {
-        // Get assessment message
-        const messages = encouragementMessages.assessment;
-        message = messages[Math.floor(Math.random() * messages.length)];
-    } else if (type === 'skillPriority') {
-        // Get skill priority message
-        const messages = encouragementMessages.skillPriority;
-        message = messages[Math.floor(Math.random() * messages.length)];
-    } else if (type === 'learningStyle') {
-        // Get learning style message
-        const messages = encouragementMessages.learningStyle;
-        message = messages[Math.floor(Math.random() * messages.length)];
-    } else {
-        // Fallback
-        message = genericEncouragement[Math.floor(Math.random() * genericEncouragement.length)];
-    }
-    
-    popup.textContent = message;
-    popup.style.display = 'block';
-    setTimeout(() => {
-        popup.style.display = 'none';
-    }, 2000);
-}
-
-// Update Progress
-function updateQuizProgress() {
-    const progress = ((quizGameState.currentStep + 1) / quizGameState.totalSteps) * 100;
-    document.getElementById('quiz-progress-bar-fill').style.width = progress + '%';
-    document.getElementById('quiz-progress-percent').textContent = Math.round(progress);
-    document.getElementById('quiz-current-num').textContent = quizGameState.currentStep + 1;
-    document.getElementById('quiz-total-num').textContent = quizGameState.totalSteps;
-    document.getElementById('quiz-current').textContent = quizGameState.currentStep + 1;
-    document.getElementById('quiz-total').textContent = quizGameState.totalSteps;
-}
-
-// Update Navigation
-function updateQuizNavigation() {
-    const backBtn = document.getElementById('quiz-back-btn');
-    const nextBtn = document.getElementById('quiz-next-btn');
-    
-    if (quizGameState.currentStep === 0) {
-        backBtn.disabled = true;
-        backBtn.style.opacity = '0.5';
-        backBtn.style.cursor = 'not-allowed';
-    } else {
-        backBtn.disabled = false;
-        backBtn.style.opacity = '1';
-        backBtn.style.cursor = 'pointer';
-    }
-    
-    if (quizGameState.currentStep === quizGameState.totalSteps - 1) {
-        nextBtn.textContent = 'See My Next Steps 🏆';
-    } else {
-        nextBtn.textContent = 'Next →';
-    }
-    
-    // Disable next initially
-    disableQuizNext();
-}
-
-// Enable/Disable Next
-function enableQuizNext() {
-    const btn = document.getElementById('quiz-next-btn');
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    btn.style.cursor = 'pointer';
-}
-
-function disableQuizNext() {
-    const btn = document.getElementById('quiz-next-btn');
-    btn.disabled = true;
-    btn.style.opacity = '0.5';
-    btn.style.cursor = 'not-allowed';
-}
-
-// Navigation
-function quizGoNext() {
-    if (quizGameState.currentStep < quizGameState.totalSteps - 1) {
-        showQuizStep(quizGameState.currentStep + 1);
-    } else {
-        completeQuizGame();
-    }
-}
-
-function quizGoBack() {
-    if (quizGameState.currentStep > 0) {
-        showQuizStep(quizGameState.currentStep - 1);
-    }
-}
-
-// Complete Quiz
-function completeQuizGame() {
-    document.getElementById('quiz-question').style.display = 'none';
-    document.getElementById('quiz-header').style.display = 'none';
-    document.getElementById('quiz-complete').style.display = 'block';
-    
-    const resultsContainer = document.getElementById('quiz-results-content');
-    const nextSteps = nextStepsContent[quizGameState.persona];
-    
-    resultsContainer.innerHTML = `
-        <div style="margin-bottom: 2.5rem;">
-            <h3 style="font-size: 1.5rem; color: var(--primary-green); margin-bottom: 1rem;">${nextSteps.title}</h3>
-            <p style="font-size: 1.05rem; color: var(--text-gray); line-height: 1.7;">
-                ${nextSteps.summary}
-            </p>
+      <div class="pain-grid">
+        <div class="card reveal delay-1">
+          <div class="icon-wrap icon-stone">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3>Overwhelmed</h3>
+          <p>Everyone says "use AI" but no one shows you how. You've tried ChatGPT and the results are hit-or-miss.</p>
         </div>
-        
-        <div style="margin-bottom: 2rem;">
-            <h4 style="color: var(--primary-green); margin-bottom: 1rem; font-size: 1.1rem;">You'll master:</h4>
-            <ul style="list-style: none; padding: 0;">
-                ${nextSteps.skills.map(skill => `<li style="padding: 0.5rem 0 0.5rem 2rem; position: relative;"><span style="position: absolute; left: 0; color: var(--primary-green); font-weight: 700;">✓</span> ${skill}</li>`).join('')}
-            </ul>
+        <div class="card reveal delay-2">
+          <div class="icon-wrap icon-gold">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>No Time</h3>
+          <p>You don't have hours for tutorials. You need a workflow built for your specific task, today.</p>
         </div>
-        
-        <div style="background: rgba(46, 84, 61, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary-green); margin-bottom: 2rem;">
-            <h4 style="color: var(--primary-green); margin-bottom: 1rem; font-size: 1.1rem;">Your 3-session roadmap:</h4>
-            <ol style="padding-left: 1.25rem; margin: 0;">
-                ${nextSteps.nextSteps.map(step => `<li style="padding: 0.5rem 0; color: var(--text-gray); line-height: 1.6;">${step}</li>`).join('')}
-            </ol>
+        <div class="card reveal delay-3">
+          <div class="icon-wrap icon-green">
+            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3>Student Ethics</h3>
+          <p>You want to use AI for studying without crossing into cheating. Guidance, not shortcuts.</p>
         </div>
-        
-        <div style="background: rgba(255, 187, 54, 0.1); border-left: 4px solid var(--gold); padding: 1.25rem; border-radius: 8px; font-weight: 600;">
-            ${nextSteps.outcome}
+        <div class="card reveal delay-4">
+          <div class="icon-wrap icon-stone">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Busy Work</h3>
+          <p>Emails, meeting notes, reports, all eating your time. You just need someone to show you the way.</p>
         </div>
-    `;
-}
+      </div>
+    </div>
+  </section>
 
-// Restart Quiz
-function restartQuizGame() {
-    quizGameState = {
-        currentStep: 0,
-        totalSteps: 4,
-        persona: null,
-        assessment: null,
-        skillPriority: null,
-        learningStyle: null,
-        answers: {}
+  <!-- PERSON A vs B -->
+  <section class="ab-section atmo">
+    <div class="flora flip" style="left:-46px; top:-40px; width:142px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="peek peek-online peek-tight" style="right:8%; width:190px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-sleep.png" alt=""></div></div>
+    <div class="container">
+      <div class="sec-head indent">
+        <div class="kicker reveal"><span class="idx">02</span><span class="line"></span><span class="label" style="margin:0;">The Difference</span></div>
+        <h2 class="reveal delay-1">Same tools. Very different outcomes.</h2>
+      </div>
+
+      <div class="ab-grid">
+        <div class="ab-col muted reveal delay-1">
+          <span class="tag">Without a coach</span>
+          <ul class="ab-list">
+            <li>Opens ChatGPT, types a vague prompt, gets a generic answer</li>
+            <li>Watches three tutorials, applies none of them</li>
+            <li>Copies AI output without checking it</li>
+            <li>Still does the busy work the slow way</li>
+            <li>Quietly worried about falling behind</li>
+          </ul>
+        </div>
+        <div class="ab-col win reveal delay-2">
+          <span class="tag">With GAIME Start</span>
+          <ul class="ab-list">
+            <li>Builds a repeatable workflow around their real task</li>
+            <li>Knows which tool fits which job, and why</li>
+            <li>Fact-checks outputs and spots hallucinations</li>
+            <li>Saves hours every week on the same work</li>
+            <li>Confident enough to keep going alone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRIVE -->
+  <section class="drive-section atmo">
+    <div class="peek peek-online" style="left:11%; width:150px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-jump.png" alt=""></div></div>
+    <div class="peek tilt-r" style="left:-30px; top:-28px; width:176px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-confident.png" alt=""></div></div>
+    <div class="flora tilt-r" style="right:-28px; top:-26px; width:132px;" data-speed="0.08" aria-hidden="true"><div class="flora-inner"><img src="img/cut/leaf-sprig.png" alt=""></div></div>
+    <div class="plant plant-br">
+      <svg viewBox="0 0 100 100"><path d="M50 95C50 60 30 45 10 40c18-2 32 6 40 18C48 40 42 22 30 12c16 4 24 18 26 34C58 28 64 14 80 8c-10 14-14 30-12 44 6-12 18-20 32-20-18 8-28 22-30 40 0 8 0 15-2 23h-6z"/></svg>
+    </div>
+    <div class="container">
+      <div class="sec-head">
+        <div class="kicker reveal"><span class="idx">03</span><span class="line"></span><span class="label" style="margin:0;">The Approach</span></div>
+        <h2 class="reveal delay-1">I teach you how to drive. You choose where to go.</h2>
+        <p class="reveal delay-2">My goal isn't to create dependency. It's to make myself unnecessary, confident, independent, done.</p>
+      </div>
+
+      <div class="drive-grid">
+        <div class="card reveal delay-1">
+          <div class="icon-wrap icon-green">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Personalized</h3>
+          <p>We work on your actual essay, project, or workflow, never generic examples that don't apply to you.</p>
+        </div>
+        <div class="card reveal delay-2">
+          <div class="icon-wrap icon-gold">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>Fast Results</h3>
+          <p>Most clients feel confident after two or three sessions. No 20-hour courses. No filler.</p>
+        </div>
+        <div class="card reveal delay-3">
+          <div class="icon-wrap icon-stone">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Ethical &amp; Safe</h3>
+          <p>Human in the lead, AI in the loop. Enhance your thinking, never outsource it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNCOMFORTABLE TRUTH -->
+  <section class="truth-section atmo atmo-dark x-dark">
+    <div class="peek peek-online" style="right:10%; width:140px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-pounce.png" alt=""></div></div>
+    <div class="flora tilt-l" style="left:-42px; top:-30px; width:140px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="container">
+      <div class="x-truth-grid">
+        <div class="x-bleed reveal delay-2">
+          <img src="img/coach-night.jpeg" alt="Cutting through the AI noise, calmly">
+        </div>
+        <div>
+          <div class="kicker reveal"><span class="label" style="margin:0;">The Honest Part</span></div>
+          <p class="truth-quote reveal delay-1">There's too much noise about AI. Too many tools, too many tutorials, too much hype. <span class="hl">My job is to cut through it</span>, so you catch up without the overwhelm.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="home-cta atmo atmo-dark">
+    <div class="peek peek-online" style="left:13%; width:140px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-belly.png" alt=""></div></div>
+    <div class="flora front tilt-l flip" style="left:26px; top:-22px; width:120px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
+    <div class="container">
+      <div class="cta-grid">
+        <div class="cta-inner">
+          <div class="kicker reveal"><span class="idx idx-dark">05</span><span class="line"></span><span class="label label-dark" style="margin:0;">Meet Mee at the start</span></div>
+          <h2 class="reveal delay-1">Ready to press START?</h2>
+          <p class="reveal delay-2">One email is all it takes. I'll reply within 24 hours with a custom plan, master the art, then we part.</p>
+          <a href="book.html" class="btn-coin reveal delay-3">Book a Session</a>
+        </div>
+        <div class="cta-figure reveal delay-2">
+          <img src="img/cut/mee-thumbs.png" alt="Mee on a video call, giving a thumbs up">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p>"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="terms.html">Terms &amp; Policies</a>
+        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+    document.body.classList.add('js-ready');
+    const revealAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('visible');
+      });
     };
-    document.getElementById('quiz-complete').style.display = 'none';
-    document.getElementById('quiz-welcome').style.display = 'block';
-}
-    </script>
-
+    revealAll();
+    window.addEventListener('scroll', revealAll, { passive: true });
+    window.addEventListener('load', revealAll);
+    setTimeout(revealAll, 200);
+  </script>
+  <script src="peek.js"></script>
 </body>
 </html>

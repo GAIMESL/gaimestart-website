@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Session · GAIME Start Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    .book-section {
+      background: var(--dark-walnut);
+      min-height: 100vh;
+      padding-top: 140px;
+      padding-bottom: 6rem;
+      position: relative;
+    }
+
+    /* Warm light sources on dark bg */
+    .book-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(170, 210, 188, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .book-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 400px;
+      height: 200px;
+      background: linear-gradient(to top, rgba(46, 84, 61, 0.08) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .book-section h1 {
+      color: var(--off-white);
+      max-width: 600px;
+      margin-bottom: 1rem;
+    }
+
+    .book-section > .container > p {
+      color: rgba(250, 248, 244, 0.6);
+      font-size: 17px;
+      max-width: 500px;
+      margin-bottom: 3.5rem;
+      line-height: 1.78;
+    }
+
+    .book-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Email CTA card */
+    .email-card {
+      background: var(--off-white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    }
+
+    .email-card h2 {
+      font-size: clamp(20px, 2.5vw, 28px);
+      margin-bottom: 0.5rem;
+    }
+
+    .email-card > p {
+      font-size: 14px;
+      color: rgba(28,26,22,0.6);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .email-btn {
+      display: block;
+      width: 100%;
+      background: var(--deep-green);
+      color: var(--off-white);
+      padding: 18px 24px;
+      border-radius: 10px;
+      text-align: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      transition: background 0.3s ease, transform 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .email-btn:hover {
+      background: #254832;
+      transform: translateY(-2px);
+      color: var(--off-white);
+    }
+
+    .email-address {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 13px;
+      color: rgba(28,26,22,0.4);
+    }
+
+    /* Two booking options */
+    .email-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .email-option {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .email-option:first-child {
+      padding-right: 2.5rem;
+      border-right: 1px solid rgba(28,26,22,0.08);
+    }
+
+    .email-option .email-btn {
+      margin-top: auto;
+    }
+
+    @media (max-width: 640px) {
+      .email-options { grid-template-columns: 1fr; }
+      .email-option:first-child {
+        padding-right: 0;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(28,26,22,0.08);
+      }
+    }
+
+    /* What happens next */
+    .next-steps {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(28,26,22,0.08);
+    }
+
+    .next-steps h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-variation-settings: normal;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--warm-chestnut);
+      margin-bottom: 1.25rem;
+    }
+
+    .next-steps ol {
+      padding-left: 1.25rem;
+    }
+
+    .next-steps ol li {
+      font-size: 14px;
+      color: rgba(28,26,22,0.65);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .side-card {
+      background: rgba(250, 248, 244, 0.07);
+      border: 1px solid rgba(250, 248, 244, 0.12);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .side-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-variation-settings: normal;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--honey-gold);
+      margin-bottom: 1rem;
+    }
+
+    .side-card p {
+      font-size: 14px;
+      color: rgba(250,248,244,0.6);
+      margin-bottom: 0.5rem;
+      line-height: 1.65;
+    }
+
+    .side-card p strong {
+      color: rgba(250,248,244,0.85);
+    }
+
+    .terms-note {
+      background: rgba(250, 248, 244, 0.05);
+      border-left: 2px solid rgba(232, 168, 32, 0.4);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .terms-note p {
+      font-size: 13px;
+      color: rgba(250,248,244,0.5);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .terms-note a {
+      color: var(--honey-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Mee + Woorim portrait, large centered banner.
+       Own compositing layer + mask clip keeps the rounded corners
+       crisp next to the scroll-driven floating characters. */
+    .mee-portrait {
+      width: 100%;
+      max-width: 720px;
+      aspect-ratio: 16 / 9;
+      margin: 2rem auto 2.5rem;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 26px 54px -22px rgba(0,0,0,0.55), 0 0 0 1px rgba(232,200,74,0.18);
+      transform: translateZ(0);
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      isolation: isolate;
+    }
+
+    @media (max-width: 900px) {
+      .book-layout { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+    }
+
+    @media (max-width: 560px) {
+      .mee-portrait { max-width: 100%; margin: 1.5rem auto 2rem; }
+    }
+  </style>
+</head>
+<body class="dark-hero">
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="what-we-cover.html">What We Cover</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta active">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
+
+  <!-- BOOK SECTION -->
+  <section class="book-section">
+    <div class="flora front tilt-r" style="top:-26px; right:40px; width:132px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="container">
+      <span class="label label-dark reveal">Let's Begin</span>
+      <h1 class="reveal delay-1">Ready to Press <span class="gold-underline">START</span>?</h1>
+      <p class="reveal delay-2">Email me to get started. I'll reply with an intake form and a custom plan within 24 hours.</p>
+
+      <!-- Mee (+ Woorim!) portrait, centered banner -->
+      <div class="mee-portrait reveal delay-2">
+        <img src="img/mee-woorim-couch.jpg" alt="Mee and her cat Woorim, your AI workflow coaches" style="width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block;">
+      </div>
+
+      <div class="book-layout" style="clear: both;">
+        <!-- Main card -->
+        <div class="email-card reveal delay-2">
+          <div class="email-options">
+            <div class="email-option">
+              <h2>Send Me Your Challenge</h2>
+              <p>Tell me what you're working on and what you want out of a session. I'll read it and reply within 24 hours with a recommendation.</p>
+
+              <a href="mailto:mee@gaimestart.com?subject=My%20AI%20Challenge&body=Hi%20Mee%2C%0D%0A%0D%0AHere's%20what%20I'm%20trying%20to%20accomplish%3A%0D%0A%5BDescribe%20your%20challenge%5D%0D%0A%0D%0AWhat%20I'm%20hoping%20to%20get%20out%20of%20a%20session%3A%0D%0A%5BDescribe%20your%20goal%5D%0D%0A%0D%0AMy%20availability%3A%0D%0A%5BLet%20me%20know%20what%20times%20work%20for%20you%5D" class="email-btn">
+                Email to Book &rarr;
+              </a>
+            </div>
+
+            <div class="email-option">
+              <h2>Book a Free 10-Min Chat</h2>
+              <p>Not sure where to start? Email me a couple of dates and time ranges that work for you. I'll confirm one back and we'll talk it through, no cost, no pressure.</p>
+
+              <a href="mailto:mee@gaimestart.com?subject=Free%2010-Min%20Consult%20Request&body=Hi%20Mee%2C%0D%0A%0D%0AI'd%20like%20to%20book%20a%20free%2010-minute%20consult%20before%20committing%20to%20a%20session.%0D%0A%0D%0AHere%20are%20a%20few%20times%20that%20work%20for%20me%3A%0D%0A%5BDate%2Ftime%20option%201%5D%0D%0A%5BDate%2Ftime%20option%202%5D%0D%0A%5BDate%2Ftime%20option%203%5D" class="email-btn">
+                Book Free Chat &rarr;
+              </a>
+            </div>
+          </div>
+          <p class="email-address">mee@gaimestart.com</p>
+
+          <div class="next-steps">
+            <h3>What Happens Next</h3>
+            <ol>
+              <li>You email me, either your challenge or a request for the free chat</li>
+              <li>I reply within 24 hours to confirm a plan or a time</li>
+              <li>We meet live, chat or session</li>
+              <li>If it was the free chat, I follow up with a recommendation for what to book next</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar reveal delay-3">
+          <div class="side-card">
+            <h3>Quick Pricing</h3>
+            <p><strong>Quick Session (30 min)</strong><br>$80 · Returning clients only</p>
+            <p><strong>Standard Session (60 min)</strong><br>$150 · Most popular</p>
+            <p><strong>Extended Session (90 min)</strong><br>$210 · Pre-booked only</p>
+            <p><strong>4-Session Bundle</strong><br>$550</p>
+            <a href="pricing.html" style="font-size: 13px; color: var(--honey-gold); text-decoration: underline; text-underline-offset: 3px; margin-top: 0.5rem; display: inline-block;">See full pricing &rarr;</a>
+          </div>
+
+          <div class="side-card">
+            <h3>Have Questions?</h3>
+            <p>Check the <a href="faq.html" style="color: var(--honey-gold); text-decoration: underline;">FAQ</a> first, most common questions are already answered there.</p>
+            <p>Or just ask in your email. No question is too basic.</p>
+          </div>
+
+          <div class="terms-note">
+            <p>By booking a session you agree to our <a href="terms.html">Terms &amp; Policies</a>, including the cancellation policy and academic integrity agreement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: var(--espresso); border-top: 1px solid rgba(250,248,244,0.06);">
+    <div class="container">
+      <span class="footer-logo" style="color: rgba(250,248,244,0.7);">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p style="color: rgba(250,248,244,0.4);">"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="terms.html" style="color: rgba(250,248,244,0.35);">Terms &amp; Policies</a>
+        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="mailto:mee@gaimestart.com" style="color: rgba(250,248,244,0.35);">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem; color: rgba(250,248,244,0.25);">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+    document.body.classList.add('js-ready');
+    const revealAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('visible');
+      });
+    };
+    revealAll();
+    window.addEventListener('scroll', revealAll, { passive: true });
+    window.addEventListener('load', revealAll);
+    setTimeout(revealAll, 200);
+  </script>
+  <script src="peek.js"></script>
+</body>
+</html>

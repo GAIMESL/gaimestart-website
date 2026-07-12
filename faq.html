@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ · GAIME Start Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    .hero-section {
+      background: var(--cool-grey);
+      padding-top: 140px;
+      padding-bottom: 5rem;
+    }
+
+    .hero-section p {
+      font-size: 17px;
+      color: rgba(28, 26, 22, 0.6);
+      max-width: 480px;
+      line-height: 1.78;
+    }
+
+    .faq-section {
+      background: var(--cool-grey);
+      padding-top: 0;
+    }
+
+    .faq-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .faq-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cta-band {
+      background: var(--dark-walnut);
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .cta-band h2 { color: var(--off-white); margin-bottom: 1rem; }
+    .cta-band p  { color: rgba(250,248,244,0.6); font-size: 16px; margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 768px) {
+      .faq-cols { grid-template-columns: 1fr; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="what-we-cover.html">What We Cover</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero-section atmo">
+    <div class="flora front tilt-l flip" style="left:24px; top:-26px; width:128px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
+    <div class="peek tilt-l" style="right:-10px; top:118px; width:176px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-think.png" alt=""></div></div>
+    <div class="container">
+      <div class="kicker reveal"><span class="idx">01</span><span class="line"></span><span class="label" style="margin:0;">Common Questions</span></div>
+      <h1 class="reveal delay-1">FAQ</h1>
+      <p class="reveal delay-2">Everything you need to know before booking. Still have a question? Just ask in your email.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-cols reveal delay-2">
+
+        <!-- Left column -->
+        <div class="faq-col">
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>Do I need technical skills?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">No. If you can use Google Docs and email, you're qualified. I teach non-technical people how to use AI tools practically and confidently.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>Will this work with ChatGPT too?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Yes. Prompting techniques apply across all AI tools. My focus is Google's ecosystem: Gemini and NotebookLM. But the skills transfer.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>What if I can't attend my session?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Let me know at least 24 hours before your session and we'll reschedule at no charge. Less than 24 hours' notice, or a no-show without contact, means the session is forfeited.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>Do you offer refunds?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">No. All payments are final. Sessions are live and your time slot is reserved specifically for you. If you're unsure whether this service is right for you, ask questions before booking, I'm happy to chat.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>Is this ethical for students?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Yes. I teach you how to use AI to enhance your learning, not to cheat. We don't generate essays for you. We teach you to use AI as a study tool and thinking partner, in line with your institution's policies.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right column -->
+        <div class="faq-col">
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>Virtual or in-person?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Both. Virtual sessions run over Google Meet and are open to anyone in Canada. In-person sessions are available at public venues (coffee shops) in North York, between Finch and Sheppard. I provide location options.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>How many sessions will I need?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Most clients feel confident after 2 to 3 sessions. We assess together after your first session, no pressure to commit to more upfront.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>Do I need the paid version of Gemini?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Start with Gemini Free if you want to try it first. We recommend AI Plus for most sessions. AI Pro is more than enough if you've already got it. Ultra is only worth it for the extra storage and features, that's your call. Plans and pricing: <a href="https://gemini.google/subscriptions/" target="_blank" rel="noopener">gemini.google/subscriptions</a>.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>What should I bring to the session?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Your laptop, your actual project or content, and a willingness to learn by doing. I'll guide you through everything else. A phone or tablet alone isn't sufficient for hands-on work.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <h3>Can my parent or employer book on my behalf?</h3>
+              <div class="accordion-icon">+</div>
+            </div>
+            <div class="accordion-content">
+              <p class="accordion-body">Yes. Just include in the email who the session is for and their situation. I'll tailor the intake form and session plan accordingly.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="flora front tilt-r" style="right:34px; top:-20px; width:118px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
+    <div class="peek peek-online" style="left:9%; width:150px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-belly.png" alt=""></div></div>
+    <div class="container">
+      <h2 class="reveal">Still Have Questions?</h2>
+      <p class="reveal delay-1">Just ask in your email. No question is too basic, I'll answer everything before we book.</p>
+      <a href="book.html" class="btn-coin reveal delay-2">Email Me</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p>"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="terms.html">Terms &amp; Policies</a>
+        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+    document.body.classList.add('js-ready');
+    const revealAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('visible');
+      });
+    };
+    revealAll();
+    window.addEventListener('scroll', revealAll, { passive: true });
+    window.addEventListener('load', revealAll);
+    setTimeout(revealAll, 200);
+
+    // Accordion
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+  <script src="peek.js"></script>
+</body>
+</html>

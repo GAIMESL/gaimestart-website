@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms &amp; Policies · GAIME Start Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    body { background: var(--off-white); }
+
+    .terms-page {
+      padding: 120px 0 4rem;
+    }
+
+    .terms-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .terms-inner h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      margin-bottom: 0.5rem;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: rgba(28,26,22,0.45);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+    }
+
+    .quick-note {
+      background: rgba(232,168,32,0.07);
+      border-left: 3px solid var(--honey-gold);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 1rem;
+    }
+
+    .quick-note p {
+      margin: 0;
+      font-size: 14px;
+      color: rgba(28,26,22,0.7);
+      line-height: 1.7;
+    }
+
+    .quick-note a {
+      color: var(--deep-green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Section divider */
+    .terms-inner h2 {
+      font-size: clamp(20px, 2.5vw, 28px);
+      margin-top: 3.5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(28,26,22,0.09);
+    }
+
+    .terms-inner h3 {
+      font-size: 16px;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--warm-chestnut);
+    }
+
+    .terms-inner p {
+      font-size: 15px;
+      color: rgba(28,26,22,0.68);
+      line-height: 1.82;
+      margin-bottom: 1rem;
+    }
+
+    .terms-inner strong {
+      color: var(--warm-ink);
+      font-weight: 600;
+    }
+
+    /* Two-col list layout */
+    .list-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .list-block h3 {
+      margin-top: 0;
+      color: var(--warm-ink);
+    }
+
+    .list-block.do h3 { color: var(--deep-green); }
+    .list-block.dont h3 { color: rgba(28,26,22,0.6); }
+
+    /* Table */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid rgba(28,26,22,0.07);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    table { width: 100%; border-collapse: collapse; min-width: 500px; }
+
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--deep-green);
+      background: rgba(46,84,61,0.04);
+      border-bottom: 1px solid rgba(28,26,22,0.07);
+    }
+
+    td {
+      padding: 12px 16px;
+      font-size: 14px;
+      color: rgba(28,26,22,0.68);
+      border-bottom: 1px solid rgba(28,26,22,0.05);
+    }
+
+    .highlight-box {
+      background: rgba(232,168,32,0.06);
+      border-left: 3px solid var(--honey-gold);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      font-size: 13px;
+      color: rgba(28,26,22,0.45);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .back-link:hover { color: var(--warm-ink); }
+
+    @media (max-width: 640px) {
+      .list-cols { grid-template-columns: 1fr; gap: 1.5rem; }
+      .terms-inner { padding: 0 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="what-we-cover.html">What We Cover</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
+
+  <div class="terms-page">
+    <div class="terms-inner">
+
+      <a href="index.html" class="back-link">&larr; Back to home</a>
+
+      <h1>Terms &amp; Policies</h1>
+      <div class="meta">
+        Effective Date: February 7, 2026<br>
+        Last Updated: July 2, 2026<br>
+        Contact: mee@gaimestart.com
+      </div>
+
+      <div class="quick-note">
+        <p><strong>Quick Note:</strong> The most important points from this document are already summarised on our <a href="pricing.html">Pricing</a>, <a href="what-we-cover.html">What We Cover</a>, and <a href="how-it-works.html">How It Works</a> pages. This is the full legal text for reference.</p>
+      </div>
+
+      <div class="quick-note">
+        <p><strong>In-Person Sessions:</strong> Held at public venues only (coffee shops) between Finch and Sheppard in North York. I will provide location options. No private residences.</p>
+      </div>
+
+
+      <h2>1. Academic Integrity Policy</h2>
+      <p>GAIME Start Learning is committed to <strong>Ethical AI Use</strong>. You are here to learn how to use AI tools to enhance your thinking, not to replace it.</p>
+
+      <div class="list-cols">
+        <div class="list-block do">
+          <h3>What We Will Do</h3>
+          <ul class="check-list">
+            <li>Use AI to brainstorm topics, outline arguments, and critique your logic</li>
+            <li>Turn your messy notes into organised study guides using NotebookLM</li>
+            <li>Show you how to use AI as a research assistant and thinking partner</li>
+            <li>Teach you to fact-check AI outputs and use tools safely</li>
+            <li>Help you understand concepts faster through AI explanations</li>
+            <li>Build systems that help you work smarter, not cheat</li>
+          </ul>
+        </div>
+        <div class="list-block dont">
+          <h3>What We Will Not Do</h3>
+          <ul class="cross-list">
+            <li>Generate full essays, assignments, or exams to submit as your own work</li>
+            <li>Help you cheat or violate your institution's academic policies</li>
+            <li>Solve take-home exams or complete graded assignments</li>
+            <li>Do your work for you instead of teaching you the skills</li>
+            <li>Help you bypass academic integrity systems</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>Termination for Violations:</strong> If during a session I determine you are attempting to use AI in violation of academic integrity policies, I reserve the right to stop the session immediately (no refund), terminate our coaching relationship (remaining package sessions forfeited), and decline future services.</p>
+      </div>
+
+
+      <h2>2. Scope of Services</h2>
+      <p>GAIME Start Learning is an <strong>AI coaching service</strong> focused on helping individuals build real, practical AI fluency. Primary focus is Google Workspace AI — Gemini, NotebookLM, and AI features across Google Workspace. General prompt engineering principles covered in sessions apply across all major AI tools, so if you use ChatGPT, Claude, or other platforms, foundational concepts transfer. Technical support for non-Google platforms is outside scope.</p>
+
+      <h3>What We Do</h3>
+      <p><strong>Educational Coaching:</strong> Explore tools like Gemini and NotebookLM to improve personal productivity, learning, and creative workflows.</p>
+      <p><strong>Hands-On Learning:</strong> Live demonstrations with your actual content, screen-sharing guidance while you practice, strategic discussions about what's possible, and custom examples relevant to your goals.</p>
+      <p><strong>Creative Applications:</strong> Turn documents into podcasts or study guides, analyse videos without watching them fully, brainstorm ideas and overcome creative blocks, use AI for roleplay scenarios and problem-solving.</p>
+
+      <h3>What We Don't Do</h3>
+      <p><strong>Technical Support:</strong> Fixing Google account settings, troubleshooting software, resolving sync issues, or IT helpdesk services.</p>
+      <p><strong>Software Development:</strong> Code review, debugging, building apps, or ongoing technical maintenance.</p>
+      <p><strong>Professional Services:</strong> Legal advice, financial planning, medical guidance, or subject matter expertise outside of AI tools.</p>
+
+
+      <h2>3. Payment &amp; Booking Policy</h2>
+
+      <h3>Session Rates</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Price</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Quick Session (30 min)</td><td>$80</td><td>Returning clients only</td></tr>
+            <tr><td>Standard Session (60 min)</td><td>$150</td><td>Most popular</td></tr>
+            <tr><td>Extended Session (90 min)</td><td>$210</td><td>Pre-booked only</td></tr>
+            <tr><td>4-Session Bundle (60 min each)</td><td>$550</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Payment Terms</h3>
+      <p><strong>Accepted Methods:</strong> E-Transfer (Interac), send to <strong>mee@gaimestart.com</strong>, include your name and "GAIME Start" in the message. Cash accepted for in-person sessions in North York only.</p>
+      <p><strong>Payment Schedule:</strong> Payment is required in advance to secure your session slot. Calendar invites and Google Meet links are sent only after payment is received. For packages, full payment is required upfront.</p>
+
+      <h3>Cancellation and Rescheduling</h3>
+      <p><strong>24-Hour Notice:</strong> If you need to cancel or reschedule, let me know at least 24 hours before your session and I'll find a new time at no charge.</p>
+      <p><strong>Late Cancellation &amp; No-Show Policy:</strong> Cancellations with less than 24 hours' notice, and no-shows without contact, forfeit the session. You'll need to book and pay for a new session.</p>
+      <p><strong>Package Flexibility:</strong> Package sessions have no expiry dates. We coordinate scheduling via email at your pace.</p>
+      <p><strong>Emergency Exceptions:</strong> True emergencies are handled with empathy and flexibility. Communicate as soon as you can and we'll work it out.</p>
+
+      <h3>Refund Policy</h3>
+      <p><strong>No Refunds:</strong> All payments are final and non-refundable. I offer rescheduling flexibility, not refunds. If you're unsure whether this service is right for you, ask questions before booking.</p>
+      <p><strong>Unused Package Sessions:</strong> Packages don't expire, but unused sessions cannot be refunded.</p>
+
+
+      <h2>4. Client Responsibilities</h2>
+      <p>By booking a session, you agree to:</p>
+      <p><strong>Come Prepared:</strong> Have your laptop and necessary accounts ready. Bring specific examples or projects. Test your Google Meet connection before virtual sessions.</p>
+      <p><strong>Participate Actively:</strong> Share your screen when requested. Ask questions when something is unclear. Practice techniques between sessions.</p>
+      <p><strong>Respect Boundaries:</strong> Use session time for coaching, not technical support. Accept that I teach you to use tools, not build them. Understand that AI outputs must be verified by you.</p>
+
+
+      <h2>5. Limitations &amp; Disclaimers</h2>
+      <p>I teach you to use AI tools effectively, but I cannot guarantee: 100% accuracy of AI outputs (you must verify), that AI will solve every problem perfectly, specific outcomes or results, or that your institution or employer will permit AI use.</p>
+      <p><strong>Technology Requirements:</strong> You are responsible for access to Gemini and NotebookLM, a stable internet connection, a working laptop with screen sharing capability, and any necessary software licences or subscriptions. We recommend the Gemini AI Plus plan for most sessions, though the free tier works to get started. See current plans at <a href="https://gemini.google/subscriptions/" target="_blank" rel="noopener" style="color: var(--deep-green); text-decoration: underline;">gemini.google/subscriptions</a>.</p>
+      <p><strong>Professional Advice Disclaimer:</strong> I am an AI coaching specialist, not a lawyer, financial advisor, doctor, licensed therapist, or subject matter expert in your field.</p>
+
+
+      <h2>6. Privacy &amp; Data</h2>
+      <p><strong>What I Collect:</strong> Name, email, and contact information for booking. Session notes to track your progress. Examples or content you share during sessions.</p>
+      <p><strong>What I Don't Do:</strong> Share your information with third parties. Store sensitive personal data beyond session notes. Record sessions without explicit permission. Use your content for marketing without consent.</p>
+      <p><strong>Your Content:</strong> Any documents, projects, or examples you share remain yours. You can request deletion of your data at any time.</p>
+
+
+      <h2>7. Intellectual Property</h2>
+      <p><strong>Your Work:</strong> You own everything you create, with or without AI assistance. I claim no rights to your projects, essays, or outputs.</p>
+      <p><strong>My Materials:</strong> Session recordings (if made) are for your personal use only. My teaching methods and frameworks remain my intellectual property.</p>
+      <p><strong>AI-Generated Content:</strong> You are responsible for properly attributing AI use per your institution's policies. You accept full responsibility for what you submit or publish.</p>
+
+
+      <h2>8. Modification of Terms</h2>
+      <p>I reserve the right to update these Terms &amp; Policies at any time. Updated terms will be posted with a new "Last Updated" date. Continued booking after changes constitutes acceptance.</p>
+
+
+      <h2>Contact</h2>
+      <p>Questions about these terms? Email <a href="mailto:mee@gaimestart.com" style="color: var(--deep-green); text-decoration: underline;">mee@gaimestart.com</a></p>
+
+      <p style="margin-top: 3rem; font-size: 13px; color: rgba(28,26,22,0.3); text-align: center;">&#169; 2026 GAIME Start Learning</p>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p>"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+  </script>
+</body>
+</html>

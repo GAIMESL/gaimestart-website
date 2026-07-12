@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing · GAIME Start Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    /* Hero, warm cream intro before dark pricing */
+    .hero-section {
+      background: var(--off-white);
+      padding-top: 140px;
+      padding-bottom: 5rem;
+    }
+
+    .hero-section p {
+      font-size: 17px;
+      color: rgba(28, 26, 22, 0.6);
+      max-width: 480px;
+      line-height: 1.78;
+    }
+
+    /* Pricing cards, Espresso bg */
+    .pricing-section {
+      background: var(--espresso);
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    /* Warm light source on dark section */
+    .pricing-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(170, 210, 188, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pricing-section .label-dark {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .pricing-section h2 {
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-section > .container > p {
+      color: rgba(250, 248, 244, 0.55);
+      font-size: 16px;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Pricing card */
+    .price-card {
+      background: var(--pure-white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Featured card, Standard Session */
+    .price-card.featured {
+      background: var(--off-white);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.28), 0 0 0 2px var(--jewelry-gold);
+    }
+
+    .price-card .tier-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--honey-gold);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .price-card h3 {
+      font-size: 22px;
+      margin-bottom: 0.25rem;
+    }
+
+    .price-card .price-amount {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 0;
+      font-weight: 800;
+      font-size: 48px;
+      color: var(--warm-ink);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 1rem 0 0.25rem;
+    }
+
+    .price-card .price-amount sup {
+      font-size: 24px;
+      vertical-align: super;
+      font-weight: 700;
+    }
+
+    .price-card .price-amount .unit {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-variation-settings: normal;
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(28,26,22,0.45);
+      letter-spacing: 0;
+    }
+
+    .price-card .savings {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--deep-green);
+      margin-bottom: 1.5rem;
+    }
+
+    .price-card .divider {
+      height: 1px;
+      background: rgba(28,26,22,0.08);
+      margin: 1.5rem 0;
+    }
+
+    .price-card .check-list {
+      margin-bottom: 1.75rem;
+    }
+
+    /* Pin every card's button to the bottom so they align across cards */
+    .price-card .btn-outline,
+    .price-card .btn-coin {
+      margin-top: auto;
+    }
+
+    /* Details section, warm cream */
+    .details-section {
+      background: var(--off-white);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .detail-block h3 {
+      font-size: 15px;
+      margin-bottom: 1rem;
+      color: var(--deep-green);
+    }
+
+    .detail-block p,
+    .detail-block li {
+      font-size: 14px;
+      color: rgba(28,26,22,0.65);
+      line-height: 1.7;
+    }
+
+    .detail-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .detail-block ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-note {
+      margin-top: 2rem;
+      background: rgba(232, 168, 32, 0.07);
+      border-left: 3px solid var(--honey-gold);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .detail-note p { margin: 0; font-size: 14px; }
+
+    /* Book CTA, Dark Walnut */
+    .book-cta {
+      background: var(--dark-walnut);
+      padding: 6rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .book-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(120, 170, 140,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .book-cta h2 { color: var(--off-white); margin-bottom: 1rem; }
+    .book-cta p  { color: rgba(250,248,244,0.6); font-size: 16px; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    .what-next {
+      max-width: 480px;
+      margin: 3rem auto 0;
+      text-align: left;
+    }
+
+    .what-next h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-variation-settings: normal;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--honey-gold);
+      margin-bottom: 1rem;
+    }
+
+    .what-next ol {
+      padding-left: 1.25rem;
+    }
+
+    .what-next ol li {
+      font-size: 14px;
+      color: rgba(250,248,244,0.65);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Pricing grid, 4 cards */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    /* Two-style price rows inside a card */
+    .style-prices {
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    .style-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(28,26,22,0.08);
+    }
+
+    .style-row:last-child { border-bottom: none; }
+
+    .style-row .style-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: rgba(28,26,22,0.6);
+      letter-spacing: 0.01em;
+    }
+
+    .style-row .style-price {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 0;
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--warm-ink);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .style-row .style-price sup {
+      font-size: 16px;
+      vertical-align: super;
+      font-weight: 700;
+    }
+
+    /* Single-price cards (Quick, Bundle) */
+    .price-card.featured .tier-label {
+      color: var(--jewelry-gold);
+    }
+
+    .single-price {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'WONK' 0;
+      font-weight: 800;
+      font-size: 34px;
+      color: var(--warm-ink);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .single-price sup {
+      font-size: 17px;
+      vertical-align: super;
+      font-weight: 700;
+    }
+
+    .single-price .suffix {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-variation-settings: normal;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(28,26,22,0.45);
+      letter-spacing: 0;
+    }
+
+    .upgrade-note {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(28,26,22,0.6);
+      margin-top: 0.9rem;
+    }
+
+    .upgrade-note strong { color: var(--deep-green); }
+
+    /* How We Work section */
+    .how-we-work {
+      margin: 0 0 3.5rem;
+    }
+
+    .how-we-work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .how-we-work-item {
+      padding: 1.5rem 1.75rem;
+      background: rgba(250, 248, 244, 0.05);
+      border-left: 2px solid var(--jewelry-gold);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .how-we-work-item h4 {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .how-we-work-item p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: rgba(250, 248, 244, 0.62);
+      margin: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .price-card.featured { transform: none; }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .details-grid { grid-template-columns: 1fr; }
+      .how-we-work-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="what-we-cover.html">What We Cover</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero-section atmo">
+    <div class="flora front tilt-r" style="top:-28px; right:36px; width:136px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="container">
+      <div class="kicker reveal"><span class="idx">01</span><span class="line"></span><span class="label" style="margin:0;">Investment</span></div>
+      <h1 class="reveal delay-1">Transparent Pricing</h1>
+      <p class="reveal delay-2">Simple, honest pricing. No hidden fees. Pay after you decide what you need, not before.</p>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION, ESPRESSO BG -->
+  <section class="pricing-section">
+    <div class="peek tilt-r" style="left:18px; bottom:-8px; width:128px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-tablet.png" alt=""></div></div>
+    <div class="container">
+      <span class="label-dark reveal">AI Fluency Coaching</span>
+      <h2 class="reveal delay-1">Simple, Flexible Pricing</h2>
+      <p class="reveal delay-2">Pick your session length. Pay after you book, not before.</p>
+
+      <!-- Pricing cards -->
+      <div class="grid-4 reveal delay-3">
+
+        <!-- Quick Session -->
+        <div class="price-card">
+          <span class="tier-label">Returning Clients</span>
+          <h3>Quick Session</h3>
+          <div class="single-price"><sup>$</sup>80</div>
+          <p class="savings">30 min</p>
+          <div class="divider"></div>
+          <ul class="check-list">
+            <li>Fast check-in or follow-up</li>
+            <li>One focused question or tool</li>
+            <li>Returning clients only</li>
+          </ul>
+          <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Quick</a>
+        </div>
+
+        <!-- Standard Session, FEATURED -->
+        <div class="price-card featured">
+          <span class="tier-label">Most Popular</span>
+          <h3>Standard Session</h3>
+          <div class="single-price"><sup>$</sup>150</div>
+          <p class="savings">60 min &middot; the sweet spot</p>
+          <div class="divider"></div>
+          <ul class="check-list">
+            <li>Enough time to go deep</li>
+            <li>Work on your real project</li>
+            <li>Walk away with a solution</li>
+          </ul>
+          <a href="book.html" class="btn-coin" style="text-align:center; width:100%;">Book Standard</a>
+        </div>
+
+        <!-- Extended Session -->
+        <div class="price-card">
+          <span class="tier-label">Deep Focus</span>
+          <h3>Extended Session</h3>
+          <div class="single-price"><sup>$</sup>210</div>
+          <p class="savings">90 min &middot; pre-booked only</p>
+          <div class="divider"></div>
+          <ul class="check-list">
+            <li>Tackle a big, layered problem</li>
+            <li>Build an end-to-end workflow</li>
+            <li>Schedule in advance</li>
+          </ul>
+          <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Extended</a>
+        </div>
+
+        <!-- 4-Session Bundle -->
+        <div class="price-card">
+          <span class="tier-label">Best Value</span>
+          <h3>4-Session Bundle</h3>
+          <div class="single-price"><sup>$</sup>550</div>
+          <p class="savings">Four 60-min sessions</p>
+          <div class="divider"></div>
+          <ul class="check-list">
+            <li>Flexible scheduling, no expiry</li>
+            <li>Best value for committed learners</li>
+          </ul>
+          <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Bundle</a>
+        </div>
+
+      </div>
+
+      <p style="color: rgba(250, 248, 244, 0.5); font-size: 14px; margin-top: 2.5rem; text-align: center;"><em>Ready to book? Head to the <a href="book.html" style="color: var(--jewelry-gold); text-decoration: underline;">booking page</a> to schedule your session.</em></p>
+    </div>
+  </section>
+
+  <!-- PAYMENT DETAILS -->
+  <section class="details-section">
+    <div class="peek peek-online" style="left:9%; width:150px;" data-speed="0.06" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-sleep.png" alt=""></div></div>
+    <div class="container">
+      <span class="label reveal">Important Details</span>
+      <h2 class="reveal delay-1">Payment &amp; Policies</h2>
+
+      <div class="details-grid" style="margin-top: 2.5rem;">
+        <div class="detail-block reveal delay-1">
+          <span class="gold-rule"></span>
+          <h3>Payment Methods</h3>
+          <p><strong>E-Transfer (Virtual):</strong><br>
+          Send to <strong style="color: var(--deep-green);">mee@gaimestart.com</strong><br>
+          Include your name and "GAIME Start" in the message.</p>
+          <p style="margin-top: 1rem;"><strong>Cash (In-Person):</strong><br>
+          North York locations only.</p>
+          <p style="margin-top: 1rem; font-size: 13px; color: rgba(28,26,22,0.45);">Calendar invites sent only after payment received.</p>
+        </div>
+
+        <div class="detail-block reveal delay-2">
+          <span class="gold-rule"></span>
+          <h3>Cancellation Policy</h3>
+          <ul>
+            <li><strong>24+ hours' notice:</strong> Free reschedule, no questions asked</li>
+            <li><strong>Less than 24 hours' notice, or no-show:</strong> Session forfeited</li>
+            <li><strong>No refunds:</strong> Rescheduling only</li>
+          </ul>
+          <p style="margin-top: 1rem; font-size: 13px; color: rgba(28,26,22,0.45);">Give at least 24 hours' notice and we'll always find a new time.</p>
+        </div>
+
+        <div class="detail-block reveal delay-3">
+          <span class="gold-rule"></span>
+          <h3>Package Terms</h3>
+          <ul>
+            <li>Flexible scheduling via email</li>
+            <li>No expiry dates on sessions</li>
+            <li>Full payment required upfront</li>
+            <li>Coordinate timing as your schedule allows</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="detail-note reveal delay-4">
+        <p>All payments are final, no refunds. Need to reschedule? Give at least 24 hours' notice and we'll find a new time. See full <a href="terms.html" style="color: var(--deep-green); text-decoration: underline;">Terms &amp; Policies</a> for complete details.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK CTA, DARK WALNUT -->
+  <section class="book-cta">
+    <div class="flora front tilt-r" style="right:34px; top:-20px; width:118px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
+    <div class="peek peek-online" style="right:11%; width:140px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-belly.png" alt=""></div></div>
+    <div class="container">
+      <span class="label label-dark reveal" style="display: block; text-align: center; margin-bottom: 1rem;">Ready When You Are</span>
+      <h2 class="reveal delay-1">Let's Get Started</h2>
+      <p class="reveal delay-2">Email me with your challenge. I'll reply within 24 hours with a recommendation and intake form.</p>
+      <a href="book.html" class="btn-coin reveal delay-3">Book a Session</a>
+
+      <div class="what-next reveal delay-4">
+        <h3>What happens next</h3>
+        <ol>
+          <li>You email me with your challenge</li>
+          <li>I reply within 24 hours with an intake form and track recommendation</li>
+          <li>You choose a time slot and send payment to mee@gaimestart.com</li>
+          <li>I send the Google Meet link or in-person details</li>
+          <li>We meet and solve your problem, live</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p>"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="terms.html">Terms &amp; Policies</a>
+        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+    document.body.classList.add('js-ready');
+    const revealAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('visible');
+      });
+    };
+    revealAll();
+    window.addEventListener('scroll', revealAll, { passive: true });
+    window.addEventListener('load', revealAll);
+    setTimeout(revealAll, 200);
+  </script>
+  <script src="peek.js"></script>
+</body>
+</html>

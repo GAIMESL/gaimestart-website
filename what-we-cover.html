@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What We Cover · GAIME Start Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
+  <style>
+    .hero-section {
+      background: var(--warm-grey);
+      padding-top: 140px;
+      padding-bottom: 5rem;
+    }
+
+    .hero-section p {
+      font-size: 17px;
+      color: rgba(28, 26, 22, 0.6);
+      max-width: 520px;
+      line-height: 1.78;
+    }
+
+    /* Categories */
+    .categories-section {
+      background: var(--warm-grey);
+      padding-top: 0;
+    }
+
+    .cat-card {
+      background: var(--pure-white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cat-card h2 {
+      font-size: clamp(20px, 2.2vw, 26px);
+      margin-bottom: 0.25rem;
+    }
+
+    .cat-card .audience {
+      font-size: 13px;
+      color: rgba(28, 26, 22, 0.45);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .cat-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-variation-settings: normal;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-chestnut);
+      margin-bottom: 1rem;
+    }
+
+    /* Boundaries section */
+    .boundaries-section {
+      background: var(--off-white);
+    }
+
+    .do-card {
+      background: var(--pure-white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .do-card h3 {
+      font-size: 16px;
+      margin-bottom: 1.25rem;
+      color: var(--deep-green);
+    }
+
+    .dont-card {
+      background: var(--pure-white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dont-card h3 {
+      font-size: 16px;
+      margin-bottom: 1.25rem;
+      color: rgba(28,26,22,0.7);
+    }
+
+    .integrity-box {
+      margin-top: 2rem;
+      background: rgba(46, 84, 61, 0.05);
+      border: 1px solid rgba(46, 84, 61, 0.14);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .integrity-box h3 {
+      font-size: 18px;
+      margin-bottom: 0.75rem;
+    }
+
+    .integrity-box p {
+      font-size: 15px;
+      line-height: 1.78;
+      color: rgba(28,26,22,0.68);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Custom session CTA */
+    .custom-section {
+      background: var(--cool-greige);
+      text-align: center;
+    }
+
+    .custom-box {
+      background: var(--pure-white);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-md);
+    }
+
+    .custom-box h2 { margin-bottom: 1rem; }
+    .custom-box p {
+      font-size: 16px;
+      color: rgba(28,26,22,0.65);
+      margin-bottom: 2rem;
+      line-height: 1.78;
+    }
+
+    /* CTA band */
+    .cta-band {
+      background: var(--dark-walnut);
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .cta-band h2 { color: var(--off-white); margin-bottom: 1rem; }
+    .cta-band p  { color: rgba(250,248,244,0.6); font-size: 16px; margin-bottom: 2.5rem; }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="what-we-cover.html" class="active">What We Cover</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="book.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="mobile-toggle" id="menuToggle" aria-label="Open menu">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </button>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose">&#10005;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="what-we-cover.html">What We Cover</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="book.html" class="mobile-book">Book Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero-section atmo">
+    <div class="b-orb"></div>
+    <div class="flora front tilt-r" style="top:-30px; right:38px; width:140px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-long.png" alt=""></div></div>
+    <div class="container">
+      <div class="b-hero-wrap">
+        <span class="b-ghost-num">&amp;</span>
+        <div class="b-hero">
+          <div class="kicker reveal"><span class="idx">01</span><span class="line"></span><span class="label">Scope of Coaching</span></div>
+          <h1 class="reveal delay-1">What We <span class="gold-underline">Cover</span></h1>
+          <p class="b-lead reveal delay-2"><strong style="color: var(--warm-ink);">Every session is custom-built for you.</strong> Here's what's possible — I'll recommend the right mix based on your specific challenge.</p>
+          <div class="b-tools reveal delay-3">
+            <span class="b-tlabel">Three tracks</span>
+            <span class="b-tool">Learning &amp; Research</span>
+            <span class="b-tool">Productivity</span>
+            <span class="b-tool">Creative</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="grid-3">
+        <div class="cat-card reveal delay-1">
+          <div class="icon-wrap icon-green" style="margin-bottom: 1.25rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h2>Learning &amp; Research</h2>
+          <p class="audience">For students, researchers, and lifelong learners</p>
+          <span class="gold-rule"></span>
+          <h3>You can learn to:</h3>
+          <ul class="check-list">
+            <li>Turn dense PDFs into audio podcasts for easier studying</li>
+            <li>Analyze YouTube lectures without watching them in full</li>
+            <li>Create study guides from messy notes</li>
+            <li>Use AI ethically without academic integrity issues</li>
+            <li>Fact-check AI outputs and spot hallucinations</li>
+          </ul>
+        </div>
+
+        <div class="cat-card reveal delay-2">
+          <div class="icon-wrap icon-stone" style="margin-bottom: 1.25rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h2>Work &amp; Productivity</h2>
+          <p class="audience">For professionals, freelancers, and teams</p>
+          <span class="gold-rule"></span>
+          <h3>You can learn to:</h3>
+          <ul class="check-list">
+            <li>Draft emails faster with Gemini Side Panel</li>
+            <li>Turn meeting recordings into action items</li>
+            <li>Build repeatable workflows that save hours each week</li>
+            <li>Use AI to manage projects and tasks</li>
+            <li>Generate reports and summaries quickly</li>
+          </ul>
+        </div>
+
+        <div class="cat-card reveal delay-3">
+          <div class="icon-wrap icon-gold" style="margin-bottom: 1.25rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <h2>Creative &amp; Advanced</h2>
+          <p class="audience">For content creators, writers, and power users</p>
+          <span class="gold-rule"></span>
+          <h3>You can learn to:</h3>
+          <ul class="check-list">
+            <li>Transform content formats: PDF to podcast, video to summary</li>
+            <li>Brainstorm ideas when you're stuck</li>
+            <li>Use AI for roleplay and simulation</li>
+            <li>Discover advanced Gemini and NotebookLM features</li>
+            <li>Build creative workflows tailored to your process</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUNDARIES -->
+  <section class="boundaries-section">
+    <div class="peek tilt-r" style="left:-28px; top:-36px; width:174px;" data-speed="0.05" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-confident.png" alt=""></div></div>
+    <div class="container">
+      <span class="label reveal">Important Boundaries</span>
+      <h2 class="reveal delay-1">What's In and Out of Scope</h2>
+
+      <div class="grid-2" style="margin-top: 2.5rem;">
+        <div class="do-card reveal delay-2">
+          <h3>What We Do</h3>
+          <ul class="check-list">
+            <li>Creative strategy and productivity coaching</li>
+            <li>Hands-on learning with your actual content</li>
+            <li>Teaching prompting and AI workflows</li>
+            <li>Ethical AI use guidance</li>
+            <li>Building systems to help you work smarter</li>
+          </ul>
+        </div>
+        <div class="dont-card reveal delay-3">
+          <h3>What We Don't Do</h3>
+          <ul class="cross-list">
+            <li>Technical support (fixing Google accounts, troubleshooting)</li>
+            <li>Software development (code review, debugging, building apps)</li>
+            <li>Ghostwriting (generating essays to submit as your own)</li>
+            <li>Academic integrity violations</li>
+            <li>Professional advice: legal, financial, or medical</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="integrity-box reveal delay-4">
+        <h3>Academic Integrity Promise</h3>
+        <p><strong>We teach you how to enhance your thinking, not replace it.</strong> AI is a study tool and thinking partner, not a shortcut to bypass learning. If you're looking for someone to write essays for you, this isn't the right service.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM SESSION -->
+  <section class="custom-section">
+    <div class="peek peek-online" style="left:9%; width:150px;" data-speed="0.06" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-belly.png" alt=""></div></div>
+    <div class="container">
+      <div class="custom-box reveal">
+        <h2>Not Sure What You Need?</h2>
+        <p>That's exactly why we start with a conversation. Tell me your challenge by email, or if you'd rather talk it through first, book a free 10-minute chat.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="book.html" class="btn-primary">Email Me Your Challenge</a>
+          <a href="book.html" class="btn-outline">Book Free Chat &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="flora front tilt-r" style="right:34px; top:-20px; width:118px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
+    <div class="peek peek-online" style="right:11%; width:140px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/woorim-pounce.png" alt=""></div></div>
+    <div class="container">
+      <h2 class="reveal">Ready to Book?</h2>
+      <p class="reveal delay-1">One email. A custom plan back within 24 hours.</p>
+      <a href="book.html" class="btn-coin reveal delay-2">Book a Session</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
+      <p>"GenAI Made Easy"</p>
+      <p style="margin-top: 1rem;">
+        <a href="terms.html">Terms &amp; Policies</a>
+        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+      </p>
+      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+    document.body.classList.add('js-ready');
+    const revealAll = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add('visible');
+      });
+    };
+    revealAll();
+    window.addEventListener('scroll', revealAll, { passive: true });
+    window.addEventListener('load', revealAll);
+    setTimeout(revealAll, 200);
+  </script>
+  <script src="peek.js"></script>
+</body>
+</html>
