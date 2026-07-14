@@ -69,6 +69,7 @@ body::before {
 }
 
 a { text-decoration: none; transition: color 0.3s ease; }
+a:focus-visible, button:focus-visible, .track-tab:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--jewelry-gold, #c9a24b); outline-offset: 3px; border-radius: 2px; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
@@ -204,7 +205,16 @@ nav.scrolled {
   border-bottom-color: rgba(28, 26, 22, 0.06);
 }
 
-.nav-logo {
+.nav-logo { display: flex; align-items: center; }
+.logo-img { height: 76px; width: auto; display: block; }
+.logo-hero { display: none; }
+.dark-hero #nav:not(.scrolled) .logo-default { display: none; }
+.dark-hero #nav:not(.scrolled) .logo-hero { display: block; }
+.logo-mark { display: flex; align-items: center; gap: calc(var(--logo-h) * 0.29); }
+.logo-mark .logo-icon { height: calc(var(--logo-h) * 0.854); width: auto; display: block; }
+.logo-mark .logo-word-crop { display: inline-block; height: var(--logo-h); width: calc(var(--logo-h) * 1.6); overflow: hidden; position: relative; }
+.logo-mark .logo-word-crop img { max-width: none; height: var(--logo-h); width: auto; display: block; position: absolute; left: calc(var(--logo-h) * -1.031); top: 0; }
+.nav-logo-text {
   font-family: 'Fraunces', serif;
   font-variation-settings: 'WONK' 1;
   font-weight: 700;
@@ -646,6 +656,7 @@ footer {
   border-top: 1px solid rgba(28, 26, 22, 0.08);
 }
 
+.footer-logo-img { height: 80px; width: auto; display: block; margin-bottom: 0.5rem; }
 .footer-logo {
   font-family: 'Fraunces', serif;
   font-variation-settings: 'WONK' 1;
@@ -677,6 +688,52 @@ footer a {
 }
 
 footer a:hover { color: var(--warm-ink); }
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 24px;
+  border: 1px solid rgba(28, 26, 22, 0.1);
+  border-radius: 14px;
+}
+
+.footer-social-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(28, 26, 22, 0.4);
+}
+
+.footer-social img {
+  width: 88px;
+  height: 88px;
+  border-radius: 8px;
+  border: 1px solid rgba(28, 26, 22, 0.08);
+  display: block;
+}
+
+.footer-social-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--warm-ink) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .footer-social { display: none; }
+}
 
 /* ============================================================
    LEGAL PAGE

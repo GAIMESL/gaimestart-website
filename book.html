@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book a Session · GAIME Start Learning</title>
+  <link rel="icon" href="img/gaime-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -132,6 +133,96 @@
       margin-top: auto;
     }
 
+    .email-fallback-link {
+      display: block;
+      margin-top: 0.6rem;
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 12px;
+      color: rgba(28,26,22,0.4);
+      text-decoration: underline;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+    }
+
+    .email-fallback-link:hover { color: rgba(28,26,22,0.65); }
+
+    .email-fallback-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,14,0.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .email-fallback-modal.open { display: flex; }
+
+    .email-fallback-box {
+      position: relative;
+      background: var(--off-white);
+      border-radius: 4px;
+      max-width: 380px;
+      width: 100%;
+      padding: 2rem 1.75rem;
+      text-align: center;
+    }
+
+    .email-fallback-box h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      margin-bottom: 0.5rem;
+    }
+
+    .email-fallback-box p {
+      font-size: 14px;
+      color: rgba(28,26,22,0.6);
+      margin-bottom: 1.25rem;
+    }
+
+    .email-fallback-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: rgba(28,26,22,0.04);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+    }
+
+    .email-fallback-row span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .email-fallback-copy {
+      background: var(--deep-green);
+      color: var(--off-white);
+      border: none;
+      border-radius: 3px;
+      padding: 0.4rem 0.9rem;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .email-fallback-copy:hover { background: #254832; }
+
+    .email-fallback-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.9rem;
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: rgba(28,26,22,0.4);
+      cursor: pointer;
+    }
+
     @media (max-width: 640px) {
       .email-options { grid-template-columns: 1fr; }
       .email-option:first-child {
@@ -257,10 +348,10 @@
 <body class="dark-hero">
 
   <nav id="nav">
-    <a href="/" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <a href="index.html" class="nav-logo"><img class="logo-img logo-default" src="img/gaime-lockup-light.png" alt="GAIME Start Learning"><span class="logo-hero"><span class="logo-mark" style="--logo-h:76px;"><img class="logo-icon" src="img/gaime-icon-white.png" alt=""><span class="logo-word-crop"><img src="img/gaime-lockup-dark.png" alt="GAIME Start Learning"></span></span></span></a>
     <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="your-coach.html">Your Coach</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
       <li><a href="how-it-works.html">How It Works</a></li>
       <li><a href="what-we-cover.html">What We Cover</a></li>
       <li><a href="pricing.html">Pricing</a></li>
@@ -274,8 +365,8 @@
 
   <div class="mobile-nav" id="mobileNav">
     <button class="mobile-nav-close" id="menuClose">&#10005;</button>
-    <a href="/">Home</a>
-    <a href="your-coach.html">Your Coach</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
     <a href="how-it-works.html">How It Works</a>
     <a href="what-we-cover.html">What We Cover</a>
     <a href="pricing.html">Pricing</a>
@@ -289,11 +380,11 @@
     <div class="container">
       <span class="label label-dark reveal">Let's Begin</span>
       <h1 class="reveal delay-1">Ready to Press <span class="gold-underline">START</span>?</h1>
-      <p class="reveal delay-2">Email me to get started. I'll reply with an intake form and a custom plan within 24 hours.</p>
+      <p class="reveal delay-2">Email me to get started. I'll reply within 24 hours with a custom plan and pricing confirmed to your challenge.</p>
 
       <!-- Mee (+ Woorim!) portrait, centered banner -->
       <div class="mee-portrait reveal delay-2">
-        <img src="img/mee-woorim-couch.jpg" alt="Mee and her cat Woorim, your AI workflow coaches" style="width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block;">
+        <img src="img/mee-woorim-couch.jpg" alt="Mee and her cat Woorim, your generative AI workflow coaches" style="width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block;">
       </div>
 
       <div class="book-layout" style="clear: both;">
@@ -307,6 +398,7 @@
               <a href="mailto:mee@gaimestart.com?subject=My%20AI%20Challenge&body=Hi%20Mee%2C%0D%0A%0D%0AHere's%20what%20I'm%20trying%20to%20accomplish%3A%0D%0A%5BDescribe%20your%20challenge%5D%0D%0A%0D%0AWhat%20I'm%20hoping%20to%20get%20out%20of%20a%20session%3A%0D%0A%5BDescribe%20your%20goal%5D%0D%0A%0D%0AMy%20availability%3A%0D%0A%5BLet%20me%20know%20what%20times%20work%20for%20you%5D" class="email-btn">
                 Email to Book &rarr;
               </a>
+              <button type="button" class="email-fallback-link" onclick="openEmailFallback()">Email app didn't open?</button>
             </div>
 
             <div class="email-option">
@@ -316,9 +408,22 @@
               <a href="mailto:mee@gaimestart.com?subject=Free%2010-Min%20Consult%20Request&body=Hi%20Mee%2C%0D%0A%0D%0AI'd%20like%20to%20book%20a%20free%2010-minute%20consult%20before%20committing%20to%20a%20session.%0D%0A%0D%0AHere%20are%20a%20few%20times%20that%20work%20for%20me%3A%0D%0A%5BDate%2Ftime%20option%201%5D%0D%0A%5BDate%2Ftime%20option%202%5D%0D%0A%5BDate%2Ftime%20option%203%5D" class="email-btn">
                 Book Free Chat &rarr;
               </a>
+              <button type="button" class="email-fallback-link" onclick="openEmailFallback()">Email app didn't open?</button>
             </div>
           </div>
           <p class="email-address">mee@gaimestart.com</p>
+
+          <div class="email-fallback-modal" id="emailFallbackModal">
+            <div class="email-fallback-box">
+              <button type="button" class="email-fallback-close" onclick="closeEmailFallback()" aria-label="Close">&#10005;</button>
+              <h3>Copy the Email Address</h3>
+              <p>If your device didn't open a draft, copy the address below and email me directly.</p>
+              <div class="email-fallback-row">
+                <span id="emailFallbackAddress">mee@gaimestart.com</span>
+                <button type="button" class="email-fallback-copy" onclick="copyEmailFallback()">Copy</button>
+              </div>
+            </div>
+          </div>
 
           <div class="next-steps">
             <h3>What Happens Next</h3>
@@ -335,11 +440,23 @@
         <div class="sidebar reveal delay-3">
           <div class="side-card">
             <h3>Quick Pricing</h3>
-            <p><strong>Quick Session (30 min)</strong><br>$80 · Returning clients only</p>
-            <p><strong>Standard Session (60 min)</strong><br>$150 · Most popular</p>
-            <p><strong>Extended Session (90 min)</strong><br>$210 · Pre-booked only</p>
+            <p style="color: var(--honey-gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4rem;">AI Fluency — Individuals, Professionals &amp; Students</p>
+            <p><strong>Quick (30 min)</strong><br>$80 · Returning clients only</p>
+            <p><strong>Standard (60 min)</strong><br>$150 · Most popular</p>
+            <p><strong>Extended (90 min)</strong><br>$210 · Pre-booked only</p>
             <p><strong>4-Session Bundle</strong><br>$550</p>
-            <a href="pricing.html" style="font-size: 13px; color: var(--honey-gold); text-decoration: underline; text-underline-offset: 3px; margin-top: 0.5rem; display: inline-block;">See full pricing &rarr;</a>
+            <p style="color: var(--honey-gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin: 1rem 0 0.4rem;">Solo Founder &amp; Leadership</p>
+            <p><strong>Quick (30 min)</strong><br>$95 · Returning clients only</p>
+            <p><strong>Standard (60 min)</strong><br>$175 · Most popular</p>
+            <p><strong>Extended (90 min)</strong><br>$250 · Pre-booked only</p>
+            <p><strong>4-Session Bundle</strong><br>$650</p>
+            <a href="pricing.html" style="font-size: 13px; color: var(--honey-gold); text-decoration: underline; text-underline-offset: 3px; margin-top: 0.75rem; display: inline-block;">See full pricing &rarr;</a>
+          </div>
+
+          <div class="side-card">
+            <h3>Booking for a Team?</h3>
+            <p>Workshops, discovery sessions, and guided build coaching for teams and leaders are priced separately.</p>
+            <a href="pricing.html#teams" style="font-size: 13px; color: var(--honey-gold); text-decoration: underline; text-underline-offset: 3px; margin-top: 0.5rem; display: inline-block;">See team pricing &rarr;</a>
           </div>
 
           <div class="side-card">
@@ -357,15 +474,22 @@
   </section>
 
   <footer style="background: var(--espresso); border-top: 1px solid rgba(250,248,244,0.06);">
-    <div class="container">
-      <span class="footer-logo" style="color: rgba(250,248,244,0.7);">G<span class="logo-ai">AI</span>ME <span>START</span></span>
-      <p style="color: rgba(250,248,244,0.4);">"GenAI Made Easy"</p>
-      <p style="margin-top: 1rem;">
-        <a href="terms.html" style="color: rgba(250,248,244,0.35);">Terms &amp; Policies</a>
-        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-        <a href="mailto:mee@gaimestart.com" style="color: rgba(250,248,244,0.35);">mee@gaimestart.com</a>
-      </p>
-      <p style="margin-top: 1.5rem; color: rgba(250,248,244,0.25);">&#169; 2026 GAIME Start Learning</p>
+    <div class="container footer-inner">
+      <div>
+        <span class="logo-mark" style="--logo-h:80px;"><img class="logo-icon" src="img/gaime-icon-white.png" alt=""><span class="logo-word-crop"><img src="img/gaime-lockup-dark.png" alt="GAIME Start Learning"></span></span>
+        <p style="color: rgba(250,248,244,0.4);">"GenAI Made Easy"</p>
+        <p style="margin-top: 1rem;">
+          <a href="mailto:mee@gaimestart.com" style="color: rgba(250,248,244,0.35);">mee@gaimestart.com</a>
+        </p>
+        <p style="margin-top: 1.5rem; color: rgba(250,248,244,0.25);">&#169; 2026 GAIME Start Learning</p>
+      </div>
+      <div class="footer-social" style="border-color: rgba(250,248,244,0.15);">
+        <span class="footer-social-label" style="color: rgba(250,248,244,0.35);">Follow Along</span>
+        <a href="https://www.instagram.com/gaime.start" target="_blank" rel="noopener">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&color=18211c&bgcolor=ffffff&data=https%3A%2F%2Fwww.instagram.com%2Fgaime.start" alt="QR code linking to GAIME Start's Instagram" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/gaime.start" target="_blank" rel="noopener" class="footer-social-link" style="color: rgba(250,248,244,0.7) !important;">Instagram</a>
+      </div>
     </div>
   </footer>
 
@@ -385,6 +509,20 @@
     window.addEventListener('scroll', revealAll, { passive: true });
     window.addEventListener('load', revealAll);
     setTimeout(revealAll, 200);
+    function openEmailFallback(){document.getElementById('emailFallbackModal').classList.add('open');}
+    function closeEmailFallback(){document.getElementById('emailFallbackModal').classList.remove('open');}
+    function copyEmailFallback(){
+      const text = document.getElementById('emailFallbackAddress').textContent;
+      const btn = event.currentTarget;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = original, 1500);
+      });
+    }
+    document.getElementById('emailFallbackModal').addEventListener('click', (e) => {
+      if (e.target.id === 'emailFallbackModal') closeEmailFallback();
+    });
   </script>
   <script src="peek.js"></script>
 </body>

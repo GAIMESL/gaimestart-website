@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pricing · GAIME Start Learning</title>
+  <link rel="icon" href="img/gaime-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK@0,9..144,100..900,0;0,9..144,100..900,1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -354,9 +355,104 @@
       margin: 0;
     }
 
+    /* Track tabs */
+    .track-tabs {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .track-tab {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: rgba(250,248,244,0.55);
+      background: rgba(250,248,244,0.06);
+      border: 1px solid rgba(250,248,244,0.14);
+      padding: 0.7rem 1.4rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .track-tab:hover { color: var(--off-white); border-color: rgba(250,248,244,0.3); }
+
+    .track-tab.active {
+      background: var(--jewelry-gold);
+      border-color: var(--jewelry-gold);
+      color: var(--warm-ink);
+    }
+
+    .track-panel { display: none; }
+    .track-panel.active { display: block; }
+
+    .track-intro {
+      color: rgba(250,248,244,0.6) !important;
+      font-size: 15px;
+      max-width: 620px;
+      margin: -1.75rem 0 2.5rem !important;
+      line-height: 1.7;
+    }
+
+    .track-note {
+      margin-top: 2.5rem;
+      background: rgba(250,248,244,0.05);
+      border-left: 3px solid var(--jewelry-gold);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .track-note p { margin: 0; font-size: 14px; color: rgba(250,248,244,0.6); line-height: 1.7; }
+
+    /* Teams section */
+    .teams-section { background: var(--off-white); }
+
+    .teams-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+
+    .teams-offer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .teams-offer-list li {
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--jewelry-gold);
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: rgba(28,26,22,0.68);
+    }
+
+    .teams-offer-list li strong { color: var(--warm-ink); }
+
+    .teams-cta-card {
+      background: var(--espresso);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .teams-cta-card p {
+      color: rgba(250,248,244,0.6);
+      font-size: 14.5px;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
     @media (max-width: 1024px) {
       .price-card.featured { transform: none; }
       .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .teams-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -369,10 +465,10 @@
 <body>
 
   <nav id="nav">
-    <a href="/" class="nav-logo">G<span class="logo-ai">AI</span>ME <span>START</span></a>
+    <a href="index.html" class="nav-logo"><img class="logo-img logo-default" src="img/gaime-lockup-light.png" alt="GAIME Start Learning"><img class="logo-img logo-hero" src="img/gaime-lockup-dark.png" alt="GAIME Start Learning"></a>
     <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="your-coach.html">Your Coach</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Your Coach</a></li>
       <li><a href="how-it-works.html">How It Works</a></li>
       <li><a href="what-we-cover.html">What We Cover</a></li>
       <li><a href="pricing.html" class="active">Pricing</a></li>
@@ -386,8 +482,8 @@
 
   <div class="mobile-nav" id="mobileNav">
     <button class="mobile-nav-close" id="menuClose">&#10005;</button>
-    <a href="/">Home</a>
-    <a href="your-coach.html">Your Coach</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">Your Coach</a>
     <a href="how-it-works.html">How It Works</a>
     <a href="what-we-cover.html">What We Cover</a>
     <a href="pricing.html">Pricing</a>
@@ -409,72 +505,133 @@
   <section class="pricing-section">
     <div class="peek tilt-r" style="left:18px; bottom:-8px; width:128px;" data-speed="0.04" aria-hidden="true"><div class="peek-inner"><img src="img/cut/mee-tablet.png" alt=""></div></div>
     <div class="container">
-      <span class="label-dark reveal">AI Fluency Coaching</span>
+      <span class="label-dark reveal">Individual Coaching</span>
       <h2 class="reveal delay-1">Simple, Flexible Pricing</h2>
-      <p class="reveal delay-2">Pick your session length. Pay after you book, not before.</p>
+      <p class="reveal delay-2">One-on-one generative AI coaching, built around how you actually work. Choose the track that fits what you're trying to do.</p>
 
-      <!-- Pricing cards -->
-      <div class="grid-4 reveal delay-3">
+      <div class="track-tabs reveal delay-3" role="tablist" aria-label="Pricing track">
+        <button class="track-tab active" role="tab" aria-selected="true" aria-controls="track-fluency" data-track="fluency">AI Fluency (Individuals)</button>
+        <button class="track-tab" role="tab" aria-selected="false" aria-controls="track-founder" data-track="founder">Solo Founder &amp; Leadership</button>
+      </div>
 
-        <!-- Quick Session -->
-        <div class="price-card">
-          <span class="tier-label">Returning Clients</span>
-          <h3>Quick Session</h3>
-          <div class="single-price"><sup>$</sup>80</div>
-          <p class="savings">30 min</p>
-          <div class="divider"></div>
-          <ul class="check-list">
-            <li>Fast check-in or follow-up</li>
-            <li>One focused question or tool</li>
-            <li>Returning clients only</li>
-          </ul>
-          <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Quick</a>
+      <!-- AI FLUENCY -->
+      <div class="track-panel active" id="track-fluency" role="tabpanel">
+        <p class="track-intro">For individuals, working professionals, and students. Prompt engineering, context engineering, and Google Workspace's generative AI tools (Gemini, NotebookLM) for your everyday work or studies.</p>
+        <div class="grid-4">
+          <div class="price-card">
+            <span class="tier-label">Returning Clients</span>
+            <h3>Quick Session</h3>
+            <div class="single-price"><sup>$</sup>80</div>
+            <p class="savings">30 min</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Fast check-in or follow-up</li>
+              <li>One focused question or tool</li>
+              <li>Returning clients only</li>
+            </ul>
+            <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Quick</a>
+          </div>
+          <div class="price-card featured">
+            <span class="tier-label">Most Popular</span>
+            <h3>Standard Session</h3>
+            <div class="single-price"><sup>$</sup>150</div>
+            <p class="savings">60 min &middot; the sweet spot</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Enough time to go deep</li>
+              <li>Work on your real project</li>
+              <li>Walk away with a solution</li>
+            </ul>
+            <a href="book.html" class="btn-coin" style="text-align:center; width:100%;">Book Standard</a>
+          </div>
+          <div class="price-card">
+            <span class="tier-label">Deep Focus</span>
+            <h3>Extended Session</h3>
+            <div class="single-price"><sup>$</sup>210</div>
+            <p class="savings">90 min &middot; pre-booked only</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Tackle a big, layered problem</li>
+              <li>Build an end-to-end workflow</li>
+              <li>Schedule in advance</li>
+            </ul>
+            <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Extended</a>
+          </div>
+          <div class="price-card">
+            <span class="tier-label">Best Value</span>
+            <h3>4-Session Bundle</h3>
+            <div class="single-price"><sup>$</sup>550</div>
+            <p class="savings">Four 60-min sessions</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Flexible scheduling, no expiry</li>
+              <li>Best value for committed learners</li>
+            </ul>
+            <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Bundle</a>
+          </div>
         </div>
+      </div>
 
-        <!-- Standard Session, FEATURED -->
-        <div class="price-card featured">
-          <span class="tier-label">Most Popular</span>
-          <h3>Standard Session</h3>
-          <div class="single-price"><sup>$</sup>150</div>
-          <p class="savings">60 min &middot; the sweet spot</p>
-          <div class="divider"></div>
-          <ul class="check-list">
-            <li>Enough time to go deep</li>
-            <li>Work on your real project</li>
-            <li>Walk away with a solution</li>
-          </ul>
-          <a href="book.html" class="btn-coin" style="text-align:center; width:100%;">Book Standard</a>
+      <!-- SOLO FOUNDER -->
+      <div class="track-panel" id="track-founder" role="tabpanel">
+        <p class="track-intro">For solopreneurs and one-person businesses. Using generative AI to run client communication, proposals, day-to-day operations, and business decisions &mdash; without a team to delegate to.</p>
+        <div class="grid-4">
+          <div class="price-card">
+            <span class="tier-label">Returning Clients</span>
+            <h3>Quick Session</h3>
+            <div class="single-price"><sup>$</sup>95</div>
+            <p class="savings">30 min</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Fast check-in or follow-up</li>
+              <li>One focused question or tool</li>
+              <li>Returning clients only</li>
+            </ul>
+            <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Quick</a>
+          </div>
+          <div class="price-card featured">
+            <span class="tier-label">Most Popular</span>
+            <h3>Standard Session</h3>
+            <div class="single-price"><sup>$</sup>175</div>
+            <p class="savings">60 min &middot; the sweet spot</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Enough time to go deep</li>
+              <li>Work on your real project</li>
+              <li>Walk away with a solution</li>
+            </ul>
+            <a href="book.html" class="btn-coin" style="text-align:center; width:100%;">Book Standard</a>
+          </div>
+          <div class="price-card">
+            <span class="tier-label">Deep Focus</span>
+            <h3>Extended Session</h3>
+            <div class="single-price"><sup>$</sup>250</div>
+            <p class="savings">90 min &middot; pre-booked only</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Tackle a big, layered problem</li>
+              <li>Build an end-to-end workflow</li>
+              <li>Schedule in advance</li>
+            </ul>
+            <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Extended</a>
+          </div>
+          <div class="price-card">
+            <span class="tier-label">Best Value</span>
+            <h3>4-Session Bundle</h3>
+            <div class="single-price"><sup>$</sup>650</div>
+            <p class="savings">Four 60-min sessions</p>
+            <div class="divider"></div>
+            <ul class="check-list">
+              <li>Flexible scheduling, no expiry</li>
+              <li>Best value for committed learners</li>
+            </ul>
+            <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Bundle</a>
+          </div>
         </div>
+      </div>
 
-        <!-- Extended Session -->
-        <div class="price-card">
-          <span class="tier-label">Deep Focus</span>
-          <h3>Extended Session</h3>
-          <div class="single-price"><sup>$</sup>210</div>
-          <p class="savings">90 min &middot; pre-booked only</p>
-          <div class="divider"></div>
-          <ul class="check-list">
-            <li>Tackle a big, layered problem</li>
-            <li>Build an end-to-end workflow</li>
-            <li>Schedule in advance</li>
-          </ul>
-          <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Extended</a>
-        </div>
-
-        <!-- 4-Session Bundle -->
-        <div class="price-card">
-          <span class="tier-label">Best Value</span>
-          <h3>4-Session Bundle</h3>
-          <div class="single-price"><sup>$</sup>550</div>
-          <p class="savings">Four 60-min sessions</p>
-          <div class="divider"></div>
-          <ul class="check-list">
-            <li>Flexible scheduling, no expiry</li>
-            <li>Best value for committed learners</li>
-          </ul>
-          <a href="book.html" class="btn-outline" style="text-align:center; width:100%;">Book Bundle</a>
-        </div>
-
+      <div class="track-note reveal delay-4">
+        <p>Not sure which to book? Learning generative AI for your own general productivity &rarr; AI Fluency. Running your one-person business with generative AI, or leading a team through AI adoption &rarr; Solo Founder &amp; Leadership. Still unsure? Book a Fluency session and we'll figure out the best fit together.</p>
       </div>
 
       <p style="color: rgba(250, 248, 244, 0.5); font-size: 14px; margin-top: 2.5rem; text-align: center;"><em>Ready to book? Head to the <a href="book.html" style="color: var(--jewelry-gold); text-decoration: underline;">booking page</a> to schedule your session.</em></p>
@@ -529,6 +686,32 @@
     </div>
   </section>
 
+  <!-- SMALL ORGANIZATIONS & TEAMS -->
+  <section class="teams-section" id="teams">
+    <div class="container">
+      <span class="label reveal">For Teams</span>
+      <h2 class="reveal delay-1">Small Organizations &amp; Teams</h2>
+      <p class="reveal delay-2" style="font-size: 16px; color: rgba(28,26,22,0.6); max-width: 620px; margin-top: 0.5rem;">For solopreneurs with a small team, small businesses, and non-profits. Every engagement is scoped to your group and your goals, so pricing is quoted after a quick conversation rather than posted here.</p>
+
+      <div class="teams-grid">
+        <div class="reveal delay-3">
+          <h3 style="font-size: 15px; color: var(--deep-green); margin-bottom: 1.25rem;">What's available</h3>
+          <ul class="teams-offer-list">
+            <li><strong>AI Fluency Workshops</strong> &mdash; from a focused 90-minute session to a full-day team bootcamp, or spread across a multi-week series</li>
+            <li><strong>AI Leadership Focus Workshops</strong> &mdash; practical generative AI use cases for business owners and team leads</li>
+            <li><strong>Discovery</strong> &mdash; not sure what your team needs? Start here. A diagnostic session that gives you a clear picture of your biggest opportunities and a written roadmap you can act on</li>
+            <li><strong>Guided Build Coaching</strong> &mdash; hands-on support as your team builds out generative AI-powered workflows, with Mee coaching alongside you</li>
+          </ul>
+        </div>
+        <div class="teams-cta-card reveal delay-4">
+          <h3 style="font-family: 'Fraunces', serif; color: var(--off-white); font-size: 20px; margin-bottom: 0.75rem;">Let's scope it out</h3>
+          <p>Email mee@gaimestart.com for pricing and to discuss what your team needs.</p>
+          <a href="mailto:mee@gaimestart.com" class="btn-coin" style="display: inline-block;">Email Mee</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- BOOK CTA, DARK WALNUT -->
   <section class="book-cta">
     <div class="flora front tilt-r" style="right:34px; top:-20px; width:118px;" data-speed="0.09" aria-hidden="true"><div class="flora-inner"><img src="img/cut/vine-short.png" alt=""></div></div>
@@ -536,14 +719,14 @@
     <div class="container">
       <span class="label label-dark reveal" style="display: block; text-align: center; margin-bottom: 1rem;">Ready When You Are</span>
       <h2 class="reveal delay-1">Let's Get Started</h2>
-      <p class="reveal delay-2">Email me with your challenge. I'll reply within 24 hours with a recommendation and intake form.</p>
+      <p class="reveal delay-2">Email me with your challenge. I'll reply within 24 hours with a recommendation and pricing confirmed to fit.</p>
       <a href="book.html" class="btn-coin reveal delay-3">Book a Session</a>
 
       <div class="what-next reveal delay-4">
         <h3>What happens next</h3>
         <ol>
           <li>You email me with your challenge</li>
-          <li>I reply within 24 hours with an intake form and track recommendation</li>
+          <li>I reply within 24 hours with a track recommendation and confirmed pricing</li>
           <li>You choose a time slot and send payment to mee@gaimestart.com</li>
           <li>I send the Google Meet link or in-person details</li>
           <li>We meet and solve your problem, live</li>
@@ -553,15 +736,24 @@
   </section>
 
   <footer>
-    <div class="container">
-      <span class="footer-logo">G<span class="logo-ai">AI</span>ME <span>START</span></span>
-      <p>"GenAI Made Easy"</p>
-      <p style="margin-top: 1rem;">
-        <a href="terms.html">Terms &amp; Policies</a>
-        &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-        <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
-      </p>
-      <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+    <div class="container footer-inner">
+      <div>
+        <img class="footer-logo-img" src="img/gaime-lockup-light.png" alt="GAIME Start Learning">
+        <p>"GenAI Made Easy"</p>
+        <p style="margin-top: 1rem;">
+          <a href="terms.html">Terms &amp; Policies</a>
+          &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+          <a href="mailto:mee@gaimestart.com">mee@gaimestart.com</a>
+        </p>
+        <p style="margin-top: 1.5rem;">&#169; 2026 GAIME Start Learning</p>
+      </div>
+      <div class="footer-social">
+        <span class="footer-social-label">Follow Along</span>
+        <a href="https://www.instagram.com/gaime.start" target="_blank" rel="noopener">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&color=18211c&bgcolor=ffffff&data=https%3A%2F%2Fwww.instagram.com%2Fgaime.start" alt="QR code linking to GAIME Start's Instagram" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/gaime.start" target="_blank" rel="noopener" class="footer-social-link">Instagram</a>
+      </div>
     </div>
   </footer>
 
@@ -571,6 +763,15 @@
     document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
     document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
     document.body.classList.add('js-ready');
+    document.querySelectorAll('.track-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.track-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        document.querySelectorAll('.track-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById('track-' + tab.dataset.track).classList.add('active');
+      });
+    });
     const revealAll = () => {
       const vh = window.innerHeight || document.documentElement.clientHeight;
       document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
