@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Yang;Meeshun;;;
+FN:Mee Yang
+ORG:GAIME Start Learning
+TITLE:Coach
+EMAIL;type=INTERNET;type=WORK:mee@gaimestart.com
+URL:https://gaimestart.com
+ADR;type=WORK:;;;Toronto;ON;;Canada
+NOTE:I teach you to use generative AI well enough that you don't need me. For individuals, solo entrepreneurs, and small businesses.
+END:VCARD
