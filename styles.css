@@ -81,7 +81,7 @@ img { max-width: 100%; display: block; }
 h1, h2, h3, h4 {
   font-family: 'Fraunces', serif;
   font-variation-settings: 'WONK' 1;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--warm-ink);
   line-height: 1.1;
   letter-spacing: -0.02em;
