@@ -90,6 +90,10 @@ h1, h2, h3, h4 {
 
 h1 {
   font-weight: 800;
+  /* Pinned so hero strokes stay consistent across pages. Fraunces thins its
+     hairlines as opsz rises, and browsers raise opsz with font-size by default,
+     so the larger .b-hero headings were rendering lighter than the homepage. */
+  font-variation-settings: 'opsz' 64, 'WONK' 1;
   font-size: clamp(44px, 5.8vw, 82px);
   letter-spacing: -0.025em;
   line-height: 1.01;
